@@ -1,0 +1,70 @@
+---
+import { Home, GraduationCap, ClipboardList, Newspaper, Menu } from 'lucide-react';
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+
+const tabs = [
+  { label: 'Home', href: '/', icon: Home },
+  { label: 'Academics', href: '/academics', icon: GraduationCap },
+  // Center CTA
+  { label: 'Apply', href: '/admissions', icon: ClipboardList, isFab: true },
+  { label: 'News', href: '/news', icon: Newspaper },
+  { label: 'More', href: '#more', icon: Menu, isMore: true },
+];
+---
+
+<nav 
+  class="lg:hidden fixed bottom-0 left-0 right-0 z-[190] bg-white/85 backdrop-blur-xl border-t border-[var(--color-gray-200)] shadow-[0_-4px_20px_rgba(0,0,0,0.05)] rounded-t-2xl safe-pb select-none"
+  aria-label="Mobile Bottom Navigation"
+>
+  <ul class="flex items-center justify-around h-16 px-2">
+    {tabs.map(tab => (
+      <li class="flex-1 flex justify-center h-full">
+        {tab.isFab ? (
+          <a
+            href={tab.href}
+            class="relative -top-5 flex flex-col items-center justify-center w-14 h-14 bg-[var(--color-red)] text-white rounded-full shadow-lg border-4 border-white active:scale-95 transition-transform"
+            aria-label={tab.label}
+          >
+            <tab.icon class="w-6 h-6" strokeWidth={2} />
+          </a>
+        ) : tab.isMore ? (
+          <button
+            id="more-menu-btn"
+            class="flex flex-col items-center justify-center w-full h-full text-[var(--color-ink-light)] active:scale-95 transition-transform"
+            aria-label="Open More Menu"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="more-menu-sheet"
+          >
+            <tab.icon class="w-6 h-6 mb-1" strokeWidth={1.75} />
+            <span class="text-[10px] font-medium leading-none">{tab.label}</span>
+          </button>
+        ) : (
+          <a
+            href={tab.href}
+            class:list={[
+              "flex flex-col items-center justify-center w-full h-full transition-transform active:scale-95",
+              isActive(tab.href) ? "text-[var(--color-indigo)]" : "text-[var(--color-ink-light)]"
+            ]}
+            aria-current={isActive(tab.href) ? 'page' : undefined}
+          >
+            <div class="relative">
+              <tab.icon class="w-6 h-6 mb-1" strokeWidth={1.75} />
+              {isActive(tab.href) && (
+                <span class="absolute -top-1 -right-1 w-2 h-2 bg-[var(--color-amber)] rounded-full border border-white"></span>
+              )}
+            </div>
+            <span class:list={["text-[10px] font-medium leading-none", isActive(tab.href) && "font-semibold"]}>
+              {tab.label}
+            </span>
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>

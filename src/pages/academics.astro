@@ -1,0 +1,207 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import AdmissionCTA from '@/components/sections/AdmissionCTA.astro';
+import { siteConfig } from '@/config/site';
+import { getBreadcrumbList } from '@/lib/schema';
+
+const breadcrumbLd = getBreadcrumbList([
+  { name: 'Home', item: 'https://mppublicschool.online/' },
+  { name: 'Academics', item: 'https://mppublicschool.online/academics' },
+]);
+
+const levels = [
+  {
+    title: 'Pre-Primary (Nursery – UKG)',
+    ages: 'Ages 3–5',
+    color: 'var(--color-cyan)',
+    description: 'A play-based, activity-driven program that builds foundational skills in literacy, numeracy, and social interaction through creative exploration.',
+    highlights: ['Montessori-inspired methodology', 'Dedicated play areas', 'Focus on motor skills development', 'Introduction to English and Hindi'],
+  },
+  {
+    title: 'Primary (Classes I – V)',
+    ages: 'Ages 6–10',
+    color: 'var(--color-amber)',
+    description: 'Building strong academic foundations while nurturing curiosity and creativity through an activity-based CBSE curriculum.',
+    highlights: ['NCERT-aligned curriculum', 'Smart classroom learning', 'Value education & life skills', 'Art, music, and sports'],
+  },
+  {
+    title: 'Middle School (Classes VI – VIII)',
+    ages: 'Ages 11–13',
+    color: 'var(--color-indigo)',
+    description: 'Developing critical thinking and subject expertise with hands-on laboratory experiences and project-based learning.',
+    highlights: ['Science lab practicals', 'Computer science & coding', 'Inter-school competitions', 'Leadership development programs'],
+  },
+  {
+    title: 'Secondary (Classes IX – X)',
+    ages: 'Ages 14–15',
+    color: 'var(--color-orange)',
+    description: 'Focused board examination preparation with comprehensive subject coverage and personalized academic support.',
+    highlights: ['CBSE Board preparation', 'Career counseling', 'Competitive exam coaching', 'Regular assessments & feedback'],
+  },
+  {
+    title: 'Senior Secondary (Classes XI – XII)',
+    ages: 'Ages 16–17',
+    color: 'var(--color-red)',
+    description: 'Specialized streams in Science, Commerce, and Humanities with expert faculty and focused preparation for board exams and entrance tests.',
+    highlights: ['Science (PCM/PCB)', 'Commerce with Mathematics/IP', 'Humanities', 'JEE/NEET/CUET preparation'],
+  },
+];
+
+const subjects = ['English', 'Hindi', 'Mathematics', 'Science', 'Social Science', 'Computer Science', 'Physical Education', 'Art & Craft', 'Music', 'Moral Science', 'General Knowledge', 'Environmental Studies'];
+
+const methodology = [
+  { title: 'Experiential Learning', desc: 'Hands-on experiments, field trips, and real-world projects that make concepts tangible and memorable.', icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z' },
+  { title: 'Collaborative Learning', desc: 'Group projects, peer tutoring, and team activities that develop communication and teamwork skills.', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
+  { title: 'Technology-Integrated', desc: 'Smart classrooms, digital resources, and online platforms that enhance the learning experience.', icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+  { title: 'Continuous Assessment', desc: 'Regular formative assessments, projects, and feedback that track progress and identify improvement areas.', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4' },
+];
+---
+
+<BaseLayout
+  title="Academics – Curriculum & Programs"
+  description="Explore M.P. Public School Indore's CBSE curriculum covering Pre-Primary to Senior Secondary, teaching methodology, subjects, and academic excellence programs."
+  jsonLd={breadcrumbLd}
+>
+  <!-- Page Hero -->
+  <section class="gradient-hero py-20 md:py-28 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div class="container relative">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-white/60">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li><span class="mx-1">/</span></li>
+          <li class="text-white font-medium">Academics</li>
+        </ol>
+      </nav>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">Academics</h1>
+      <p class="text-lg text-white/75 max-w-2xl mb-4">A comprehensive CBSE curriculum designed to build strong foundations, foster critical thinking, and prepare students for a successful future.</p>
+      
+      <!-- AEO Quick Answer -->
+      <p class="text-lg text-white/90 max-w-3xl bg-white/10 p-4 rounded-xl border border-white/20 backdrop-blur">
+        <strong>Quick Answer:</strong> {siteConfig.name} offers a rigorous CBSE-aligned curriculum from Pre-Primary through Class 12, focusing on experiential learning, comprehensive subjects, and holistic development to ensure board exam readiness and future success.
+      </p>
+    </div>
+  </section>
+
+  <!-- Academic Levels -->
+  <section class="section bg-white">
+    <div class="container">
+      <SectionHeading title="Academic Levels" subtitle="From early childhood to senior secondary — structured learning at every stage." />
+
+      <div class="space-y-8" data-animate="stagger">
+        {levels.map((level, i) => (
+          <div class:list={['grid md:grid-cols-2 gap-8 items-center p-6 md:p-8 rounded-3xl', i % 2 === 0 ? '' : 'md:flex-row-reverse', 'bg-[var(--color-gray-50)] hover:bg-[var(--color-cream)] transition-colors duration-300']}>
+            <div class:list={[i % 2 !== 0 ? 'md:order-2' : '']}>
+              <div class="flex items-center gap-3 mb-4">
+                <span class="px-3 py-1 rounded-full text-sm font-bold text-white" style={`background: ${level.color};`}>{level.ages}</span>
+              </div>
+              <h3 class="text-2xl font-bold text-[var(--color-ink)] mb-3">{level.title}</h3>
+              <p class="text-[var(--color-ink-light)] mb-5">{level.description}</p>
+              <ul class="space-y-2">
+                {level.highlights.map((h) => (
+                  <li class="flex items-center gap-2 text-sm text-[var(--color-ink-light)]">
+                    <svg class="w-4 h-4 shrink-0" style={`color: ${level.color};`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class:list={[i % 2 !== 0 ? 'md:order-1' : '']}>
+              <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg" style={`background: linear-gradient(135deg, ${level.color}20, ${level.color}05);`}>
+                <div class="w-full h-full flex items-center justify-center">
+                  <span class="text-6xl font-bold" style={`color: ${level.color}30;`}>{level.ages}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Subjects -->
+  <section class="section bg-[var(--color-cream)]">
+    <div class="container">
+      <SectionHeading title="Subjects Offered" subtitle="A well-rounded curriculum covering core academics, sciences, arts, and physical development." />
+
+      <div class="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto" data-animate="stagger">
+        {subjects.map((subject) => (
+          <span class="px-5 py-2.5 rounded-xl bg-white text-sm font-medium text-[var(--color-ink)] shadow-sm hover:shadow-md hover:bg-[var(--color-indigo)] hover:text-white transition-all duration-200 cursor-default">
+            {subject}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaching Methodology -->
+  <section class="section bg-white">
+    <div class="container">
+      <SectionHeading title="Our Teaching Methodology" subtitle="Innovative approaches that make learning engaging, effective, and enjoyable." />
+
+      <div class="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto" data-animate="stagger">
+        {methodology.map((m) => (
+          <div class="card p-7">
+            <div class="w-14 h-14 rounded-2xl bg-[var(--color-indigo)]/8 flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-[var(--color-indigo)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d={m.icon} />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-[var(--color-ink)] mb-2">{m.title}</h3>
+            <p class="text-sm text-[var(--color-ink-light)]">{m.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic Calendar & Exam Info -->
+  <section class="section gradient-indigo">
+    <div class="container">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div data-animate="fade-up">
+          <SectionHeading title="Examination & Results" align="left" light={true} />
+          <div class="space-y-4 text-white/80">
+            <p>Our assessment system follows the CBSE continuous and comprehensive evaluation pattern, ensuring regular monitoring of student progress.</p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[var(--color-amber)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                <span>Periodic tests every 6 weeks</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[var(--color-amber)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                <span>Half-yearly and annual examinations</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[var(--color-amber)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                <span>Project-based and practical assessments</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[var(--color-amber)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                <span>Detailed progress reports shared with parents</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center" data-animate="fade-up">
+          <div class="card p-8 inline-block">
+            <h3 class="text-xl font-bold text-[var(--color-ink)] mb-4">Academic Calendar 2025–26</h3>
+            <p class="text-[var(--color-ink-light)] text-sm mb-6">Download the complete academic calendar with term dates, holidays, and examination schedule.</p>
+            <Button variant="primary" href="#">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download PDF
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <AdmissionCTA />
+</BaseLayout>

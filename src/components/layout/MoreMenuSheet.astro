@@ -1,0 +1,195 @@
+---
+import { X, Phone, MessageCircle, MapPin, Info, ChevronRight, Users, Building, Image as ImageIcon, Mail } from 'lucide-react';
+---
+
+<!-- Overlay -->
+<div 
+  id="more-menu-overlay" 
+  class="lg:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[195] opacity-0 invisible transition-all duration-300"
+  aria-hidden="true"
+></div>
+
+<!-- Bottom Sheet -->
+<div 
+  id="more-menu-sheet" 
+  class="lg:hidden fixed bottom-0 left-0 right-0 z-[200] bg-white rounded-t-3xl transform translate-y-full transition-transform duration-300 ease-out flex flex-col max-h-[85vh] shadow-[0_-10px_40px_rgba(0,0,0,0.15)] safe-pb"
+  role="dialog"
+  aria-modal="true"
+  aria-label="More Menu"
+>
+  <!-- Handle -->
+  <div class="w-full flex justify-center pt-4 pb-2 shrink-0 touch-none" id="more-menu-handle">
+    <div class="w-12 h-1.5 bg-[var(--color-gray-300)] rounded-full"></div>
+  </div>
+
+  <div class="px-6 pb-6 overflow-y-auto overscroll-contain">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-bold text-[var(--color-ink)]">More Options</h2>
+      <button id="close-more-menu" class="p-2 -mr-2 text-[var(--color-ink-light)] active:scale-95 transition-transform" aria-label="Close menu">
+        <X class="w-6 h-6" />
+      </button>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-3 gap-3 mb-8">
+      <a href="tel:+917312345678" class="flex flex-col items-center justify-center p-3 bg-[var(--color-gray-50)] rounded-xl active:bg-[var(--color-gray-100)] transition-colors active:scale-95">
+        <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-2">
+          <Phone class="w-5 h-5" />
+        </div>
+        <span class="text-xs font-semibold text-[var(--color-ink)]">Call Us</span>
+      </a>
+      <a href="https://wa.me/917312345678" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-3 bg-[var(--color-gray-50)] rounded-xl active:bg-[var(--color-gray-100)] transition-colors active:scale-95">
+        <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-2">
+          <MessageCircle class="w-5 h-5" />
+        </div>
+        <span class="text-xs font-semibold text-[var(--color-ink)]">WhatsApp</span>
+      </a>
+      <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-3 bg-[var(--color-gray-50)] rounded-xl active:bg-[var(--color-gray-100)] transition-colors active:scale-95">
+        <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-2">
+          <MapPin class="w-5 h-5" />
+        </div>
+        <span class="text-xs font-semibold text-[var(--color-ink)]">Directions</span>
+      </a>
+    </div>
+
+    <!-- Menu Links -->
+    <div class="space-y-1">
+      <a href="/about" class="flex items-center justify-between p-4 bg-white border border-[var(--color-gray-200)] rounded-xl active:bg-[var(--color-gray-50)] transition-colors">
+        <div class="flex items-center gap-3">
+          <Info class="w-5 h-5 text-[var(--color-indigo)]" />
+          <span class="font-semibold text-[var(--color-ink)]">About Us</span>
+        </div>
+        <ChevronRight class="w-5 h-5 text-[var(--color-gray-400)]" />
+      </a>
+      <a href="/faculty" class="flex items-center justify-between p-4 bg-white border border-[var(--color-gray-200)] rounded-xl active:bg-[var(--color-gray-50)] transition-colors">
+        <div class="flex items-center gap-3">
+          <Users class="w-5 h-5 text-[var(--color-indigo)]" />
+          <span class="font-semibold text-[var(--color-ink)]">Faculty & Staff</span>
+        </div>
+        <ChevronRight class="w-5 h-5 text-[var(--color-gray-400)]" />
+      </a>
+      <a href="/facilities" class="flex items-center justify-between p-4 bg-white border border-[var(--color-gray-200)] rounded-xl active:bg-[var(--color-gray-50)] transition-colors">
+        <div class="flex items-center gap-3">
+          <Building class="w-5 h-5 text-[var(--color-indigo)]" />
+          <span class="font-semibold text-[var(--color-ink)]">Facilities</span>
+        </div>
+        <ChevronRight class="w-5 h-5 text-[var(--color-gray-400)]" />
+      </a>
+      <a href="/gallery" class="flex items-center justify-between p-4 bg-white border border-[var(--color-gray-200)] rounded-xl active:bg-[var(--color-gray-50)] transition-colors">
+        <div class="flex items-center gap-3">
+          <ImageIcon class="w-5 h-5 text-[var(--color-indigo)]" />
+          <span class="font-semibold text-[var(--color-ink)]">Gallery</span>
+        </div>
+        <ChevronRight class="w-5 h-5 text-[var(--color-gray-400)]" />
+      </a>
+      <a href="/contact" class="flex items-center justify-between p-4 bg-white border border-[var(--color-gray-200)] rounded-xl active:bg-[var(--color-gray-50)] transition-colors">
+        <div class="flex items-center gap-3">
+          <Mail class="w-5 h-5 text-[var(--color-indigo)]" />
+          <span class="font-semibold text-[var(--color-ink)]">Contact Us</span>
+        </div>
+        <ChevronRight class="w-5 h-5 text-[var(--color-gray-400)]" />
+      </a>
+    </div>
+
+    <!-- Legal -->
+    <div class="mt-6 flex flex-wrap gap-4 justify-center text-sm text-[var(--color-ink-light)]">
+      <a href="/privacy-policy" class="hover:text-[var(--color-indigo)] underline underline-offset-2">Privacy Policy</a>
+      <span>&bull;</span>
+      <a href="/terms" class="hover:text-[var(--color-indigo)] underline underline-offset-2">Terms & Conditions</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.getElementById('more-menu-btn');
+    const sheet = document.getElementById('more-menu-sheet');
+    const overlay = document.getElementById('more-menu-overlay');
+    const closeBtn = document.getElementById('close-more-menu');
+    const handle = document.getElementById('more-menu-handle');
+
+    let isOpen = false;
+    let startY = 0;
+    let currentY = 0;
+
+    function openSheet() {
+      if (isOpen) return;
+      isOpen = true;
+      overlay?.classList.remove('opacity-0', 'invisible');
+      sheet?.classList.remove('translate-y-full');
+      btn?.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      // Push history state to allow hardware back button to close
+      history.pushState({ bottomSheet: true }, '');
+    }
+
+    function closeSheet() {
+      if (!isOpen) return;
+      isOpen = false;
+      overlay?.classList.add('opacity-0');
+      sheet?.classList.add('translate-y-full');
+      btn?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      
+      // Cleanup transition classes if dragged
+      if (sheet) {
+        sheet.style.transform = '';
+        sheet.style.transition = '';
+      }
+
+      setTimeout(() => {
+        if (!isOpen) overlay?.classList.add('invisible');
+      }, 300);
+    }
+
+    // Event Listeners
+    btn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      openSheet();
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      if(history.state?.bottomSheet) history.back();
+      else closeSheet();
+    });
+
+    overlay?.addEventListener('click', () => {
+      if(history.state?.bottomSheet) history.back();
+      else closeSheet();
+    });
+
+    // Handle back button
+    window.addEventListener('popstate', (e) => {
+      if (isOpen && !e.state?.bottomSheet) {
+        closeSheet();
+      }
+    });
+
+    // Swipe to close
+    handle?.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+      if(sheet) sheet.style.transition = 'none';
+    }, { passive: true });
+
+    handle?.addEventListener('touchmove', (e) => {
+      currentY = e.touches[0].clientY;
+      const deltaY = Math.max(0, currentY - startY); // Only allow swiping down
+      if (sheet) sheet.style.transform = `translateY(${deltaY}px)`;
+    }, { passive: true });
+
+    handle?.addEventListener('touchend', () => {
+      if (!sheet) return;
+      sheet.style.transition = 'transform 300ms ease-out';
+      const deltaY = Math.max(0, currentY - startY);
+      
+      if (deltaY > 100) {
+        // Swipe down threshold met, close it
+        if(history.state?.bottomSheet) history.back();
+        else closeSheet();
+      } else {
+        // Snap back to top
+        sheet.style.transform = '';
+      }
+    });
+  });
+</script>

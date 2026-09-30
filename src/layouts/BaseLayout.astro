@@ -1,0 +1,190 @@
+---
+import SEO from '@/components/ui/SEO.astro';
+import Navbar from '@/components/layout/Navbar.astro';
+import BottomTabBar from '@/components/layout/BottomTabBar.astro';
+import MoreMenuSheet from '@/components/layout/MoreMenuSheet.astro';
+import InstallPrompt from '@/components/pwa/InstallPrompt.astro';
+import PwaUpdateToast from '@/components/pwa/PwaUpdateToast.astro';
+import Footer from '@/components/layout/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
+import '@/styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  pageType?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, ogImage, ogType, noindex, pageType, jsonLd } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en-IN">
+  <head>
+    <SEO
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      ogType={ogType}
+      noindex={noindex}
+      pageType={pageType}
+      jsonLd={jsonLd}
+    />
+    <ClientRouter />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="MP School" />
+  </head>
+  <body>
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <Navbar />
+
+    <main id="main-content" role="main" class="pt-14 lg:pt-20 pb-20 lg:pb-0">
+      <slot />
+    </main>
+
+    <Footer />
+    
+    <BottomTabBar />
+    <MoreMenuSheet />
+    <InstallPrompt />
+    <PwaUpdateToast />
+
+    <!-- GSAP + Lenis init -->
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      // Check for reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Check for touch device
+        const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+        if (!isTouch) {
+          // Initialize Lenis smooth scroll only on non-touch devices
+          import('lenis').then(({ default: Lenis }) => {
+            const lenis = new Lenis({
+              duration: 1.2,
+              easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+              touchMultiplier: 2,
+            });
+
+            lenis.on('scroll', ScrollTrigger.update);
+
+            gsap.ticker.add((time) => {
+              lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+          });
+        }
+
+        // Use gsap.context for easy cleanup
+        const ctx = gsap.context(() => {
+          // Fade-up animation for sections
+          const animateElements = document.querySelectorAll('[data-animate="fade-up"]');
+          animateElements.forEach((el) => {
+            gsap.from(el, {
+              opacity: 0,
+              y: 40,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+              clearProps: 'all'
+            });
+          });
+
+          // Stagger children animation
+          const staggerContainers = document.querySelectorAll('[data-animate="stagger"]');
+          staggerContainers.forEach((container) => {
+            const children = container.children;
+            gsap.from(children, {
+              opacity: 0,
+              y: 30,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: container,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+              clearProps: 'all'
+            });
+          });
+
+          // Counter animation
+          const counters = document.querySelectorAll('[data-counter]');
+          counters.forEach((counter) => {
+            const target = parseInt(counter.getAttribute('data-counter') || '0', 10);
+            const suffix = counter.getAttribute('data-counter-suffix') || '';
+            const obj = { val: 0 };
+
+            gsap.to(obj, {
+              val: target,
+              duration: 2,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: counter,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+              onUpdate: () => {
+                (counter as HTMLElement).textContent = Math.round(obj.val).toLocaleString() + suffix;
+              },
+            });
+          });
+
+          // Image parallax
+          const parallaxImages = document.querySelectorAll('[data-parallax]');
+          parallaxImages.forEach((img) => {
+            gsap.to(img, {
+              y: -40,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: img,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1,
+              },
+            });
+          });
+        });
+
+        // Cleanup on page transition
+        document.addEventListener('astro:before-swap', () => {
+          ctx.revert();
+          ScrollTrigger.getAll().forEach((t) => t.kill());
+        });
+      }
+    </script>
+    
+    {import.meta.env.DEV && (
+      <div id="dev-placeholder-banner" class="fixed bottom-0 left-0 right-0 bg-[var(--color-amber)] text-black text-center py-2 px-4 z-50 text-sm font-bold hidden shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+        Warning: Page contains unverified placeholder data. Please update with real school info.
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const placeholders = document.querySelectorAll('[data-placeholder]');
+          if (placeholders.length > 0) {
+            document.getElementById('dev-placeholder-banner')?.classList.remove('hidden');
+            console.warn(`[DEV] Found ${placeholders.length} elements with placeholder data that need verification.`);
+          }
+        });
+      </script>
+    )}
+  </body>
+</html>

@@ -1,0 +1,54 @@
+---
+export interface Props {
+  variant?: 'primary' | 'outline-dark' | 'outline-light' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  id?: string;
+  ariaLabel?: string;
+  fullWidth?: boolean;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  class: className = '',
+  id,
+  ariaLabel,
+  fullWidth = false,
+} = Astro.props;
+
+const baseClasses = 'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition cursor-pointer';
+
+const variantClasses: Record<string, string> = {
+  primary: 'bg-[var(--color-red)] text-white hover:brightness-110',
+  'outline-dark': 'border-2 border-white/70 text-white hover:bg-white hover:text-[var(--color-indigo-deep)]',
+  'outline-light': 'border-2 border-[var(--color-indigo)] text-[var(--color-indigo)] hover:bg-[var(--color-indigo)] hover:text-white',
+  // Keep these for backward compatibility in case they are used
+  secondary: 'bg-[var(--color-amber)] text-[var(--color-ink)] hover:bg-[var(--color-amber-light)] shadow-md hover:shadow-lg',
+  ghost: 'text-[var(--color-indigo)] hover:bg-[var(--color-indigo)]/10',
+};
+
+const sizeClasses: Record<string, string> = {
+  sm: 'px-4 py-2 text-xs',
+  md: 'px-6 py-3 text-sm',
+  lg: 'px-8 py-4 text-base',
+};
+
+const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${fullWidth ? 'w-full' : ''} ${className}`.trim();
+
+const Tag = href ? 'a' : 'button';
+---
+
+{href ? (
+  <a href={href} class={classes} id={id} aria-label={ariaLabel}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={classes} id={id} aria-label={ariaLabel}>
+    <slot />
+  </button>
+)}

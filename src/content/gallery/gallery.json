@@ -1,0 +1,98 @@
+[
+  {
+    "title": "School Campus - Main Building",
+    "image": "/images/gallery/campus-1.jpg",
+    "category": "campus",
+    "alt": "M.P. Public School main building entrance with arched gateway and school name",
+    "order": 1,
+    "id": "1"
+  },
+  {
+    "title": "Smart Classroom",
+    "image": "/images/gallery/classroom-1.jpg",
+    "category": "classroom",
+    "alt": "Students attending a lesson in a smart classroom with interactive whiteboard",
+    "order": 2,
+    "id": "2"
+  },
+  {
+    "title": "Annual Day Stage Performance",
+    "image": "/images/gallery/annual-day-1.jpg",
+    "category": "annual-day",
+    "alt": "Students performing a classical dance during the Annual Day function",
+    "order": 3,
+    "id": "3"
+  },
+  {
+    "title": "Cricket Tournament",
+    "image": "/images/gallery/sports-1.jpg",
+    "category": "sports",
+    "alt": "Students playing cricket during the inter-school tournament",
+    "order": 4,
+    "id": "4"
+  },
+  {
+    "title": "Science Exhibition",
+    "image": "/images/gallery/events-1.jpg",
+    "category": "events",
+    "alt": "Students showcasing science project models at the annual exhibition",
+    "order": 5,
+    "id": "5"
+  },
+  {
+    "title": "School Library",
+    "image": "/images/gallery/campus-2.jpg",
+    "category": "campus",
+    "alt": "Spacious school library with students reading books",
+    "order": 6,
+    "id": "6"
+  },
+  {
+    "title": "Sports Day Relay Race",
+    "image": "/images/gallery/sports-2.jpg",
+    "category": "sports",
+    "alt": "Students participating in a relay race during sports day",
+    "order": 7,
+    "id": "7"
+  },
+  {
+    "title": "Annual Day Awards Ceremony",
+    "image": "/images/gallery/annual-day-2.jpg",
+    "category": "annual-day",
+    "alt": "Principal presenting awards to outstanding students during Annual Day",
+    "order": 8,
+    "id": "8"
+  },
+  {
+    "title": "Computer Lab Session",
+    "image": "/images/gallery/classroom-2.jpg",
+    "category": "classroom",
+    "alt": "Students working on computers in the modern computer lab",
+    "order": 9,
+    "id": "9"
+  },
+  {
+    "title": "Republic Day Celebration",
+    "image": "/images/gallery/events-2.jpg",
+    "category": "events",
+    "alt": "Flag hoisting ceremony with students standing in formation on Republic Day",
+    "order": 10,
+    "id": "10"
+  },
+  {
+    "title": "School Playground",
+    "image": "/images/gallery/campus-3.jpg",
+    "category": "campus",
+    "alt": "Expansive school playground with sports facilities and green fields",
+    "order": 11,
+    "id": "11"
+  },
+  {
+    "title": "Basketball Match",
+    "image": "/images/gallery/sports-3.jpg",
+    "category": "sports",
+    "alt": "School basketball team during an inter-school match",
+    "order": 12,
+    "id": "12"
+  }
+]

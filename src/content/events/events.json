@@ -1,0 +1,53 @@
+[
+  {
+    "title": "Annual Day Celebration 2025",
+    "description": "Grand Annual Day celebration featuring cultural performances, award ceremonies, and special guest address by Hon. Mayor of Indore.",
+    "date": "2025-12-15",
+    "time": "4:00 PM – 8:00 PM",
+    "venue": "School Auditorium",
+    "category": "cultural",
+    "featured": true,
+    "id": "1"
+  },
+  {
+    "title": "Inter-School Sports Tournament",
+    "description": "Three-day sports tournament featuring cricket, basketball, athletics, and badminton with participation from 15 schools across Indore.",
+    "date": "2025-11-20",
+    "endDate": "2025-11-22",
+    "time": "8:00 AM – 5:00 PM",
+    "venue": "School Sports Complex",
+    "category": "sports",
+    "featured": true,
+    "id": "2"
+  },
+  {
+    "title": "Science Exhibition 2025",
+    "description": "Annual science exhibition showcasing innovative projects by students from classes 6 to 12. Open to parents and visitors.",
+    "date": "2025-10-25",
+    "time": "10:00 AM – 4:00 PM",
+    "venue": "School Science Labs & Courtyard",
+    "category": "academic",
+    "featured": false,
+    "id": "3"
+  },
+  {
+    "title": "Parent-Teacher Meeting",
+    "description": "Quarterly parent-teacher meeting for classes 1 to 12. Individual discussion on student progress and development areas.",
+    "date": "2025-10-10",
+    "time": "9:00 AM – 1:00 PM",
+    "venue": "Respective Classrooms",
+    "category": "general",
+    "featured": false,
+    "id": "4"
+  },
+  {
+    "title": "Independence Day Celebration",
+    "description": "Flag hoisting ceremony, patriotic performances, and essay competition on the theme 'My India, My Pride'.",
+    "date": "2025-08-15",
+    "time": "8:00 AM – 11:00 AM",
+    "venue": "School Ground",
+    "category": "cultural",
+    "featured": false,
+    "id": "5"
+  }
+]

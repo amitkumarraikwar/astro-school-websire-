@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import campusImg from '@/assets/images/campus-placeholder.jpg';
+import { siteConfig } from '@/config/site';
+---
+
+<section class="section bg-[var(--color-cream)]" id="about-preview">
+  <div class="container">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Image side -->
+      <div class="relative" data-animate="fade-up">
+        <div class="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/3] bg-[var(--color-indigo)]">
+          <Image
+            src={campusImg}
+            alt="M.P. Public School Indore campus placeholder"
+            class="w-full h-full object-cover"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+            loading="lazy"
+          />
+        </div>
+        <!-- Floating badge -->
+        <div class="absolute -bottom-4 -right-4 md:bottom-6 md:right-[-1.5rem] bg-white rounded-2xl shadow-xl p-4 md:p-5 flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-[var(--color-amber)] flex items-center justify-center">
+            <svg class="w-6 h-6 text-[var(--color-ink)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <span class="block text-2xl font-bold text-[var(--color-ink)]">30+</span>
+            <span class="block text-xs text-[var(--color-ink-light)]">Years of Legacy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content side -->
+      <div>
+        <SectionHeading
+          title="Welcome to M.P. Public School"
+          subtitle="A legacy of excellence in education, rooted in Indore's heart since 1995."
+          align="left"
+        />
+
+        <div class="space-y-4 text-[var(--color-ink-light)] leading-relaxed" data-animate="fade-up">
+          <p>
+            M.P. Public School, Indore is a premier CBSE-affiliated institution that has been shaping the future of thousands of students for over three decades. Nestled in the vibrant city of Indore, Madhya Pradesh, our school is a beacon of quality education, nurturing both academic brilliance and personal growth.
+          </p>
+          <p>
+            Our holistic approach to education combines rigorous academics with creative expression, physical development, and moral values. We believe every child is unique, and our personalized attention ensures each student reaches their full potential.
+          </p>
+          
+          <!-- GEO: Fact Table -->
+          <div class="mt-6 border border-[var(--color-indigo)]/10 rounded-xl overflow-hidden bg-white shadow-sm">
+            <table class="w-full text-sm text-left">
+              <caption class="bg-[var(--color-indigo)]/5 p-3 font-bold text-[var(--color-ink)] border-b border-[var(--color-indigo)]/10">M.P. Public School At a Glance</caption>
+              <tbody class="divide-y divide-[var(--color-indigo)]/10">
+                <tr><th class="py-2 px-4 text-[var(--color-ink)] font-semibold w-1/3">Established</th><td class="py-2 px-4 text-[var(--color-ink-light)]">{siteConfig.establishedYear}</td></tr>
+                <tr><th class="py-2 px-4 text-[var(--color-ink)] font-semibold">Affiliation</th><td class="py-2 px-4 text-[var(--color-ink-light)]">CBSE ({siteConfig.affiliationNumber})</td></tr>
+                <tr><th class="py-2 px-4 text-[var(--color-ink)] font-semibold">Classes</th><td class="py-2 px-4 text-[var(--color-ink-light)]">Pre-Primary to Class 12</td></tr>
+                <tr><th class="py-2 px-4 text-[var(--color-ink)] font-semibold">Location</th><td class="py-2 px-4 text-[var(--color-ink-light)]">Indore, M.P.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4 mt-8" data-animate="fade-up">
+          <Button variant="primary" href="/about">
+            Learn More About Us
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

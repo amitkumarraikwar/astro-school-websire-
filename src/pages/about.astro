@@ -1,0 +1,200 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import AdmissionCTA from '@/components/sections/AdmissionCTA.astro';
+import { siteConfig } from '@/config/site';
+import { getBreadcrumbList } from '@/lib/schema';
+
+const breadcrumbLd = getBreadcrumbList([
+  { name: 'Home', item: 'https://mppublicschool.online/' },
+  { name: 'About Us', item: 'https://mppublicschool.online/about' },
+]);
+
+const timeline = [
+  { year: '1995', title: 'Foundation', desc: 'M.P. Public School was established with a vision to provide quality education in Indore, starting with 120 students and 8 teachers.' },
+  { year: '2000', title: 'CBSE Affiliation', desc: 'Received CBSE affiliation, marking a major milestone in our journey towards academic excellence.' },
+  { year: '2005', title: 'Campus Expansion', desc: 'Expanded campus with new science laboratories, library, and a state-of-the-art computer lab.' },
+  { year: '2010', title: 'Sports Complex', desc: 'Inaugurated the sports complex with cricket ground, basketball court, and indoor sports facilities.' },
+  { year: '2015', title: 'Silver Jubilee', desc: 'Celebrated 20 years of excellence with over 1,500 students and recognition as one of the top schools in Indore.' },
+  { year: '2020', title: 'Digital Transformation', desc: 'Launched smart classrooms and digital learning infrastructure, ensuring continuity of education during challenging times.' },
+  { year: '2025', title: '30 Years of Excellence', desc: 'Celebrating three decades of shaping young minds with 2,500+ students, 120+ faculty, and a legacy of 98% board pass rates.' },
+];
+
+const values = [
+  { icon: '🎓', title: 'Academic Excellence', desc: 'We strive for the highest standards in teaching and learning, ensuring every student achieves their best.' },
+  { icon: '🤝', title: 'Integrity & Values', desc: 'We instill honesty, respect, and responsibility in our students, building character alongside knowledge.' },
+  { icon: '🌱', title: 'Holistic Growth', desc: 'We nurture physical, emotional, and creative development through diverse programs and activities.' },
+  { icon: '💡', title: 'Innovation', desc: 'We embrace modern teaching methods, technology, and creative approaches to make learning engaging.' },
+  { icon: '🌍', title: 'Inclusivity', desc: 'We celebrate diversity and create an environment where every student feels welcome and valued.' },
+  { icon: '⭐', title: 'Leadership', desc: 'We empower students with confidence, critical thinking, and leadership skills for a successful future.' },
+];
+
+const achievements = [
+  '98% pass rate in CBSE Board Examinations consistently for the last 5 years',
+  '50+ students selected for IIT/NIT/AIIMS in the past decade',
+  'State-level champions in Cricket, Basketball, and Athletics',
+  'Awarded "Best School in Indore" by MP Education Board (2023)',
+  'National-level winners in Science Olympiad and Mathematics Olympiad',
+  'ISO 9001:2015 certified for quality management in education',
+];
+---
+
+<BaseLayout
+  title="About Us – Our History & Vision"
+  description="Learn about M.P. Public School Indore's 30-year legacy of academic excellence, our vision, mission, core values, and achievements in education."
+  pageType="AboutPage"
+  jsonLd={breadcrumbLd}
+>
+  <!-- Page Hero -->
+  <section class="gradient-hero py-20 md:py-28 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div class="container relative">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-white/60">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li><span class="mx-1">/</span></li>
+          <li class="text-white font-medium">About Us</li>
+        </ol>
+      </nav>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">About Our School</h1>
+      <p class="text-lg text-white/75 max-w-2xl mb-4">Three decades of nurturing excellence, building character, and inspiring generations of students in Indore, Madhya Pradesh.</p>
+      
+      <!-- AEO Quick Answer -->
+      <p class="text-lg text-white/90 max-w-3xl bg-white/10 p-4 rounded-xl border border-white/20 backdrop-blur">
+        <strong>Quick Answer:</strong> Established in {siteConfig.establishedYear}, {siteConfig.name} is a premier CBSE-affiliated school (No: {siteConfig.affiliationNumber}) in Indore. We provide holistic English-medium education for classes Pre-Primary to 12. Contact us at {siteConfig.phones[0]}.
+      </p>
+    </div>
+  </section>
+
+  <!-- History -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div data-animate="fade-up">
+          <SectionHeading title="Our Story" align="left" subtitle="From humble beginnings to one of Indore's most respected institutions." />
+          <div class="prose">
+            <p>M.P. Public School was founded in 1995 by a group of visionary educationists who believed that Indore deserved an institution that combined academic rigor with holistic development. Starting with just 120 students in a modest campus, the school has grown into a thriving community of over 2,500 students.</p>
+            <p>Over three decades, we have built a reputation for excellence in academics, sports, and extracurricular activities. Our alumni are making their mark in fields ranging from engineering and medicine to arts, business, and public service — both in India and around the world.</p>
+            <p>Today, M.P. Public School stands as a testament to the power of quality education and the enduring impact of dedicated teachers, supportive parents, and ambitious students.</p>
+          </div>
+        </div>
+        <div class="relative" data-animate="fade-up">
+          <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl bg-[var(--color-indigo)] mb-6 flex items-center justify-center">
+            <img src="/logo.png" alt="M.P. Public School Indore logo" width="140" height="140" class="object-contain" loading="lazy" />
+          </div>
+          
+          <!-- GEO Fact Table -->
+          <div class="border border-[var(--color-indigo)]/10 rounded-xl overflow-hidden bg-[var(--color-cream)] shadow-sm">
+            <table class="w-full text-sm text-left">
+              <caption class="bg-[var(--color-indigo)] p-3 font-bold text-white">At a Glance</caption>
+              <tbody class="divide-y divide-[var(--color-indigo)]/10">
+                <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold w-1/3">Established</th><td class="py-3 px-4 text-[var(--color-ink-light)]">{siteConfig.establishedYear}</td></tr>
+                <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold">Board</th><td class="py-3 px-4 text-[var(--color-ink-light)]">CBSE ({siteConfig.affiliationNumber})</td></tr>
+                <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold">Classes</th><td class="py-3 px-4 text-[var(--color-ink-light)]">Pre-Primary to Class 12</td></tr>
+                <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold">Medium</th><td class="py-3 px-4 text-[var(--color-ink-light)]">English</td></tr>
+                <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold">Location</th><td class="py-3 px-4 text-[var(--color-ink-light)]">{siteConfig.address.split(',')[1]?.trim() || 'Indore, M.P.'}</td></tr>
+                <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold">Contact</th><td class="py-3 px-4 text-[var(--color-ink-light)]">{siteConfig.phones[0]}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section class="section bg-[var(--color-cream)]">
+    <div class="container">
+      <div class="grid md:grid-cols-2 gap-8" data-animate="stagger">
+        <div class="card p-8 md:p-10 border-t-4 border-[var(--color-indigo)]">
+          <div class="w-14 h-14 rounded-2xl bg-[var(--color-indigo)]/10 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-[var(--color-indigo)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-[var(--color-ink)] mb-4">Our Vision</h3>
+          <p class="text-[var(--color-ink-light)] leading-relaxed">
+            To be a beacon of educational excellence in Indore and Madhya Pradesh — nurturing compassionate, innovative, and responsible citizens who contribute meaningfully to society and lead with integrity in an ever-changing global landscape.
+          </p>
+        </div>
+
+        <div class="card p-8 md:p-10 border-t-4 border-[var(--color-amber)]">
+          <div class="w-14 h-14 rounded-2xl bg-[var(--color-amber)]/15 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-[var(--color-amber)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-[var(--color-ink)] mb-4">Our Mission</h3>
+          <p class="text-[var(--color-ink-light)] leading-relaxed">
+            To provide a stimulating, inclusive, and supportive learning environment that fosters academic excellence, creative thinking, physical well-being, and strong moral values. We are committed to empowering each student to discover their unique potential and preparing them to excel in higher education and life beyond school.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="section bg-white">
+    <div class="container">
+      <SectionHeading title="Core Values" subtitle="The principles that guide everything we do at M.P. Public School." />
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" data-animate="stagger">
+        {values.map((value) => (
+          <div class="p-6 rounded-2xl border border-[var(--color-gray-200)] hover:border-[var(--color-indigo)]/30 hover:shadow-lg transition-all duration-300">
+            <span class="text-3xl mb-4 block">{value.icon}</span>
+            <h3 class="text-lg font-bold text-[var(--color-ink)] mb-2">{value.title}</h3>
+            <p class="text-sm text-[var(--color-ink-light)]">{value.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section bg-[var(--color-cream)]" id="timeline">
+    <div class="container">
+      <SectionHeading title="Our Journey" subtitle="Key milestones in the 30-year history of M.P. Public School, Indore." />
+
+      <div class="relative max-w-3xl mx-auto">
+        <!-- Timeline line -->
+        <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-[var(--color-indigo)]/20 md:-translate-x-px"></div>
+
+        {timeline.map((item, i) => (
+          <div class:list={['relative flex items-start gap-6 mb-10', i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse']} data-animate="fade-up">
+            <!-- Dot -->
+            <div class="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-[var(--color-indigo)] border-4 border-[var(--color-cream)] -translate-x-1/2 mt-1.5 z-10"></div>
+
+            <!-- Content -->
+            <div class:list={['ml-14 md:ml-0 md:w-[calc(50%-2rem)]', i % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8']}>
+              <span class="inline-block px-3 py-1 rounded-full bg-[var(--color-indigo)] text-white text-sm font-bold mb-2">{item.year}</span>
+              <h3 class="text-lg font-bold text-[var(--color-ink)] mb-1">{item.title}</h3>
+              <p class="text-sm text-[var(--color-ink-light)]">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section class="section gradient-indigo">
+    <div class="container">
+      <SectionHeading title="Our Achievements" light={true} subtitle="A track record of excellence recognized at local, state, and national levels." />
+
+      <div class="max-w-3xl mx-auto space-y-4" data-animate="stagger">
+        {achievements.map((achievement) => (
+          <div class="flex items-start gap-4 p-5 rounded-2xl bg-white/5 backdrop-blur-sm">
+            <svg class="w-6 h-6 text-[var(--color-amber)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-white/85">{achievement}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <AdmissionCTA />
+</BaseLayout>

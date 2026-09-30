@@ -1,0 +1,32 @@
+---
+export interface Props {
+  faqs: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+const { faqs } = Astro.props;
+---
+
+<div class="space-y-4 max-w-3xl mx-auto" itemscope itemtype="https://schema.org/FAQPage">
+  {faqs.map((faq) => (
+    <details class="group bg-white rounded-xl shadow-sm border border-[var(--color-indigo)]/10 overflow-hidden open:shadow-md transition-all" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 text-[var(--color-ink)] hover:text-[var(--color-indigo)] transition-colors">
+        <span itemprop="name">{faq.question}</span>
+        <span class="transition group-open:rotate-180">
+          <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+        </span>
+      </summary>
+      <div class="p-5 pt-0 text-[var(--color-ink-light)] leading-relaxed border-t border-[var(--color-indigo)]/5 mt-1" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text" set:html={faq.answer} />
+      </div>
+    </details>
+  ))}
+</div>
+
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

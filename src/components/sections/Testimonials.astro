@@ -1,0 +1,60 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+
+const testimonials = [
+  {
+    name: 'Mr. Ramesh Agrawal',
+    relation: 'Parent of Ananya, Class X',
+    quote: 'M.P. Public School has transformed my daughter into a confident and well-rounded individual. The teachers genuinely care about each student\'s progress, and the school\'s focus on both academics and extracurriculars is commendable.',
+  },
+  {
+    name: 'Mrs. Seema Jain',
+    relation: 'Parent of Arjun, Class VII',
+    quote: 'We moved to Indore specifically because of the reputation of M.P. Public School. The facilities are excellent, the teaching methodology is modern, and my son looks forward to going to school every day.',
+  },
+  {
+    name: 'Priya Sharma',
+    relation: 'Alumna, Batch of 2022',
+    quote: 'The values and discipline I learned at M.P. Public School have stayed with me throughout my journey. The school gave me the confidence to pursue higher education at top institutions. Forever grateful to my teachers.',
+  },
+  {
+    name: 'Mr. Dinesh Patel',
+    relation: 'Parent of Kavya, Class III',
+    quote: 'As a parent of a young child, safety and nurturing were my top priorities. M.P. Public School exceeded all our expectations with their caring pre-primary program and excellent security measures.',
+  },
+];
+---
+
+<section class="section bg-[var(--color-cream)]" id="testimonials">
+  <div class="container">
+    <SectionHeading
+      title="What Parents & Students Say"
+      subtitle="Hear from the families and students who are part of our M.P. Public School community."
+    />
+
+    <div class="snap-container gap-6 md:gap-8" data-animate="stagger">
+      {testimonials.map((testimonial) => (
+        <div class="card p-7 md:p-8 relative snap-card">
+          <!-- Quote mark -->
+          <svg class="absolute top-6 right-6 w-10 h-10 text-[var(--color-amber)]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z" />
+          </svg>
+
+          <p class="text-[var(--color-ink-light)] leading-relaxed mb-6 relative z-10">
+            "{testimonial.quote}"
+          </p>
+
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[var(--color-indigo)] to-[var(--color-indigo-deep)] flex items-center justify-center text-white font-bold text-sm">
+              {testimonial.name.charAt(0)}{testimonial.name.split(' ').pop()?.charAt(0)}
+            </div>
+            <div>
+              <span class="block text-sm font-semibold text-[var(--color-ink)]">{testimonial.name}</span>
+              <span class="block text-xs text-[var(--color-ink-light)]">{testimonial.relation}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

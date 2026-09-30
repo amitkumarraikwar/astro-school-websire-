@@ -1,0 +1,39 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import { WifiOff, Phone, MessageCircle } from 'lucide-react';
+---
+
+<BaseLayout
+  title="Offline - M.P. Public School"
+  description="You are currently offline. Please check your internet connection."
+  noindex={true}
+>
+  <section class="min-h-[80vh] flex items-center justify-center bg-[var(--color-cream)] relative overflow-hidden py-16">
+    <div class="container text-center max-w-md mx-auto">
+      <div class="w-24 h-24 bg-[var(--color-indigo)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+        <WifiOff class="w-12 h-12 text-[var(--color-indigo)]" />
+      </div>
+      
+      <h1 class="text-3xl font-bold text-[var(--color-ink)] mb-4">You're Offline</h1>
+      <p class="text-[var(--color-ink-light)] mb-8">
+        It looks like you've lost your internet connection. Some features of the app are currently unavailable, but you can still reach out to us!
+      </p>
+
+      <div class="flex flex-col gap-4">
+        <Button href="tel:+917312345678" class="w-full justify-center">
+          <Phone class="w-5 h-5 mr-2" />
+          Call Us Now
+        </Button>
+        <Button href="https://wa.me/917312345678" variant="secondary" class="w-full justify-center bg-green-50 text-green-700 border-green-200 hover:bg-green-100">
+          <MessageCircle class="w-5 h-5 mr-2" />
+          WhatsApp Us
+        </Button>
+      </div>
+
+      <button onclick="window.location.reload()" class="mt-8 text-sm font-semibold text-[var(--color-indigo)] underline underline-offset-2">
+        Try reloading
+      </button>
+    </div>
+  </section>
+</BaseLayout>
