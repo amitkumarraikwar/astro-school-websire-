@@ -69,14 +69,14 @@ const faqs = [
   { question: 'Is there an entrance test?', answer: 'For Nursery to Class I, admission is based on an informal interaction. For Classes II and above, students undergo a written assessment in English, Mathematics, and the relevant subjects of their previous class.' },
   { question: 'What documents are required for admission?', answer: 'Required documents include birth certificate, Aadhaar card of child and parents, previous school transfer certificate (TC), recent passport-size photographs, and address proof.' },
   { question: 'Does the school provide transport facilities?', answer: 'Yes, we have a fleet of GPS-enabled buses covering major routes across Indore. Transport fee is charged separately based on the distance.' },
-  { question: 'What are the school timings?', answer: 'School operates Monday to Saturday. Pre-Primary: 8:30 AM – 12:30 PM. Primary and above: 7:30 AM – 2:30 PM.' },
-  { question: 'Are there any scholarships available?', answer: 'Yes, merit-based scholarships are available for students who demonstrate exceptional academic performance or outstanding talent in sports and extracurricular activities.' },
+  { question: 'What are the school timings?', answer: 'Pre.Nur & Nursery: 9:30 AM – 12:30 PM (Morning) or 12:30 PM – 3:30 PM (Noon). K.G.I to Class 5: 8:00 AM – 12:30 PM (Morning) or 12:30 PM – 5:00 PM (Noon). Class 6 to 12: 7:45 AM – 1:15 PM.' },
+  { question: 'Are there any scholarships available?', answer: 'Yes, merit-based scholarships are available (upto Rs 5000) for students who demonstrate exceptional academic performance in Board Examinations. We also provide sibling discounts and early bird discounts.' },
 ];
 ---
 
 <BaseLayout
   title="Admissions – Apply Now"
-  description="Apply for admission to M.P. Public School Indore. Learn about the admission process, eligibility criteria, required documents, and fee structure for 2025-26."
+  description="Apply for admission to M.P. Public School Indore. Learn about the admission process, eligibility criteria, required documents, and fee structure for 2026-27."
   jsonLd={[breadcrumbLd, faqLd]}
 >
   <!-- Page Hero -->
@@ -91,7 +91,7 @@ const faqs = [
         </ol>
       </nav>
       <div class="flex items-center gap-3 mb-4">
-        <span class="badge badge-amber">2025–26 Session</span>
+        <span class="badge badge-amber">2026–27 Session</span>
         <span class="badge bg-white/20 text-white">Applications Open</span>
       </div>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">Admissions</h1>
@@ -178,20 +178,78 @@ const faqs = [
 
   <!-- Fee Structure -->
   <section class="section gradient-indigo">
-    <div class="container text-center" data-animate="fade-up">
-      <SectionHeading title="Fee Structure" light={true} subtitle="Transparent and competitive fee structure with flexible payment options." />
-      <div class="max-w-2xl mx-auto">
-        <div class="card p-8">
-          <p class="text-[var(--color-ink-light)] mb-6">
-            For detailed fee information for each class, including tuition fees, development charges, transport fees, and other applicable charges, please contact our admissions office or visit the school.
-          </p>
-          <div class="flex flex-wrap justify-center gap-4">
-            <Button variant="primary" href="/contact">
-              Contact Admissions Office
-            </Button>
-            <Button variant="outline-light" href="tel:+917312345678">
-              Call: +91 731-234-5678
-            </Button>
+    <div class="container" data-animate="fade-up">
+      <SectionHeading title="Fee Structure (2026-27)" light={true} subtitle="Transparent and competitive yearly tuition fees." />
+      <div class="max-w-4xl mx-auto">
+        <div class="card overflow-hidden">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="bg-[var(--color-gray-50)] text-[var(--color-ink)] border-b border-[var(--color-gray-200)]">
+                <th class="px-6 py-4 font-semibold text-sm">Class</th>
+                <th class="px-6 py-4 font-semibold text-sm">Yearly Tuition Fee (₹)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Pre-Nursery</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">15,000</td>
+              </tr>
+              <tr class="bg-[var(--color-gray-50)] border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Nursery</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">19,000</td>
+              </tr>
+              <tr class="border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">K.G.I & K.G.II</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">21,300</td>
+              </tr>
+              <tr class="bg-[var(--color-gray-50)] border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class I & II</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">23,100</td>
+              </tr>
+              <tr class="border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class III & IV</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">25,600</td>
+              </tr>
+              <tr class="bg-[var(--color-gray-50)] border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class V & VI</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">26,000</td>
+              </tr>
+              <tr class="border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class VII</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">27,000</td>
+              </tr>
+              <tr class="bg-[var(--color-gray-50)] border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class VIII</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">28,000</td>
+              </tr>
+              <tr class="border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class IX</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">29,000</td>
+              </tr>
+              <tr class="bg-[var(--color-gray-50)] border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class X</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">30,000</td>
+              </tr>
+              <tr class="border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class XI (Comm/Sci)</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">31,000</td>
+              </tr>
+              <tr class="bg-[var(--color-gray-50)] border-b border-[var(--color-gray-100)]">
+                <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class XII (Comm/Sci)</td>
+                <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">34,000</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="p-6 bg-white">
+            <p class="text-[var(--color-ink-light)] text-sm mb-4">
+              <strong>Note:</strong> Early bird discounts, sibling discounts, and scholarships are available. An admission fee of ₹1,000 applies to new students. 
+              Gifts (Bags, Books, Tiffin, Bottle, and Uniform) are provided for new admissions up to Class 5th, and Books are provided for old students.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <Button variant="primary" href="/contact">
+                Contact Admissions Office
+              </Button>
+            </div>
           </div>
         </div>
       </div>
