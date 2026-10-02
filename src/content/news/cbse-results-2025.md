@@ -1,12 +1,12 @@
 ---
-title: "CBSE Board Results 2025 – School Achieves 98% Pass Rate"
-description: "M.P. Public School students shine in CBSE Board Examinations with outstanding results. Class XII achieves 98% pass rate with 15 students scoring above 95%."
+title: "MP Board Results 2025 – School Achieves 98% Pass Rate"
+description: "M.P. Public School students shine in MP Board Examinations with outstanding results. Class XII achieves 98% pass rate with 15 students scoring above 95%."
 date: 2025-05-15
 category: "achievement"
 featured: true
 ---
 
-M.P. Public School, Indore is proud to announce exceptional results in the CBSE Board Examinations 2025. Our students have once again demonstrated academic excellence with a remarkable 98% pass rate in Class XII.
+M.P. Public School, Indore is proud to announce exceptional results in the MP Board Examinations 2025. Our students have once again demonstrated academic excellence with a remarkable 98% pass rate in Class XII.
 
 ## Key Highlights
 

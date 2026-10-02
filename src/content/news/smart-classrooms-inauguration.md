@@ -12,7 +12,7 @@ M.P. Public School, Indore is delighted to announce the inauguration of 20 new s
 
 - **Interactive whiteboards** with touch-screen capability
 - **High-definition projectors** for clear visual presentations
-- **Digital learning software** integrated with CBSE curriculum
+- **Digital learning software** integrated with MP Board curriculum
 - **Audio-visual systems** for multimedia lessons
 - **Ergonomic furniture** designed for student comfort
 - **High-speed Wi-Fi** connectivity in all classrooms

@@ -7,13 +7,13 @@ export const GET: APIRoute = ({ site }) => {
   const llmsTxt = `
 # ${siteConfig.name}
 
-M.P. Public School is a premier CBSE-affiliated educational institution located in Indore, Madhya Pradesh. 
+M.P. Public School is a premier MP Board-affiliated educational institution located in Indore, Madhya Pradesh. 
 We offer classes from Pre-Primary to Senior Secondary, focusing on holistic development, academic excellence, and modern infrastructure.
 
 ## Key Information
 - Location: ${siteConfig.address}
 - Contact: ${siteConfig.phones.join(', ')} | ${siteConfig.email}
-- Affiliation: CBSE (Affiliation No: ${siteConfig.affiliationNumber})
+- Affiliation: MP Board (Affiliation No: ${siteConfig.affiliationNumber})
 - Established: ${siteConfig.establishedYear}
 - Working Hours: ${siteConfig.workingHours}
 

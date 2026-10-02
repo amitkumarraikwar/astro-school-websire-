@@ -13,7 +13,7 @@ export const getBaseOrganization = () => {
       url: 'https://mppublicschool.online/Mppublic_logo.jpeg',
     },
     image: 'https://mppublicschool.online/og-image.jpg',
-    description: 'A premier CBSE-affiliated school in Indore, Madhya Pradesh, providing quality education from Pre-Primary to Senior Secondary.',
+    description: 'A premier MP Board-affiliated school in Indore, Madhya Pradesh, providing quality education from Pre-Primary to Senior Secondary.',
     telephone: siteConfig.phones[0],
     email: siteConfig.email,
     address: {
@@ -47,7 +47,7 @@ export const getBaseOrganization = () => {
       credentialCategory: 'Affiliation',
       recognizedBy: {
         '@type': 'Organization',
-        name: 'CBSE'
+        name: 'MP Board'
       }
     }
   };

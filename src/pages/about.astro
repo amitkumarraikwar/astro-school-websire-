@@ -13,7 +13,7 @@ const breadcrumbLd = getBreadcrumbList([
 
 const timeline = [
   { year: '1995', title: 'Foundation', desc: 'M.P. Public School was established with a vision to provide quality education in Indore, starting with 120 students and 8 teachers.' },
-  { year: '2000', title: 'CBSE Affiliation', desc: 'Received CBSE affiliation, marking a major milestone in our journey towards academic excellence.' },
+  { year: '2000', title: 'MP Board Affiliation', desc: 'Received MP Board affiliation, marking a major milestone in our journey towards academic excellence.' },
   { year: '2005', title: 'Campus Expansion', desc: 'Expanded campus with new science laboratories, library, and a state-of-the-art computer lab.' },
   { year: '2010', title: 'Sports Complex', desc: 'Inaugurated the sports complex with cricket ground, basketball court, and indoor sports facilities.' },
   { year: '2015', title: 'Silver Jubilee', desc: 'Celebrated 20 years of excellence with over 1,500 students and recognition as one of the top schools in Indore.' },
@@ -31,7 +31,7 @@ const values = [
 ];
 
 const achievements = [
-  '98% pass rate in CBSE Board Examinations consistently for the last 5 years',
+  '98% pass rate in Board Examinations consistently for the last 5 years',
   '50+ students selected for IIT/NIT/AIIMS in the past decade',
   'State-level champions in Cricket, Basketball, and Athletics',
   'Awarded "Best School in Indore" by MP Education Board (2023)',
@@ -62,7 +62,7 @@ const achievements = [
       
       <!-- AEO Quick Answer -->
       <p class="text-lg text-white/90 max-w-3xl bg-white/10 p-4 rounded-xl border border-white/20 backdrop-blur">
-        <strong>Quick Answer:</strong> Established in {siteConfig.establishedYear}, {siteConfig.name} is a premier CBSE-affiliated school (No: {siteConfig.affiliationNumber}) in Indore. We provide holistic English-medium education for classes Pre-Primary to 12. Contact us at {siteConfig.phones[0]}.
+        <strong>Quick Answer:</strong> Established in {siteConfig.establishedYear}, {siteConfig.name} is a premier MP Board-affiliated school (No: {siteConfig.affiliationNumber}) in Indore. We provide holistic English-medium education for classes Pre-Primary to 12. Contact us at {siteConfig.phones[0]}.
       </p>
     </div>
   </section>
@@ -90,7 +90,7 @@ const achievements = [
               <caption class="bg-[var(--color-indigo)] p-3 font-bold text-white">At a Glance</caption>
               <tbody class="divide-y divide-[var(--color-indigo)]/10">
                 <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold w-1/3">Established</th><td class="py-3 px-4 text-[var(--color-ink-light)]">{siteConfig.establishedYear}</td></tr>
-                <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold">Board</th><td class="py-3 px-4 text-[var(--color-ink-light)]">CBSE ({siteConfig.affiliationNumber})</td></tr>
+                <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold">Board</th><td class="py-3 px-4 text-[var(--color-ink-light)]">MP Board ({siteConfig.affiliationNumber})</td></tr>
                 <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold">Classes</th><td class="py-3 px-4 text-[var(--color-ink-light)]">Pre-Primary to Class 12</td></tr>
                 <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold">Medium</th><td class="py-3 px-4 text-[var(--color-ink-light)]">English</td></tr>
                 <tr><th class="py-3 px-4 text-[var(--color-ink)] font-semibold">Location</th><td class="py-3 px-4 text-[var(--color-ink-light)]">{siteConfig.address.split(',')[1]?.trim() || 'Indore, M.P.'}</td></tr>
