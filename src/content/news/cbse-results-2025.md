@@ -18,7 +18,7 @@ M.P. Public School, Indore is proud to announce exceptional results in the CBSE 
 
 ## Principal's Message
 
-Dr. Rajesh Kumar Sharma, Principal, congratulated the students and faculty for their hard work and dedication. "These results reflect the commitment of our students, the guidance of our teachers, and the support of our parents. We are proud of every student who appeared for the board examinations."
+Mrs. Shraddha Pardeshi, Principal, congratulated the students and faculty for their hard work and dedication. "These results reflect the commitment of our students, the guidance of our teachers, and the support of our parents. We are proud of every student who appeared for the board examinations."
 
 ## Subject Toppers
 

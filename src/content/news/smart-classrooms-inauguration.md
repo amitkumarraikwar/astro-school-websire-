@@ -21,7 +21,7 @@ M.P. Public School, Indore is delighted to announce the inauguration of 20 new s
 
 The school management has invested over ₹50 lakhs in this infrastructure upgrade as part of its ongoing commitment to providing world-class education facilities in Indore.
 
-"Technology is not a replacement for teachers but a powerful tool that enhances the learning experience," said Dr. Rajesh Kumar Sharma, Principal. "These smart classrooms will enable our teachers to make lessons more engaging and interactive."
+"Technology is not a replacement for teachers but a powerful tool that enhances the learning experience," said Mrs. Shraddha Pardeshi, Principal. "These smart classrooms will enable our teachers to make lessons more engaging and interactive."
 
 ## Training for Teachers
 

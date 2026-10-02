@@ -1,110 +1,57 @@
 [
   {
-    "name": "Dr. Rajesh Kumar Sharma",
+    "id": "1",
+    "name": "Mrs. Shraddha Pardeshi",
     "designation": "Principal",
     "department": "Administration",
-    "qualification": "Ph.D. in Education, M.Ed., B.Ed.",
-    "bio": "With over 25 years of experience in education, Dr. Sharma leads M.P. Public School with a vision of holistic development and academic excellence.",
-    "order": 1,
-    "id": "1"
+    "qualification": "MSc.(B.Ed)",
+    "bio": "Mrs. Pardeshi leads M.P. Public School with a vision of holistic development and academic excellence.",
+    "order": 1
   },
   {
-    "name": "Mrs. Sunita Verma",
-    "designation": "Vice Principal",
+    "id": "2",
+    "name": "Dilip Budhani",
+    "designation": "Principal",
     "department": "Administration",
-    "qualification": "M.A. English, B.Ed.",
-    "bio": "A seasoned educator with 20 years of experience, Mrs. Verma oversees academic planning and student welfare initiatives.",
-    "order": 2,
-    "id": "2"
+    "qualification": "",
+    "bio": "",
+    "order": 2
   },
   {
-    "name": "Mr. Anil Joshi",
-    "designation": "Head of Department – Science",
-    "department": "Science",
-    "qualification": "M.Sc. Physics, B.Ed.",
-    "bio": "A passionate science educator who has guided numerous students to national-level science competitions.",
-    "order": 3,
-    "id": "3"
+    "id": "3",
+    "name": "Yogita Budhani",
+    "designation": "Director",
+    "department": "Administration",
+    "qualification": "",
+    "bio": "Leading the vision and strategy of M.P. Public School.",
+    "order": 3
   },
-  {
-    "name": "Mrs. Priya Patel",
-    "designation": "Senior Mathematics Teacher",
-    "department": "Mathematics",
-    "qualification": "M.Sc. Mathematics, B.Ed.",
-    "bio": "Known for making mathematics engaging and accessible, Mrs. Patel has been with the school for 15 years.",
-    "order": 4,
-    "id": "4"
-  },
-  {
-    "name": "Mr. Deepak Malviya",
-    "designation": "Head of Department – English",
-    "department": "English",
-    "qualification": "M.A. English Literature, B.Ed., CELTA",
-    "bio": "A dynamic English teacher who encourages creative writing and public speaking among students.",
-    "order": 5,
-    "id": "5"
-  },
-  {
-    "name": "Mrs. Kavita Dubey",
-    "designation": "Head of Department – Hindi",
-    "department": "Hindi",
-    "qualification": "M.A. Hindi, B.Ed.",
-    "bio": "A dedicated Hindi teacher passionate about preserving language heritage and literature appreciation.",
-    "order": 6,
-    "id": "6"
-  },
-  {
-    "name": "Mr. Rahul Singh",
-    "designation": "Computer Science Teacher",
-    "department": "Computer Science",
-    "qualification": "M.Tech. Computer Science, B.Ed.",
-    "bio": "Brings the latest in technology education including coding and robotics to students.",
-    "order": 7,
-    "id": "7"
-  },
-  {
-    "name": "Mrs. Neha Gupta",
-    "designation": "Social Science Teacher",
-    "department": "Social Science",
-    "qualification": "M.A. History, B.Ed.",
-    "bio": "Makes history come alive through interactive teaching methods and educational excursions.",
-    "order": 8,
-    "id": "8"
-  },
-  {
-    "name": "Mr. Vikram Rathore",
-    "designation": "Physical Education Teacher",
-    "department": "Sports",
-    "qualification": "M.P.Ed., NIS Diploma in Cricket",
-    "bio": "Former state-level cricketer who has trained multiple district and state-level athletes.",
-    "order": 9,
-    "id": "9"
-  },
-  {
-    "name": "Mrs. Anita Saxena",
-    "designation": "Art & Craft Teacher",
-    "department": "Arts",
-    "qualification": "M.F.A., B.Ed.",
-    "bio": "An accomplished artist who nurtures creativity and artistic expression in students.",
-    "order": 10,
-    "id": "10"
-  },
-  {
-    "name": "Mr. Sanjay Tiwari",
-    "designation": "Music Teacher",
-    "department": "Arts",
-    "qualification": "M.A. Music, Visharad in Classical Music",
-    "bio": "A trained classical musician who leads the school choir and organizes musical events.",
-    "order": 11,
-    "id": "11"
-  },
-  {
-    "name": "Mrs. Meena Agarwal",
-    "designation": "Pre-Primary Coordinator",
-    "department": "Pre-Primary",
-    "qualification": "M.A. Child Psychology, Montessori Diploma",
-    "bio": "Specializes in early childhood education with a focus on play-based learning methodologies.",
-    "order": 12,
-    "id": "12"
-  }
+  { "id": "4", "name": "Abhishek Kumar Yadav", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 4 },
+  { "id": "5", "name": "Pinki Choudhary", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 5 },
+  { "id": "6", "name": "Dharmendra Kamal", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 6 },
+  { "id": "7", "name": "Minakshi Bhatt", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 7 },
+  { "id": "8", "name": "Kavita Thakur", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 8 },
+  { "id": "9", "name": "Mamta Mandpe", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 9 },
+  { "id": "10", "name": "Meenakshi Singh", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 10 },
+  { "id": "11", "name": "Meena Sharma", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 11 },
+  { "id": "12", "name": "Disi Parimal", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 12 },
+  { "id": "13", "name": "Priya Maheshwari", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 13 },
+  { "id": "14", "name": "Sonal Bhadoriya", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 14 },
+  { "id": "15", "name": "Preeti Panwar", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 15 },
+  { "id": "16", "name": "Isha Thakur", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 16 },
+  { "id": "17", "name": "Sheetal Jain", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 17 },
+  { "id": "18", "name": "Meeta Jain", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 18 },
+  { "id": "19", "name": "Kunal Khede", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 19 },
+  { "id": "20", "name": "Chinki Verma", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 20 },
+  { "id": "21", "name": "Monika Gehlot", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 21 },
+  { "id": "22", "name": "Shivani Nagle", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 22 },
+  { "id": "23", "name": "Ruchita Shrivastav", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 23 },
+  { "id": "24", "name": "Pranay Bhatnagar", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 24 },
+  { "id": "25", "name": "Rama Rathi", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 25 },
+  { "id": "26", "name": "Nikita Verma", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 26 },
+  { "id": "27", "name": "Rinki Khilari", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 27 },
+  { "id": "28", "name": "Sunita Pal", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 28 },
+  { "id": "29", "name": "Jyoti Tiwari", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 29 },
+  { "id": "30", "name": "Chandani Jain", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 30 },
+  { "id": "31", "name": "Jiyanshi Soni", "designation": "Teacher", "department": "Academics", "qualification": "", "bio": "", "order": 31 }
 ]

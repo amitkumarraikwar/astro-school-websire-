@@ -58,17 +58,17 @@ export default defineConfig({
         lang: "en-IN",
         icons: [
           {
-            src: "/logo.png",
+            src: "/Mppublic_logo.jpeg",
             sizes: "192x192",
             type: "image/png"
           },
           {
-            src: "/logo.png",
+            src: "/Mppublic_logo.jpeg",
             sizes: "512x512",
             type: "image/png"
           },
           {
-            src: "/logo.png",
+            src: "/Mppublic_logo.jpeg",
             sizes: "512x512",
             type: "image/png",
             purpose: "maskable"

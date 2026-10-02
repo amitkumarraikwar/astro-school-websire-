@@ -10,7 +10,7 @@ export const getBaseOrganization = () => {
     url: 'https://mppublicschool.online',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://mppublicschool.online/logo.png',
+      url: 'https://mppublicschool.online/Mppublic_logo.jpeg',
     },
     image: 'https://mppublicschool.online/og-image.jpg',
     description: 'A premier CBSE-affiliated school in Indore, Madhya Pradesh, providing quality education from Pre-Primary to Senior Secondary.',

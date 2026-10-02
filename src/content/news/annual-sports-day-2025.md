@@ -33,4 +33,4 @@ The event was graced by Shri Ramesh Agrawal, former national-level athlete and s
 3. **Kaveri House** – Second Runners Up (460 points)
 4. **Yamuna House** – (440 points)
 
-The event concluded with a vote of thanks by Principal Dr. Rajesh Kumar Sharma, who emphasized the importance of physical fitness and sportsmanship in a student's overall development.
+The event concluded with a vote of thanks by Principal Mrs. Shraddha Pardeshi, who emphasized the importance of physical fitness and sportsmanship in a student's overall development.
