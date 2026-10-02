@@ -16,6 +16,11 @@ export const siteConfig = {
   socialEmail: "social@mppublicschool.online",
   affiliationNumber: "532414", // MP Board
   establishedYear: 1995,
+  juniorBranch: {
+    name: "M.P. Kids School",
+    address: "182 Anjani Nagar, Indore",
+    phone: "+91 9091929384",
+  },
   stats: {
     students: 2500, // based on previous info
     teachers: 43, // Based on provided staff list
