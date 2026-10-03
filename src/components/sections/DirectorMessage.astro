@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import directorImg from '@/assets/images/mpps_director.jpeg';
+---
+
+<section class="section gradient-indigo relative overflow-hidden" id="director-message">
+  <!-- Decorative background glows -->
+  <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-[var(--color-indigo)]/30 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-[var(--color-amber)]/15 blur-3xl pointer-events-none"></div>
+
+  <!-- Subtle mesh pattern -->
+  <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+  <div class="container relative z-10">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      
+      <!-- Photo Side (5 cols) -->
+      <div class="lg:col-span-5" data-animate="fade-up">
+        <div class="relative max-w-md mx-auto lg:mx-0">
+          <!-- Frame outline accent -->
+          <div class="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-[var(--color-amber)] via-[var(--color-yellow)] to-transparent opacity-30 blur-sm"></div>
+          
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-[var(--color-indigo-deep)] border border-white/10 aspect-[3/4]">
+            <Image 
+              src={directorImg} 
+              alt="Mr. Dilip Budhani - Director of M.P. Public School Indore" 
+              class="w-full h-full object-cover object-top"
+              widths={[400, 800]}
+              sizes="(max-width: 1024px) 350px, 450px"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Director Badge Card -->
+          <div class="absolute -bottom-6 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-4 text-center border border-white/20">
+            <h3 class="font-bold text-xl text-[var(--color-ink)]">Mr. Dilip Budhani</h3>
+            <p class="text-sm font-semibold text-[var(--color-indigo)] uppercase tracking-wider mt-0.5">Director, M.P. Public School</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message Side (7 cols) -->
+      <div class="lg:col-span-7 pt-6 lg:pt-0" data-animate="fade-up">
+        <SectionHeading
+          title="Director's Message"
+          subtitle="A word from our leadership on our core philosophy and vision."
+          align="left"
+          light={true}
+        />
+
+        <div class="relative pl-6 sm:pl-8 border-l-4 border-[var(--color-amber)] space-y-5">
+          <!-- Quote Icon -->
+          <svg class="w-10 h-10 text-[var(--color-amber)]/40 mb-2" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z" />
+          </svg>
+
+          <blockquote class="text-white/90 text-lg sm:text-xl font-light leading-relaxed space-y-4">
+            <p class="italic">
+              "At MPPS, we believe that education is not merely the acquisition of facts and knowledge from textbooks; it is about igniting curiosity, nurturing creativity, and empowering individuals to shape their own destinies."
+            </p>
+            <p class="text-base sm:text-lg text-white/80 font-normal leading-relaxed">
+              Our role as educators goes beyond the daily rhythm of traditional lessons. We perceive ourselves as the custodians of our nation’s future, striving to guide our children to excel not only as outstanding scholars but also as responsible, empathetic global citizens.
+            </p>
+          </blockquote>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <p class="font-bold text-white text-lg">Mr. Dilip Budhani</p>
+              <p class="text-xs text-[var(--color-amber)] uppercase font-semibold tracking-wider">Director · M.P. Public School, Indore</p>
+            </div>
+            
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur text-xs text-white/80">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Leading with Vision</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

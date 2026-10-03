@@ -3,6 +3,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import Button from '@/components/ui/Button.astro';
 import AdmissionCTA from '@/components/sections/AdmissionCTA.astro';
+import DirectorMessage from '@/components/sections/DirectorMessage.astro';
+import { Image } from 'astro:assets';
+import frontImg from '@/assets/images/mpps_front.jpeg';
 import { siteConfig } from '@/config/site';
 import { getBreadcrumbList } from '@/lib/schema';
 
@@ -80,8 +83,8 @@ const achievements = [
           </div>
         </div>
         <div class="relative" data-animate="fade-up">
-          <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl bg-[var(--color-indigo)] mb-6 flex items-center justify-center">
-            <img src="/Mppublic_logo.jpeg" alt="M.P. Public School Indore logo" width="140" height="140" class="object-contain" loading="lazy" />
+          <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl bg-[var(--color-indigo)] mb-6">
+            <Image src={frontImg} alt="M.P. Public School Indore main campus building" class="w-full h-full object-cover" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 500px" loading="lazy" />
           </div>
           
           <!-- GEO Fact Table -->
@@ -134,6 +137,9 @@ const achievements = [
       </div>
     </div>
   </section>
+
+  <!-- Director's Message Section -->
+  <DirectorMessage />
 
   <!-- Core Values -->
   <section class="section bg-white">
