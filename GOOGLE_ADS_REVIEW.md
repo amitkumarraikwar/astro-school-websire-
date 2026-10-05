@@ -49,6 +49,8 @@ No recognition certificate was supplied for publication or independently validat
 
 Repeatable deployment checks are available through `npm run verify` and `npm run audit:live`. The build audit covers generated pages, local assets and anchors, published school information, crawler rules, sitemap contents, and the 19 migration redirects in `vercel.json`. Vercel runs this verification before publishing the build. The live audit checks desktop and mobile crawler responses; its findings describe differences from this Astro project, not an official Google policy assessment.
 
+Follow-up verification after a clean `npm ci` passed: 17 generated pages, 1,051 local link/asset references (including repeated references across pages), 15 sitemap entries, and all 19 redirect destinations. The local HTTP audit passed all 16 desktop/mobile crawler responses and the missing-page 404. The current production domain failed the deployment comparison because it still serves the earlier Next.js website. Actual Vercel redirect responses must be checked after deployment; the build audit validates their destinations and anchors locally.
+
 These checks cover the local build, not the currently deployed website.
 
 ## Complete before appealing
