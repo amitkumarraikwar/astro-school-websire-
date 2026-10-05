@@ -1,5 +1,55 @@
 [
   {
+    "id": "navratri-2026",
+    "title": "Navratri Celebration",
+    "description": "For Nursery to Class XII, during the last two lectures, as listed in the school diary, page 16.",
+    "date": "2026-10-17",
+    "venue": "School ground",
+    "category": "cultural",
+    "published": true
+  },
+  {
+    "id": "parent-meeting-october-2026",
+    "title": "Parent–Teacher Meeting",
+    "description": "A meeting for all classes is listed in the school diary, page 16. Contact the school for class-specific arrangements.",
+    "date": "2026-10-31",
+    "category": "general",
+    "published": true
+  },
+  {
+    "id": "diwali-celebration-2026",
+    "title": "Deepawali Celebration",
+    "description": "House-wise decoration activities for Classes I–XII, during the last two periods, as listed in the school diary, page 17.",
+    "date": "2026-11-05",
+    "category": "cultural",
+    "published": true
+  },
+  {
+    "id": "childrens-day-2026",
+    "title": "Children's Day Celebration",
+    "description": "Early-years and primary activities are listed in the school diary, page 17. Confirm your child's programme with the school.",
+    "date": "2026-11-14",
+    "category": "cultural",
+    "published": true
+  },
+  {
+    "id": "annual-function-2026",
+    "title": "Annual Function",
+    "description": "The annual function is listed for this date in the school diary, page 18. Confirm the programme and timings with the office.",
+    "date": "2026-12-26",
+    "category": "cultural",
+    "published": true
+  },
+  {
+    "id": "republic-day-2027",
+    "title": "Republic Day Celebration",
+    "description": "Flag hoisting and cultural programme are listed in the school diary, page 19. Timings differ by class.",
+    "date": "2027-01-26",
+    "venue": "Ashok Nagar campus",
+    "category": "cultural",
+    "published": true
+  },
+  {
     "title": "Annual Day Celebration 2025",
     "description": "Grand Annual Day celebration featuring cultural performances, award ceremonies, and special guest address by Hon. Mayor of Indore.",
     "date": "2025-12-15",

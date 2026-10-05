@@ -1,5 +1,5 @@
 ---
-import { X } from 'lucide-react';
+import { X } from 'lucide-astro';
 ---
 
 <div id="pwa-install-prompt" class="fixed bottom-[84px] left-4 right-4 z-[200] bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] p-4 transform translate-y-[150%] transition-transform duration-500 ease-out flex items-center justify-between opacity-0 invisible" aria-hidden="true">
@@ -7,7 +7,7 @@ import { X } from 'lucide-react';
     <img src="/Mppublic_logo.jpeg" alt="MP School App Icon" width="48" height="48" class="w-12 h-12 rounded-xl shadow-sm border border-[var(--color-gray-100)]" />
     <div>
       <h3 class="text-sm font-bold text-[var(--color-ink)] leading-tight">Install MP School App</h3>
-      <p class="text-xs text-[var(--color-ink-light)] mt-0.5">Fast, offline access</p>
+      <p class="text-xs text-[var(--color-ink-light)] mt-0.5">Add the school website to your home screen</p>
     </div>
   </div>
   
@@ -27,7 +27,7 @@ import { X } from 'lucide-react';
   const STORAGE_KEY = 'pwa_prompt_dismissed';
   const DISMISS_DURATION = 14 * 24 * 60 * 60 * 1000; // 14 days
 
-  document.addEventListener('astro:page-load', () => {
+  function initInstallPrompt() {
     const promptEl = document.getElementById('pwa-install-prompt');
     const installBtn = document.getElementById('pwa-install-btn');
     const closeBtn = document.getElementById('pwa-install-close');
@@ -39,7 +39,8 @@ import { X } from 'lucide-react';
     if (isStandalone) return;
 
     // Check if dismissed recently
-    const dismissedAt = localStorage.getItem(STORAGE_KEY);
+    let dismissedAt: string | null = null;
+    try { dismissedAt = localStorage.getItem(STORAGE_KEY); } catch { /* Storage may be unavailable. */ }
     if (dismissedAt && Date.now() - parseInt(dismissedAt) < DISMISS_DURATION) return;
 
     // Listen for install prompt event
@@ -59,6 +60,7 @@ import { X } from 'lucide-react';
 
     installBtn.addEventListener('click', async () => {
       promptEl.classList.add('translate-y-[150%]', 'opacity-0');
+      promptEl.setAttribute('aria-hidden', 'true');
       
       if (deferredPrompt) {
         deferredPrompt.prompt();
@@ -72,8 +74,11 @@ import { X } from 'lucide-react';
 
     closeBtn.addEventListener('click', () => {
       promptEl.classList.add('translate-y-[150%]', 'opacity-0');
-      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+      promptEl.setAttribute('aria-hidden', 'true');
+      try { localStorage.setItem(STORAGE_KEY, Date.now().toString()); } catch { /* Dismissal still works without storage. */ }
       setTimeout(() => promptEl.classList.add('invisible'), 500);
     });
-  });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initInstallPrompt, { once: true });
+  else initInstallPrompt();
 </script>

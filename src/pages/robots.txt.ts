@@ -5,7 +5,16 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
-Disallow: /*?*utm_
+
+User-agent: AdsBot-Google
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+Disallow: /admin/
+Disallow: /api/
 
 User-agent: Googlebot
 Allow: /

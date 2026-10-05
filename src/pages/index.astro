@@ -8,7 +8,6 @@ import DirectorMessage from '@/components/sections/DirectorMessage.astro';
 import PrincipalMessage from '@/components/sections/PrincipalMessage.astro';
 import FacilitiesPreview from '@/components/sections/FacilitiesPreview.astro';
 import NewsEventsPreview from '@/components/sections/NewsEventsPreview.astro';
-import Testimonials from '@/components/sections/Testimonials.astro';
 import AdmissionCTA from '@/components/sections/AdmissionCTA.astro';
 import MapSection from '@/components/sections/MapSection.astro';
 import FAQAccordion from '@/components/ui/FAQAccordion.astro';
@@ -24,14 +23,14 @@ const homeFaqs = [
   { question: `Where is ${siteConfig.name} located?`, answer: `We are located at ${siteConfig.address}.` },
   { question: "Which board is the school affiliated to?", answer: `The school is affiliated with MP Board (Affiliation No: ${siteConfig.affiliationNumber}).` },
   { question: "What classes does the school offer?", answer: "We offer classes from Pre-Primary up to Senior Secondary (Class 12)." },
-  { question: "What are the school timings?", answer: `Our standard working hours are ${siteConfig.workingHours}.` },
-  { question: "Is transport facility available?", answer: "Yes, we provide safe and secure bus transport covering major routes across the city." }
+  { question: "What are the office hours?", answer: `${siteConfig.workingHours}. Class timings vary. Please call before visiting and confirm your child's timetable with the office.` },
+  { question: "How is transport arranged?", answer: "Parents contact vehicle operators directly and pay transport charges separately. Ask the office about available operators and routes." }
 ];
 ---
 
 <BaseLayout
   title="M.P. Public School, Indore"
-  description="M.P. Public School is a premier MP Board-affiliated school in Indore, Madhya Pradesh. Offering quality education from Pre-Primary to Senior Secondary with modern facilities and 30+ years of excellence."
+  description="M.P. Public School, Ashok Nagar, Indore. MP Board affiliation no. 532414. Explore classes, school facilities, admission information, fees, and office contacts."
   jsonLd={breadcrumbLd}
 >
   <Hero />
@@ -42,7 +41,6 @@ const homeFaqs = [
   <PrincipalMessage />
   <FacilitiesPreview />
   <NewsEventsPreview />
-  <Testimonials />
   
   <section class="section bg-white">
     <div class="container">

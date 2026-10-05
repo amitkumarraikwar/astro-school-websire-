@@ -1,0 +1,27 @@
+---
+import Button from '@/components/ui/Button.astro';
+import { siteConfig } from '@/config/site';
+interface Props { kind: 'admission' | 'contact'; }
+const { kind } = Astro.props;
+const admission = kind === 'admission';
+const fields = admission
+  ? { name: 'entry.660262738', phone: 'entry.711533159', email: 'entry.322675497', message: 'entry.2138277743' }
+  : { name: 'entry.176710275', phone: 'entry.950743227', email: 'entry.456657709', message: 'entry.1256237817' };
+const inputClass = 'w-full px-4 py-3 rounded-xl border border-[var(--color-gray-300)] focus:border-[var(--color-indigo)] focus:ring-2 focus:ring-[var(--color-indigo)]/20 outline-none text-base bg-white';
+const classes = ['Nursery', 'LKG', 'UKG', 'Class I', 'Class II', 'Class III', 'Class IV', 'Class V', 'Class VI', 'Class VII', 'Class VIII', 'Class IX', 'Class XI - Science', 'Class XI - Commerce'];
+---
+
+<form action={admission ? siteConfig.forms.admissionAction : siteConfig.forms.contactAction} method="POST" class="card p-6 md:p-8 space-y-6">
+  <p class="text-sm text-[var(--color-ink-light)]">For parents and guardians. Required fields are marked *. This form sends your enquiry to the school's Google Forms service and takes you to Google's response page. An enquiry is not an admission application or confirmation.</p>
+  {admission && <div><label for={`${kind}-student`} class="block font-medium text-sm mb-2">Student name *</label><input id={`${kind}-student`} name="entry.289968458" type="text" required maxlength="100" autocomplete="off" class={inputClass} /></div>}
+  <div><label for={`${kind}-name`} class="block font-medium text-sm mb-2">{admission ? 'Parent / guardian name' : 'Your name'} *</label><input id={`${kind}-name`} name={fields.name} type="text" required maxlength="100" autocomplete="name" class={inputClass} /></div>
+  <div class="grid sm:grid-cols-2 gap-6">
+    <div><label for={`${kind}-phone`} class="block font-medium text-sm mb-2">Phone number *</label><input id={`${kind}-phone`} name={fields.phone} type="tel" required minlength="10" maxlength="20" pattern="[+0-9\(\) .\-]{10,20}" title="Enter a phone number with 10 to 20 characters, using digits, spaces, +, brackets, or hyphens." autocomplete="tel" class={inputClass} /></div>
+    <div><label for={`${kind}-email`} class="block font-medium text-sm mb-2">Email address{admission ? ' *' : ' (optional)'}</label><input id={`${kind}-email`} name={fields.email} type="email" required={admission} maxlength="254" autocomplete="email" class={inputClass} /></div>
+  </div>
+  {admission && <div><label for={`${kind}-class`} class="block font-medium text-sm mb-2">Class enquiry *</label><select id={`${kind}-class`} name="entry.667920343" required class={inputClass}><option value="">Select a class</option>{classes.map(className => <option value={className}>{className}</option>)}</select><p class="text-xs text-[var(--color-ink-light)] mt-2">For Pre-Nursery, Class X, Class XII, or other subject enquiries, please call the school office.</p></div>}
+  <div><label for={`${kind}-message`} class="block font-medium text-sm mb-2">Message{admission ? ' (optional)' : ' *'}</label><textarea id={`${kind}-message`} name={fields.message} rows="4" required={!admission} maxlength="2000" class={inputClass}></textarea><p class="text-xs text-[var(--color-ink-light)] mt-2">Please do not include Aadhaar numbers, payment information, medical records, or document scans in an enquiry.</p></div>
+  <label class="flex items-start gap-3 text-sm leading-relaxed"><input type="checkbox" required class="mt-1 w-4 h-4 shrink-0" /><span>I am a parent, guardian, or adult enquirer. I have read the <a href="/privacy-policy" class="underline text-[var(--color-indigo)]">Privacy Policy</a> and agree that the school may use these details to respond to this enquiry through the contact details I provide.</span></label>
+  <Button variant="primary" size="lg" type="submit" fullWidth={true}>Send Enquiry via Google Forms</Button>
+  <p class="text-sm text-[var(--color-ink-light)]">If the form is unavailable, <a href={admission ? siteConfig.forms.admission : siteConfig.forms.contact} class="underline">open it directly on Google Forms</a>, call <a href={`tel:${siteConfig.phones[0].replace(/\s/g, '')}`} class="underline">{siteConfig.phones[0]}</a>, or email <a href={`mailto:${siteConfig.email}`} class="underline">{siteConfig.email}</a>.</p>
+</form>

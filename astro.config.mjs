@@ -14,7 +14,7 @@ export default defineConfig({
   output: 'static',
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404') && !page.includes('/thank-you'),
+      filter: (page) => !['/404', '/thank-you', '/offline'].some(path => new URL(page).pathname.startsWith(path)),
       changefreq: 'weekly',
       priority: 0.7,
       serialize(item) {
@@ -46,6 +46,8 @@ export default defineConfig({
     react(),
     AstroPWA({
       registerType: 'prompt',
+      // Registration and error handling live in PwaUpdateToast.astro.
+      injectRegister: false,
       manifest: {
         name: "M.P. Public School, Indore",
         short_name: "MP School",
@@ -58,20 +60,14 @@ export default defineConfig({
         lang: "en-IN",
         icons: [
           {
-            src: "/Mppublic_logo.jpeg",
+            src: "/favicon-192x192.png",
             sizes: "192x192",
             type: "image/png"
           },
           {
-            src: "/Mppublic_logo.jpeg",
+            src: "/favicon-512x512.png",
             sizes: "512x512",
             type: "image/png"
-          },
-          {
-            src: "/Mppublic_logo.jpeg",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "maskable"
           }
         ],
         shortcuts: [
@@ -82,15 +78,13 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,jpg,jpeg,webp,woff,woff2,json}'],
-        navigateFallback: '/offline',
-        navigateFallbackDenylist: [/^\/sitemap/, /^\/robots\.txt/, /^\/llms\.txt/, /^\/manifest\.webmanifest/],
+        // Fetch HTML from the network so corrected school information is not pinned in a precache.
+        globPatterns: ['**/*.{js,css,svg,png,jpg,jpeg,webp,woff,woff2,json}'],
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.mode === 'navigate',
             handler: 'NetworkFirst',
             options: {
-              networkTimeoutSeconds: 3,
               cacheName: 'pages-cache',
               expiration: {
                 maxEntries: 50,
@@ -109,7 +103,7 @@ export default defineConfig({
             }
           }
         ],
-        ignoreURLParametersMatching: [/^utm_/, /^fbclid$/]
+        ignoreURLParametersMatching: [/^utm_/, /^gclid$/, /^gbraid$/, /^wbraid$/, /^fbclid$/]
       }
     })
   ],

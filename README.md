@@ -1,64 +1,79 @@
-# M.P. Public School, Indore - Website
+# M.P. Public School, Indore
 
-A modern, high-performance, accessible school website built with Astro, Tailwind CSS v4, and GSAP.
+Static school website for `https://mppublicschool.online`, built with Astro, TypeScript, and Tailwind CSS. The school information is based on the documents included in this repository.
 
-## Tech Stack
-- **Astro**: Core framework (static site generation, islands architecture)
-- **Tailwind CSS v4**: Styling and design system via CSS variables
-- **GSAP & Lenis**: Smooth scrolling and scroll-triggered animations
-- **Three.js**: Interactive 3D hero animation (lazy-loaded client-side)
-- **TypeScript**: Type safety across the project
+## Develop and build
 
-## Getting Started
+Use a Node.js version supported by the installed Astro release and the repository lockfile.
 
-### Prerequisites
-- Node.js (v18 or higher)
-- npm or pnpm
-
-### Installation
-
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-### Development
-
-Start the local development server:
 ```bash
+npm ci
 npm run dev
-```
-The site will be available at `http://localhost:4321`.
-
-### Build & Preview
-
-To create a production build:
-```bash
-npm run build
-```
-
-To preview the production build locally:
-```bash
+npm run check
+npm run verify
 npm run preview
 ```
 
-## Content Management
-The website uses Astro Content Collections (Content Layer API) for easy management of dynamic content:
-- **News**: Markdown files in `src/content/news/`
-- **Events**: JSON data in `src/content/events/events.json`
-- **Faculty**: JSON data in `src/content/faculty/staff.json`
-- **Gallery**: JSON data in `src/content/gallery/gallery.json`
+The production website is generated in `dist/`. `npm run preview` serves it locally on port 4321 by default.
+
+`npm run verify` runs the type checker, production build, and delivered-HTML audit. It checks page information, internal links and image sources, form endpoints and privacy acknowledgement, school affiliation consistency, sitemap contents, crawler rules, and migration redirect destinations. `npm run audit:build` checks an existing build without rebuilding.
+
+The checker uses `astro-check` directly so a missing checker dependency fails instead of opening an install prompt and skipping verification. `@emnapi/runtime` is an explicit development dependency because the configured legacy peer-dependency installation otherwise omits the WebAssembly runtime required by the installed checker.
+
+## School information and content
+
+- `src/config/site.ts`: domain, school name, address, office contacts, MP Board affiliation number, social links, and Google Forms endpoints.
+- `src/config/fees.ts`: undiscounted 2026–27 tuition and separate new-admission charges from the supplied workbook. Discounts are not advertised as currently available without a confirmed validity period.
+- `src/components/sections/InquiryForm.astro`: native submissions to the school's Google Forms, with browser validation and a privacy acknowledgement. No backend or API secrets are needed for these public forms.
+- `src/pages/faculty.astro`: the school-provided staff list.
+- `src/content/news/`: news articles. Only entries with `published: true` generate public routes or appear in listings.
+- `src/content/events/events.json`: diary dates. Only entries with `published: true` are shown; listings filter later dates at build time in the India time zone.
+- `public/documents/`: published school diary and academic calendar.
+
+The original sample news and event records are retained as unpublished source material. Check evidence before publishing a record. School results must identify the correct class, year, and source; avoid treating individual scores as a whole-school pass rate. Rebuild when changing content or refreshing the calendar.
+
+## Enquiry handling
+
+Google Forms endpoints and field IDs were checked against the public forms. The browser submits directly to Google and opens its response page. The website does not display a local success message or claim that admission is complete.
+
+The school must confirm that its staff can access the responses, receive any intended notifications, and handle a real enquiry. Update the Google Form's class choices to match the school: the externally hosted admission form currently includes a Humanities option, while the supplied fee schedule lists Science and Commerce. The website form lists the document-backed choices.
 
 ## Deployment
-This project outputs a fully static site in the `dist` directory. You can deploy it to any static hosting provider such as:
-- Vercel
-- Netlify
-- GitHub Pages
-- AWS S3
 
-## Performance & SEO
-- **Lighthouse**: Optimized for 95+ scores across Performance, Accessibility, Best Practices, and SEO.
-- **Images**: Automatically optimized using `astro:assets`.
-- **SEO**: Complete metadata, Open Graph tags, and JSON-LD schema generated for every page.
-- **Sitemap**: Automatically generated on build via `@astrojs/sitemap`.
+1. Run `npm run verify`, then deploy the **complete new `dist/` output**, replacing old output rather than merging files. This removes routes for unpublished sample articles.
+2. Serve directory indexes for routes such as `/admissions`, `/contact`, and `/privacy-policy`. Return a genuine HTTP 404 for unknown routes using `404.html`; do not rewrite every unknown route to the homepage.
+3. Configure valid HTTPS and choose `https://mppublicschool.online` as the canonical host. Redirect HTTP and the alternate `www` host consistently to it.
+4. Ensure the hosting firewall allows visitors and Google Ads crawlers to access landing pages without a login or challenge. Serve the same content to crawlers and visitors.
+5. If replacing the previous site, use the same-domain server redirects in `vercel.json` for old admission, academic, and document URLs. On other hosts, configure equivalent redirects. Update ads and sitelinks to the real current page URLs.
+6. Check the live site, forms, school email inbox, documents, `robots.txt`, and `sitemap-index.xml`. Clear any hosting/CDN caches that retain old school information.
+
+The PWA manifest is generated by `@vite-pwa/astro`; do not add a conflicting static manifest. HTML is fetched network-first rather than pinned in the asset precache, so corrected information can reach returning visitors.
+
+### Vercel and the current domain
+
+The live domain was observed serving Next.js through Vercel and Cloudflare. This Astro repository is a separate project. Confirm the intended replacement with the site owner before changing the Vercel project or assigning the production domain.
+
+The included `vercel.json` selects Astro, installs from the lockfile with `npm ci`, runs `npm run verify`, publishes `dist/`, and configures clean URLs, permanent migration redirects, and service-worker cache headers. In Vercel, connect this repository and use its root (`.`) as the Root Directory. Set a Node.js version supported by the installed Astro release. Check any dashboard build overrides before deploying.
+
+Choose the apex domain `mppublicschool.online` as the primary host to match the site's canonical URLs, with `www` redirected to it. The current live setup redirects the apex to `www`; update that setting in Vercel Domains and any corresponding Cloudflare redirect rule so the two services do not create a redirect loop.
+
+Test the preview deployment, confirm school enquiry handling, then assign the production domain. The Astro site has no built-in admin panel, database, or admissions-status portal; retain the existing management services at their own intended addresses when replacing the public website.
+
+After deployment, run:
+
+```bash
+npm run audit:live
+```
+
+To check a preview deployment or local preview instead:
+
+```bash
+npm run audit:live -- https://your-preview-deployment.vercel.app
+npm run audit:live -- http://127.0.0.1:4321
+```
+
+This makes read-only requests using desktop and mobile AdsBot user agents and checks for a genuine 404. It compares delivered HTML against this project, without submitting a form. A failed result on the old Next.js website identifies differences from this build; it does not prove that client-side forms cannot work or establish the Google Ads suspension reason.
+
+## Google Ads review
+
+Read [GOOGLE_ADS_REVIEW.md](GOOGLE_ADS_REVIEW.md) for the findings, source documents, remaining school information, and appeal steps. Local changes do not update the live domain, and website improvements do not guarantee account reinstatement.

@@ -12,39 +12,32 @@ export const getBaseOrganization = () => {
       '@type': 'ImageObject',
       url: 'https://mppublicschool.online/Mppublic_logo.jpeg',
     },
-    image: 'https://mppublicschool.online/og-image.jpg',
-    description: 'A premier MP Board-affiliated school in Indore, Madhya Pradesh, providing quality education from Pre-Primary to Senior Secondary.',
+    image: `${siteConfig.url}/mpps_front.jpeg`,
+    description: 'MP Board-affiliated school at 9, Ashok Nagar, Indore, with classes from Pre-Primary to Class XII.',
     telephone: siteConfig.phones[0],
     email: siteConfig.email,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: siteConfig.address.split(',')[0].trim(),
+      streetAddress: siteConfig.streetAddress,
       addressLocality: 'Indore',
       addressRegion: 'Madhya Pradesh',
-      postalCode: '452001',
       addressCountry: 'IN',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: '22.7196',
-      longitude: '75.8577',
     },
     sameAs: Object.values(siteConfig.socialLinks),
     areaServed: {
       '@type': 'City',
       name: 'Indore',
     },
-    foundingDate: siteConfig.establishedYear.toString(),
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '08:00',
-      closes: '15:00',
-    },
-    // Only include credential/affiliation if confirmed, here we use the placeholder
+    contactPoint: siteConfig.phones.map(telephone => ({
+      '@type': 'ContactPoint',
+      telephone,
+      contactType: 'School office and admissions',
+      email: siteConfig.email,
+    })),
     hasCredential: {
       '@type': 'EducationalOccupationalCredential',
       credentialCategory: 'Affiliation',
+      identifier: siteConfig.affiliationNumber,
       recognizedBy: {
         '@type': 'Organization',
         name: 'MP Board'
@@ -52,6 +45,16 @@ export const getBaseOrganization = () => {
     }
   };
 };
+
+export const getFAQPage = (faqs: { question: string; answer: string }[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(faq => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+});
 
 export const getWebPage = (title: string, description: string, url: string, type = 'WebPage') => {
   return {

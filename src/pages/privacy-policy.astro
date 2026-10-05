@@ -1,85 +1,31 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import InformationLayout from '@/layouts/InformationLayout.astro';
 import { siteConfig } from '@/config/site';
 ---
 
-<BaseLayout
-  title="Privacy Policy"
-  description={`Privacy Policy of ${siteConfig.name}, Indore. Learn how we collect, use, and protect your personal information.`}
-  noindex={true}
->
-  <section class="gradient-hero py-20 md:py-24 relative overflow-hidden">
-    <div class="container relative">
-      <nav aria-label="Breadcrumb" class="mb-6">
-        <ol class="flex items-center gap-2 text-sm text-white/60">
-          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-          <li><span class="mx-1">/</span></li>
-          <li class="text-white font-medium">Privacy Policy</li>
-        </ol>
-      </nav>
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Privacy Policy</h1>
-      <p class="text-white/70">Last updated: January 1, 2025</p>
-    </div>
-  </section>
+<InformationLayout title="Privacy Policy" description="How the M.P. Public School website handles school enquiries, third-party services, device storage, and privacy requests." updated>
+  <h2>Who this policy covers</h2>
+  <p>This policy explains the information handled through the {siteConfig.name} website at <a href={siteConfig.url}>{siteConfig.url}</a>. School enquiries are directed to {siteConfig.fullName}, {siteConfig.address}. For privacy questions, contact <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or <a href={`tel:${siteConfig.phones[0].replace(/\s/g, '')}`}>{siteConfig.phones[0]}</a>.</p>
 
-  <section class="section bg-white">
-    <div class="container container-sm">
-      <div class="prose max-w-none">
-        <h2>1. Introduction</h2>
-        <p>M.P. Public School, Indore ("we," "us," or "our") is committed to protecting the privacy and security of personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or interact with our school.</p>
+  <h2>Information you provide</h2>
+  <p>The admission enquiry asks for a student name, parent or guardian name, phone number, email address, class of interest, and an optional message. The general enquiry asks for your name, phone number, optional email address, and message. We use these details to respond to the question and discuss the school services you ask about.</p>
+  <p>Please provide only the information needed for your enquiry. The website forms do not request identity-document numbers, payment-card information, medical records, or document uploads. Formal admission records are handled separately through the school office.</p>
 
-        <h2>2. Information We Collect</h2>
-        <p>We may collect the following types of information:</p>
-        <ul>
-          <li><strong>Personal Information:</strong> Name, email address, phone number, postal address, and other contact details provided through forms on our website.</li>
-          <li><strong>Student Information:</strong> Student name, date of birth, class, academic records, and other information provided during the admission process.</li>
-          <li><strong>Usage Data:</strong> Information about how you access and use our website, including browser type, IP address, pages visited, and time spent.</li>
-          <li><strong>Photographs and Media:</strong> Photographs and videos of students taken during school events, which may be published on our website and social media.</li>
-        </ul>
+  <h2>Google Forms, WhatsApp, and other services</h2>
+  <p>Submitting a website enquiry sends the entered details to the school's form hosted by Google Forms. Your browser then opens Google's response page. Google processes service and technical information under its <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>. Submission does not create a website account or confirm admission.</p>
+  <p>WhatsApp, email, telephone links, and social links open the corresponding third-party service or an app on your device. Information you send through those channels is also subject to that service's practices. Google Maps is embedded on the website; loading a map may share your IP address, browser information, and cookies with Google.</p>
 
-        <h2>3. How We Use Your Information</h2>
-        <p>We use the collected information for the following purposes:</p>
-        <ul>
-          <li>Processing admission inquiries and applications</li>
-          <li>Communicating with parents and students about school activities</li>
-          <li>Improving our website and educational services</li>
-          <li>Sending newsletters, event information, and important announcements</li>
-          <li>Complying with legal obligations</li>
-        </ul>
+  <h2>Website storage and technical information</h2>
+  <p>The website uses a service worker and browser storage to cache resources and remember choices related to app installation and updates. Hosting services may process IP addresses, requested URLs, and browser details when serving pages. Browser settings let you clear site storage or block cookies; this can affect app and embedded-service features.</p>
+  <p>This website build does not install Google Analytics, Google Ads conversion tracking, or remarketing tags. If tracking is added, this policy and any required consent controls must be updated to describe the actual use.</p>
 
-        <h2>4. Information Sharing</h2>
-        <p>We do not sell, trade, or otherwise transfer your personal information to outside parties. We may share information with trusted third parties who assist us in operating our website and providing services, provided they agree to keep this information confidential.</p>
+  <h2>Access, sharing, and retention</h2>
+  <p>Enquiry information is intended for school personnel handling your request and service providers involved in delivering it. Information may also need to be disclosed when required by applicable law. Contact the school before submitting if you need details about access to the enquiry records or their retention period.</p>
+  <p>You can ask the school to correct or delete an enquiry, explain its use, or stop optional follow-up. Include enough information to identify your request without sending sensitive documents. Deletion may be limited where admission records or other information must be retained under applicable requirements.</p>
 
-        <h2>5. Data Security</h2>
-        <p>We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+  <h2>Children and published school material</h2>
+  <p>Admission enquiries should be submitted by a parent or guardian. The adult submitting a child's information should be authorised to do so. Student images, names, and results may appear in school-provided publications, including the school diary. Contact the office about permission, correction, or removal of a published item.</p>
 
-        <h2>6. Cookies</h2>
-        <p>Our website may use cookies to enhance your browsing experience. You can choose to disable cookies through your browser settings, although this may affect the functionality of our website.</p>
-
-        <h2>7. Children's Privacy</h2>
-        <p>We are committed to protecting the privacy of children. We collect student information only through authorized guardians and use it solely for educational purposes.</p>
-
-        <h2>8. Your Rights</h2>
-        <p>You have the right to:</p>
-        <ul>
-          <li>Access your personal information</li>
-          <li>Request correction of inaccurate information</li>
-          <li>Request deletion of your information</li>
-          <li>Opt out of receiving promotional communications</li>
-        </ul>
-
-        <h2>9. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date.</p>
-
-        <h2>10. Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-        <p>
-          <strong>{siteConfig.name}</strong><br/>
-          {siteConfig.address}<br/>
-          Phone: {siteConfig.phones[0]}<br/>
-          Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-        </p>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+  <h2>Contact and policy updates</h2>
+  <p>Send privacy requests or concerns to <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>, identifying the website page or enquiry concerned. Changes to this policy will be published on this page with an updated date.</p>
+</InformationLayout>

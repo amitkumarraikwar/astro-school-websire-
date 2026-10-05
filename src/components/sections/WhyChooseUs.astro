@@ -5,37 +5,37 @@ const features = [
   {
     icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
     title: 'Comprehensive Curriculum',
-    description: 'MP Board-aligned curriculum from Pre-Primary to Class XII covering Science, Commerce, and Humanities streams with emphasis on conceptual learning.',
+    description: 'Education from Pre-Primary to Class XII, with Science and Commerce listed for senior secondary in the school fee schedule. Ask the office about current subject combinations.',
     color: 'var(--color-indigo)',
   },
   {
     icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
     title: 'Modern Smart Classrooms',
-    description: 'Interactive whiteboards, digital projectors, and multimedia tools in every classroom creating an engaging and technology-enhanced learning environment.',
+    description: 'Smart classroom facilities are listed in the school programme, alongside computer learning and library resources.',
     color: 'var(--color-cyan)',
   },
   {
     icon: 'M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
     title: 'Experienced Faculty',
-    description: '120+ qualified and dedicated teachers with advanced degrees, continuous professional development, and a passion for nurturing young minds.',
+    description: 'Meet the school leadership, teachers, and support staff on our faculty page, and discuss your child’s learning needs during a visit.',
     color: 'var(--color-amber)',
   },
   {
     icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
     title: 'Holistic Development',
-    description: 'Beyond academics — sports, arts, music, dance, debate, robotics, and community service programs fostering well-rounded personalities.',
+    description: 'Art and craft, music, dance, games, sports, yoga, and cultural activities give students opportunities to learn beyond classroom lessons.',
     color: 'var(--color-red)',
   },
   {
     icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
     title: 'Safe & Secure Campus',
-    description: 'CCTV surveillance, trained security staff, GPS-enabled transport, and comprehensive safety protocols ensuring complete peace of mind for parents.',
+    description: 'CCTV surveillance is listed among the school facilities. Contact the office to discuss campus access, student collection, and any safety concerns.',
     color: 'var(--color-orange)',
   },
   {
     icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
-    title: 'Proven Track Record',
-    description: '98% board pass rate, top rankers in competitive exams, and consistent achievements in sports and cultural events at state and national levels.',
+    title: 'Clear Admission Information',
+    description: 'Review the published tuition schedule, school diary, and contact details before deciding. The office can confirm availability and provide a written fee breakdown.',
     color: 'var(--color-indigo)',
   },
 ];
@@ -45,10 +45,10 @@ const features = [
   <div class="container">
     <SectionHeading
       title="Why Choose M.P. Public School?"
-      subtitle="Discover what makes us one of the most trusted schools in Indore, Madhya Pradesh."
+      subtitle="Explore the school programme and speak with our team about your child's needs."
     />
 
-    <div class="snap-container gap-6 md:gap-8" data-animate="stagger">
+    <div class="snap-container md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-animate="stagger" role="region" aria-label="School programme highlights" tabindex="0">
       {features.map((feature) => (
         <div class="rounded-2xl bg-white border border-[var(--color-indigo)]/10 shadow-sm p-6 hover:-translate-y-1 hover:shadow-lg transition duration-300 snap-card group">
           <div class="w-12 h-12 rounded-xl bg-[var(--color-indigo)]/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">

@@ -1,8 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import SectionHeading from '@/components/ui/SectionHeading.astro';
 import AdmissionCTA from '@/components/sections/AdmissionCTA.astro';
-import { siteConfig } from '@/config/site';
 import { getBreadcrumbList } from '@/lib/schema';
 
 // Faculty data inline since content collections need specific setup
@@ -80,7 +78,7 @@ const breadcrumbLd = getBreadcrumbList([
       
       <!-- AEO Quick Answer -->
       <p class="text-lg text-white/90 max-w-3xl bg-white/10 p-4 rounded-xl border border-white/20 backdrop-blur">
-        <strong>Quick Answer:</strong> The faculty at {siteConfig.name} comprises over {siteConfig.stats.teachers} highly qualified and experienced educators dedicated to delivering the MP Board curriculum through innovative and student-centric teaching methodologies.
+        Our school team includes teaching, administration, and support staff. The list below is based on the staff information supplied by the school. Contact the office for current class and subject assignments.
       </p>
     </div>
   </section>
@@ -101,7 +99,7 @@ const breadcrumbLd = getBreadcrumbList([
       </div>
 
       <!-- Faculty Grid -->
-      <div class="snap-container gap-6" id="faculty-grid" data-animate="stagger">
+      <div class="snap-container md:grid-cols-3 lg:grid-cols-4 gap-6" id="faculty-grid" data-animate="stagger" role="region" aria-label="School faculty and staff" tabindex="0">
         {faculty.map((member) => (
           <div class="card p-6 text-center faculty-card snap-card" data-department={member.department}>
             <!-- Avatar -->

@@ -1,0 +1,31 @@
+---
+import InformationLayout from '@/layouts/InformationLayout.astro';
+import { siteConfig } from '@/config/site';
+---
+
+<InformationLayout title="School Information & Documents" description="M.P. Public School Indore identity, MP Board affiliation number, office contacts, school documents, fees, and information requests.">
+  <h2>School identity</h2>
+  <dl>
+    <dt><strong>School name</strong></dt><dd>{siteConfig.fullName} (M.P. Public School)</dd>
+    <dt><strong>Main campus</strong></dt><dd>{siteConfig.address}</dd>
+    <dt><strong>Board</strong></dt><dd>{siteConfig.board}</dd>
+    <dt><strong>Affiliation number</strong></dt><dd>{siteConfig.affiliationNumber}, as listed in the school information supplied for this website</dd>
+    <dt><strong>Classes</strong></dt><dd>Pre-Primary to Class XII; Science and Commerce are listed for senior secondary</dd>
+    <dt><strong>School office</strong></dt><dd>{siteConfig.phones.map(phone => <div><a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a></div>)}<a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></dd>
+    <dt><strong>Office hours</strong></dt><dd>{siteConfig.workingHours}; please call before visiting</dd>
+    <dt><strong>Junior branch</strong></dt><dd>{siteConfig.juniorBranch.name}, {siteConfig.juniorBranch.address}</dd>
+  </dl>
+  <h2>Published documents and information</h2>
+  <ul>
+    <li><a href={siteConfig.documents.diary} target="_blank" rel="noopener noreferrer">School diary, rules, annual results for 2025–26, and academic calendar for 2026–27 (PDF)</a></li>
+    <li><a href="/fee-structure">2026–27 tuition schedule and admission charges</a></li>
+    <li><a href="/faculty">School leadership, faculty, and staff</a></li>
+    <li><a href="/privacy-policy">Website Privacy Policy</a></li>
+    <li><a href="/terms">Website Terms & Conditions</a></li>
+    <li><a href="/refund-policy">Cancellation and refund information</a></li>
+  </ul>
+  <h2>Recognition and affiliation records</h2>
+  <p>The school information supplied for this website identifies MP Board. This website does not claim CBSE affiliation. A scanned recognition or affiliation certificate has not been provided for online publication; contact the school office for the current documents and recognition status for your child's class and session.</p>
+  <h2>Questions about published information</h2>
+  <p>Contact the office to confirm current fee concessions, admission availability, timetables, and subject combinations. The diary includes a separately printed telephone number; use the website office contacts above for enquiries and ask the office if you need to confirm a document detail.</p>
+</InformationLayout>

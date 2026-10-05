@@ -1,0 +1,30 @@
+---
+import { feeSchedule } from '@/config/fees';
+import { siteConfig } from '@/config/site';
+const formatINR = (amount: number) => new Intl.NumberFormat('en-IN').format(amount);
+---
+
+<div class="max-w-5xl mx-auto">
+  <p class="text-[var(--color-ink-light)] mb-6">The table shows undiscounted yearly tuition and the separate one-time new-admission charge from the {siteConfig.academicSession} schedule. Pre-Nursery to Class V figures are from the combined school / junior-branch noon-shift sheet. Confirm the applicable campus, shift, and current charges with the office before enrolling.</p>
+  <div class="card overflow-x-auto" role="region" aria-label="Tuition fee schedule" tabindex="0">
+    <table class="w-full text-left text-sm min-w-[580px]">
+      <caption class="p-4 font-semibold text-left">{siteConfig.academicSession} published tuition schedule · All amounts in Indian rupees (₹)</caption>
+      <thead class="bg-[var(--color-indigo)] text-white">
+        <tr><th scope="col" class="p-4">Class</th><th scope="col" class="p-4">Yearly tuition</th><th scope="col" class="p-4">New-admission fee</th><th scope="col" class="p-4">Tuition + new-admission fee</th></tr>
+      </thead>
+      <tbody class="divide-y divide-[var(--color-gray-200)]">
+        {feeSchedule.map(row => <tr><th scope="row" class="p-4 font-medium">{row.className}</th><td class="p-4">₹{formatINR(row.tuition)}</td><td class="p-4">₹{formatINR(row.admission)}</td><td class="p-4 font-semibold">₹{formatINR(row.tuition + row.admission)}</td></tr>)}
+      </tbody>
+    </table>
+  </div>
+  <div class="prose mt-6">
+    <h3>What these amounts cover</h3>
+    <ul>
+      <li>The schedule lists fees for 10 months, excluding March and May, with payment due on or before the 10th of each applicable month.</li>
+      <li>Activities worth ₹6,500 are described as included in the academic fee in the supplied schedule.</li>
+      <li>The last column is the sum of tuition and the new-admission charge, not an all-inclusive cost. Transport is arranged and paid separately to vehicle operators. Ask the office to itemise any books, uniform, examination, or other applicable charges in writing.</li>
+      <li>Discounts depend on the campus, shift, eligibility, and offer period. The schedule mentions early-bird and sibling concessions; their current availability and whether they can be combined must be confirmed with the office. The stated 15 July lump-sum offer deadline for this session has passed.</li>
+      <li>A website enquiry is free and does not reserve a seat. Read the <a href="/refund-policy">cancellation and refund information</a> and obtain the applicable written terms before paying.</li>
+    </ul>
+  </div>
+</div>

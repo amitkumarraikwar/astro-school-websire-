@@ -6,7 +6,6 @@ import MoreMenuSheet from '@/components/layout/MoreMenuSheet.astro';
 import InstallPrompt from '@/components/pwa/InstallPrompt.astro';
 import PwaUpdateToast from '@/components/pwa/PwaUpdateToast.astro';
 import Footer from '@/components/layout/Footer.astro';
-import { ClientRouter } from 'astro:transitions';
 import '@/styles/global.css';
 
 export interface Props {
@@ -35,7 +34,6 @@ const { title, description, ogImage, ogType, noindex, pageType, jsonLd } = Astro
       pageType={pageType}
       jsonLd={jsonLd}
     />
-    <ClientRouter />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="MP School" />

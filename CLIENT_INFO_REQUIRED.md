@@ -1,135 +1,15 @@
-# Website Content Checklist for M.P. Public School
+# School information still needed
 
-Dear Client,  
-To make your website live and accurate, we need the real information to replace the temporary placeholder content currently used in the design. Please review the checklist below and provide the required details. 
+The website now uses the supplied school information, fee workbook, staff list, school diary, and campus images. Please provide the following details so the remaining information can be published accurately.
 
-**How to send this information:**  
-- Send text in a Word Document, Google Doc, or via WhatsApp.  
-- Send photos/images as original files (e.g., as documents or Google Drive links). **Please do not send screenshots.**  
-- **Deadline:** [DATE]
+1. **Google Ads suspension notice:** the exact policy reason, suspension date, and any appeal or verification requests. Share a redacted screenshot or the text; account passwords are not needed.
+2. **School recognition:** the current MP Board affiliation/recognition certificate supporting number `532414`, the recognised classes, and the school's UDISE code if it should be published.
+3. **School operator:** the legal name of the society, trust, company, or other body operating the school, and the advertiser/billing identity used in Google Ads. These must reflect the real relationship.
+4. **Current fees and offers:** the applicable campus and shift for each fee schedule, all additional charges, and any concessions with their eligibility and expiry dates. The visible 2026–27 workbook sheets have different charges from a hidden junior-branch sheet; the hidden sheet is not used on the website.
+5. **Cancellation and refund rules:** a written policy covering withdrawal, refundable and non-refundable charges, deductions, required documents, request deadlines, and processing timelines. The website currently explains how to obtain these terms without inventing them.
+6. **Contact verification:** confirm `9, Ashok Nagar, Indore`, the postal code, a direct Google Maps/Business Profile link, office working days, both published phone numbers, and that `support@mppublicschool.online` receives messages. The diary prints `8989002345`; the separately supplied website contact record lists `9091929384` and `8989156787`. Clarify whether all three are current.
+7. **Enquiry administration:** confirm who reads Google Forms responses and how enquiries are followed up. Correct the external admission form's Humanities option unless the school can confirm that stream is offered. Provide the real retention and sharing practices for enquiry records.
 
-> **Note on photos:** Ensure you have parental consent for any photos of students that you provide. Do not send low-quality images or unverified statistics.
+The founding year, enrolment/alumni counts, awards, whole-school pass rates, and review quotations are not promoted without supporting information. Provide documentary evidence and the applicable year if you want those details added. Supply only school-approved images and result publications with the necessary permissions.
 
----
-
-### Summary of Requirements
-| Section | Number of Items | Priority | Status |
-| :--- | :---: | :---: | :--- |
-| 1. Basic School Identity | 8 | [MUST] | All unchecked |
-| 2. Contact Details | 6 | [MUST] | All unchecked |
-| 3. Social Media & Links | 4 | [IMPORTANT] | All unchecked |
-| 4. Branding & Media Assets | 8 | [MUST] | All unchecked |
-| 5. Home Page Content | 3 | [IMPORTANT] | All unchecked |
-| 6. About Us | 3 | [MUST] | All unchecked |
-| 7. Principal's Message | 3 | [MUST] | All unchecked |
-| 8. Academics | 4 | [MUST] | All unchecked |
-| 9. Admissions | 5 | [MUST] | All unchecked |
-| 10. Faculty and Staff | 2 | [IMPORTANT] | All unchecked |
-| 11. Facilities | 2 | [IMPORTANT] | All unchecked |
-| 12. Gallery | 1 | [OPTIONAL] | All unchecked |
-| 13. News and Events | 2 | [OPTIONAL] | All unchecked |
-| 14. Testimonials | 1 | [OPTIONAL] | All unchecked |
-| 15. Legal and Compliance | 2 | [MUST] | All unchecked |
-| 16. Technical Access | 3 | [IMPORTANT] | All unchecked |
-
----
-
-### 1. Basic School Identity [MUST]
-- [ ] **Full Official Name & Short Name** | Text | Header, Footer, SEO | *Current: M.P. Public School / MP School*
-- [ ] **Tagline / Motto** | Text | Home Page Hero | *Current: Shaping Bright Futures*
-- [ ] **Established Year** | Text/Number | Home Page, About Us, Footer | *Current: 1995*
-- [x] **Affiliation Details** | Text | Home Page, Footer, SEO | *Current: MP Board, Affiliation No. 532414*
-- [ ] **Classes Offered & Medium** | Text | Academics, Admissions | *Current: Pre-Primary to Class 12, English Medium*
-- [x] **School Timings & Working Days** | Text | Contact Page, Admissions | *Current: 8:00 AM to 5:00 PM — Office*
-- [x] **School Stats (Total Students, Teachers, Classrooms)** | Numbers | Home Page | *Current: 19 Classrooms, 4 Labs, 1 Library, 9 Office Rooms*
-- [x] **Campus Area** | Text/Number | About Us | *Current: 20,000 sq. ft.*
-
-### 2. Contact Details [MUST]
-- [x] **Full Postal Address & Pincode** | Text | Footer, Contact Page, SEO | *Current: MP Public School, Ashok Nagar, Indore*
-- [x] **Main Phone Numbers** | Text | Header, Footer, Contact | *Current: 9091929384, 8989156787*
-- [x] **WhatsApp Number** | Text | Floating Chat, Mobile Menu | *Current: 9091929384*
-- [x] **Official Email Address** | Text | Footer, Contact Page | *Current: support@mppublicschool.online*
-- [ ] **Google Maps Link/Embed URL** | Link | Contact Page | *Current: Placeholder Map of Indore*
-- [ ] **Google Business Profile Link** | Link | SEO Schema | *Current: None*
-
-### 3. Social Media & Links [IMPORTANT]
-- [x] **Facebook Page Link** | Link | Footer | *Current: Updated*
-- [x] **Instagram Profile Link** | Link | Footer | *Current: Updated*
-- [ ] **X (Twitter) Profile Link** | Link | Footer | *Current: twitter.com/mppublicschool*
-- [x] **YouTube Channel Link** | Link | Footer | *Current: Updated*
-
-### 4. Branding & Media Assets [MUST]
-- [x] **School Logo** | Transparent PNG/SVG/AI | Header, Footer, PWA Icons | *Current: Mppublic_logo.jpeg*
-- [ ] **Brand Colors** | HEX/RGB Codes | Global Website Colors | *Current: Indigo & Amber (from logo)*
-- [ ] **Hero Background Image/Video** | High-Res 16:9 | Home Page | *Current: 3D animated book*
-- [x] **Principal's Portrait** | High-Res 4:5 Image | Principal's Message Page | *Current: principal_image.jpeg*
-- [ ] **Campus Photo** | High-Res 16:9 Image | About Us Page | *Current: Placeholder*
-- [ ] **Faculty Photos** | 1:1 Square Images | Faculty Page | *Current: Initial letter avatars*
-- [ ] **Facilities Photos** | High-Res 4:3 Images | Facilities Page | *Current: Placeholders*
-- [ ] **News/Events Photos** | High-Res 16:9 Images | News Page | *Current: Placeholders*
-
-### 5. Home Page Content [IMPORTANT]
-- [ ] **Hero Headline** | Text | Home Page Top | *Current: Shaping Bright Futures Since 1995*
-- [ ] **"Why Choose Us" Points** | 4-6 Text Bullet Points | Home Page | *Current: Experienced Faculty, Smart Classrooms, etc.*
-- [ ] **Key Achievements/Awards** | Text | Home Page | *Current: None specific*
-
-### 6. About Us [MUST]
-- [ ] **School History & Story** | Text (2-3 paragraphs) | About Us Page | *Current: Generic filler*
-- [ ] **Vision & Mission Statements** | Text | About Us Page | *Current: Generic filler*
-- [ ] **Management Committee/Director Name & Message** | Text & Photo | About Us Page | *Current: None*
-
-### 7. Principal's Message [MUST]
-- [x] **Principal's Full Name** | Text | Principal's Message Page | *Current: Mrs. Shraddha Pardeshi*
-- [x] **Principal's Qualifications & Experience** | Text | Principal's Message Page | *Current: MSc.(B.Ed)*
-- [x] **Principal's Message Text** | Text (3-4 paragraphs) | Principal's Message Page | *Current: Provided by user*
-
-### 8. Academics [MUST]
-- [ ] **Curriculum Details per Level** | Text | Academics Page | *Current: Generic filler*
-- [ ] **Subjects & Streams Offered (Class 11/12)** | Text | Academics / Admissions Page | *Current: Science, Commerce, Humanities*
-- [ ] **Co-curricular Activities & Clubs** | Text | Academics Page | *Current: Generic filler*
-- [ ] **Board Result Statistics (Last 3-5 Years)** | Numbers/PDF | Academics Page | *Current: 98% Pass Rate (Sample)*
-
-### 9. Admissions [MUST]
-- [ ] **Admission Process Steps** | Text | Admissions Page | *Current: 5-step sample process*
-- [ ] **Eligibility & Age Criteria** | Text/Table | Admissions Page | *Current: Nursery 3+ years, etc.*
-- [ ] **List of Required Documents** | Text | Admissions Page | *Current: Birth certificate, Aadhaar, TC, etc.*
-- [ ] **Fee Structure** | Text/PDF | Admissions Page | *Current: "Contact office for details"*
-- [ ] **Frequently Asked Questions (FAQs)** | 5-10 Q&A pairs | Admissions Page | *Current: Generic sample FAQs*
-
-### 10. Faculty and Staff [IMPORTANT]
-- [x] **List of Teaching Staff** | Names, Designations, Qualifications | Faculty Page | *Current: 31 Staff Members Listed*
-- [ ] **Staff Permissions** | Confirmation | Faculty Page | *Current: N/A (Ensure staff consent to publish names/photos)*
-
-### 11. Facilities [IMPORTANT]
-- [ ] **List of Real Facilities** | Text (Labs, Library, Transport, etc.) | Facilities Page | *Current: Generic sample facilities*
-- [ ] **Transport Routes & Areas Covered** | Text/PDF | Facilities Page | *Current: Not listed*
-
-### 12. Gallery [OPTIONAL]
-- [ ] **Categorized Photos** | High-Res Images | Gallery Page | *Current: 6 sample placeholders*
-
-### 13. News and Events [OPTIONAL]
-- [ ] **Recent News Announcements** | Text, Dates, Photos | News Page | *Current: CBSE Results, Smart Classrooms (Samples)*
-- [ ] **Upcoming Events Calendar** | Dates, Times, Venues | News Page | *Current: Annual Day, Sports Tournament (Samples)*
-
-### 14. Testimonials [OPTIONAL]
-- [ ] **Parent/Student Quotes** | Text & Names | Home Page | *Current: 3 invented testimonials*
-
-### 15. Legal and Compliance [MUST]
-- [ ] **Privacy Policy & Terms** | Text | Privacy/Terms Pages | *Current: Generic templates*
-- [ ] **Mandatory Public Disclosures (CBSE)** | PDFs/Links | Disclosures Page | *Current: Not listed*
-
-### 16. Technical Access [IMPORTANT]
-- [ ] **Domain Registrar Access** | Login Details | For going live | *Current: mppublicschool.online*
-- [ ] **Inquiry Form Recipient Email** | Email Address | Admissions / Contact form | *Current: Sends nowhere*
-- [ ] **Content Approvers** | Names | Final Sign-off | *Current: N/A*
-
----
-
-### Client Sign-off
-By signing below, the school administration confirms that all the provided information is accurate, verified, and approved to be published on the official website.
-
-**Name:** ___________________________  
-
-**Designation:** ______________________  
-
-**Signature & Date:** __________________
+See [GOOGLE_ADS_REVIEW.md](GOOGLE_ADS_REVIEW.md) for deployment and appeal preparation.

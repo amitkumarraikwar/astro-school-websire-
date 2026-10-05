@@ -5,6 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check": "astro sync && astro-check",
+    "verify": "npm run check && astro build && node scripts/check-built-site.mjs",
+    "audit:build": "node scripts/check-built-site.mjs",
+    "audit:live": "node scripts/check-live-site.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -28,5 +32,9 @@
     "three": "^0.186.1",
     "typescript": "^6.0.3",
     "workbox-window": "^7.4.1"
+  },
+  "devDependencies": {
+    "@emnapi/runtime": "^1.11.3",
+    "parse5": "^8.0.1"
   }
 }

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "buildCommand": "npm run verify",
+  "installCommand": "npm ci",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/sw.js",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }]
+    },
+    {
+      "source": "/manifest.webmanifest",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+    }
+  ],
+  "redirects": [
+    { "source": "/admissions/apply", "destination": "/admissions", "permanent": true },
+    { "source": "/admissions/enquiry", "destination": "/admissions#inquiry-form", "permanent": true },
+    { "source": "/admissions/process", "destination": "/admissions", "permanent": true },
+    { "source": "/admissions-open", "destination": "/admissions", "permanent": true },
+    { "source": "/about/overview", "destination": "/about", "permanent": true },
+    { "source": "/about/principal", "destination": "/#principal-message", "permanent": true },
+    { "source": "/affiliation-details", "destination": "/disclosure", "permanent": true },
+    { "source": "/recognition-certificates", "destination": "/disclosure", "permanent": true },
+    { "source": "/academic-calendar", "destination": "/academics", "permanent": true },
+    { "source": "/downloads", "destination": "/disclosure", "permanent": true },
+    { "source": "/facilities/library", "destination": "/facilities", "permanent": true },
+    { "source": "/facilities/sports", "destination": "/facilities", "permanent": true },
+    { "source": "/facilities/safety-security", "destination": "/facilities", "permanent": true },
+    { "source": "/academics/pre-primary", "destination": "/academics", "permanent": true },
+    { "source": "/academics/primary", "destination": "/academics", "permanent": true },
+    { "source": "/academics/middle", "destination": "/academics", "permanent": true },
+    { "source": "/academics/secondary", "destination": "/academics", "permanent": true },
+    { "source": "/academics/senior-secondary", "destination": "/academics", "permanent": true },
+    { "source": "/sitemap", "destination": "/sitemap-index.xml", "permanent": true }
+  ]
+}

@@ -1,0 +1,49 @@
+---
+import { siteConfig } from '@/config/site';
+import { getBaseOrganization, getWebPage } from '@/lib/schema';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  pageType?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, ogImage = '/mpps_front.jpeg', ogType = 'website', noindex = false, pageType = 'WebPage', jsonLd } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const canonical = new URL(pathname, siteConfig.url).href;
+const pageTitle = title.includes(siteConfig.name) ? title : `${title} | ${siteConfig.name}, Indore`;
+const image = new URL(ogImage, siteConfig.url).href;
+const schemas = [
+  getBaseOrganization(),
+  { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${siteConfig.url}/#website`, url: siteConfig.url, name: siteConfig.name, publisher: { '@id': `${siteConfig.url}/#school` } },
+  getWebPage(pageTitle, description, canonical, pageType),
+  ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []),
+];
+---
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
+<meta name="theme-color" content="#43449A" />
+<link rel="canonical" href={canonical} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:locale" content="en_IN" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta property="og:image:alt" content="M.P. Public School, Indore" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+{schemas.map(schema => <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />)}

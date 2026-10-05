@@ -1,0 +1,17 @@
+---
+import InformationLayout from '@/layouts/InformationLayout.astro';
+import { siteConfig } from '@/config/site';
+---
+
+<InformationLayout title="Cancellation & Refund Information" description="How to ask M.P. Public School about admission withdrawal, fee refunds, payment receipts, and the applicable written policy." updated>
+  <h2>Before making a payment</h2>
+  <p>A website enquiry is free. This website does not take payments or process refunds. Before paying the school, request the written fee schedule and cancellation and refund terms that apply to your campus, class, and admission session.</p>
+  <p>The available website documents do not specify a complete refund policy. This page therefore does not promise a refund, declare fees non-refundable, or set a processing deadline. Ask the office which charges are refundable, what deductions apply, and when a withdrawal request must be received.</p>
+
+  <h2>Admission withdrawal or a refund request</h2>
+  <p>Contact the school office at <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or <a href={`tel:${siteConfig.phones[0].replace(/\s/g, '')}`}>{siteConfig.phones[0]}</a>, or visit {siteConfig.address}. Provide the student name, class, session, receipt reference, and a brief explanation. Ask the office to confirm the applicable terms, documents required, decision, and any payment or refund timeline in writing.</p>
+  <p>Do not send bank passwords, OTPs, payment-card numbers, or identity-document numbers through the website enquiry form. For an incorrect or duplicate school payment, use your receipt reference when contacting the office.</p>
+
+  <h2>Transport and third-party charges</h2>
+  <p>The school schedule describes transport as arranged and paid directly with vehicle operators. Contact the operator for their cancellation and refund terms. The school office can clarify which charges it collects and which are paid to other providers.</p>
+</InformationLayout>

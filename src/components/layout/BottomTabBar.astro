@@ -1,5 +1,5 @@
 ---
-import { Home, GraduationCap, ClipboardList, Newspaper, Menu } from 'lucide-react';
+import { Home, GraduationCap, ClipboardList, Newspaper, Menu } from 'lucide-astro';
 const currentPath = Astro.url.pathname;
 
 function isActive(href: string): boolean {
@@ -11,7 +11,7 @@ const tabs = [
   { label: 'Home', href: '/', icon: Home },
   { label: 'Academics', href: '/academics', icon: GraduationCap },
   // Center CTA
-  { label: 'Apply', href: '/admissions', icon: ClipboardList, isFab: true },
+  { label: 'Admission enquiry', href: '/admissions', icon: ClipboardList, isFab: true },
   { label: 'News', href: '/news', icon: Newspaper },
   { label: 'More', href: '#more', icon: Menu, isMore: true },
 ];
@@ -30,7 +30,7 @@ const tabs = [
             class="relative -top-5 flex flex-col items-center justify-center w-14 h-14 bg-[var(--color-red)] text-white rounded-full shadow-lg border-4 border-white active:scale-95 transition-transform"
             aria-label={tab.label}
           >
-            <tab.icon class="w-6 h-6" strokeWidth={2} />
+            <tab.icon class="w-6 h-6" stroke-width={2} />
           </a>
         ) : tab.isMore ? (
           <button
@@ -41,7 +41,7 @@ const tabs = [
             aria-expanded="false"
             aria-controls="more-menu-sheet"
           >
-            <tab.icon class="w-6 h-6 mb-1" strokeWidth={1.75} />
+            <tab.icon class="w-6 h-6 mb-1" stroke-width={1.75} />
             <span class="text-[10px] font-medium leading-none">{tab.label}</span>
           </button>
         ) : (
@@ -54,7 +54,7 @@ const tabs = [
             aria-current={isActive(tab.href) ? 'page' : undefined}
           >
             <div class="relative">
-              <tab.icon class="w-6 h-6 mb-1" strokeWidth={1.75} />
+              <tab.icon class="w-6 h-6 mb-1" stroke-width={1.75} />
               {isActive(tab.href) && (
                 <span class="absolute -top-1 -right-1 w-2 h-2 bg-[var(--color-amber)] rounded-full border border-white"></span>
               )}

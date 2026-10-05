@@ -1,0 +1,11 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FeeSchedule from '@/components/sections/FeeSchedule.astro';
+import Button from '@/components/ui/Button.astro';
+import { siteConfig } from '@/config/site';
+---
+
+<BaseLayout title="Fee Structure 2026–27" description="Published undiscounted tuition and new-admission charges for M.P. Public School, Indore, with payment, transport, and concession information.">
+  <section class="gradient-hero py-20 md:py-24"><div class="container"><nav aria-label="Breadcrumb" class="mb-6 text-sm text-white/75"><a href="/" class="underline">Home</a> / Fee Structure</nav><h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Fee Structure ({siteConfig.academicSession})</h1><p class="text-lg text-white/85 max-w-2xl">Review the published schedule, then request a written breakdown for the campus, class, and shift you are considering.</p></div></section>
+  <section class="section bg-white"><div class="container"><FeeSchedule /><div class="flex justify-center flex-wrap gap-4 mt-8"><Button href="/contact">Ask the Office About Fees</Button><Button href="/admissions#inquiry-form" variant="outline-light">Admission Enquiry</Button></div></div></section>
+</BaseLayout>

@@ -1,5 +1,6 @@
 ---
-import { X, Phone, MessageCircle, MapPin, Info, ChevronRight, Users, Building, Image as ImageIcon, Mail } from 'lucide-react';
+import { X, Phone, MessageCircle, MapPin, Info, ChevronRight, Users, Building, Image as ImageIcon, Mail } from 'lucide-astro';
+import { siteConfig } from '@/config/site';
 ---
 
 <!-- Overlay -->
@@ -16,6 +17,8 @@ import { X, Phone, MessageCircle, MapPin, Info, ChevronRight, Users, Building, I
   role="dialog"
   aria-modal="true"
   aria-label="More Menu"
+  aria-hidden="true"
+  inert
 >
   <!-- Handle -->
   <div class="w-full flex justify-center pt-4 pb-2 shrink-0 touch-none" id="more-menu-handle">
@@ -44,7 +47,7 @@ import { X, Phone, MessageCircle, MapPin, Info, ChevronRight, Users, Building, I
         </div>
         <span class="text-xs font-semibold text-[var(--color-ink)]">WhatsApp</span>
       </a>
-      <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-3 bg-[var(--color-gray-50)] rounded-xl active:bg-[var(--color-gray-100)] transition-colors active:scale-95">
+      <a href={siteConfig.directionsUrl} target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-3 bg-[var(--color-gray-50)] rounded-xl active:bg-[var(--color-gray-100)] transition-colors active:scale-95">
         <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-2">
           <MapPin class="w-5 h-5" />
         </div>
@@ -96,12 +99,15 @@ import { X, Phone, MessageCircle, MapPin, Info, ChevronRight, Users, Building, I
       <a href="/privacy-policy" class="hover:text-[var(--color-indigo)] underline underline-offset-2">Privacy Policy</a>
       <span>&bull;</span>
       <a href="/terms" class="hover:text-[var(--color-indigo)] underline underline-offset-2">Terms & Conditions</a>
+      <a href="/fee-structure" class="hover:text-[var(--color-indigo)] underline underline-offset-2">Fees</a>
+      <a href="/refund-policy" class="hover:text-[var(--color-indigo)] underline underline-offset-2">Cancellation & Refunds</a>
+      <a href="/disclosure" class="hover:text-[var(--color-indigo)] underline underline-offset-2">School Documents</a>
     </div>
   </div>
 </div>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  function initMoreMenu() {
     const btn = document.getElementById('more-menu-btn');
     const sheet = document.getElementById('more-menu-sheet');
     const overlay = document.getElementById('more-menu-overlay');
@@ -117,10 +123,13 @@ import { X, Phone, MessageCircle, MapPin, Info, ChevronRight, Users, Building, I
       isOpen = true;
       overlay?.classList.remove('opacity-0', 'invisible');
       sheet?.classList.remove('translate-y-full');
+      if (sheet) sheet.inert = false;
+      sheet?.setAttribute('aria-hidden', 'false');
       btn?.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
       // Push history state to allow hardware back button to close
       history.pushState({ bottomSheet: true }, '');
+      closeBtn?.focus();
     }
 
     function closeSheet() {
@@ -128,8 +137,11 @@ import { X, Phone, MessageCircle, MapPin, Info, ChevronRight, Users, Building, I
       isOpen = false;
       overlay?.classList.add('opacity-0');
       sheet?.classList.add('translate-y-full');
+      if (sheet) sheet.inert = true;
+      sheet?.setAttribute('aria-hidden', 'true');
       btn?.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      btn?.focus();
       
       // Cleanup transition classes if dragged
       if (sheet) {
@@ -165,9 +177,26 @@ import { X, Phone, MessageCircle, MapPin, Info, ChevronRight, Users, Building, I
       }
     });
 
+    document.addEventListener('keydown', (event) => {
+      if (!isOpen || !sheet) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        if (history.state?.bottomSheet) history.back();
+        else closeSheet();
+      }
+      if (event.key === 'Tab') {
+        const focusable = sheet.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }
+    });
+
     // Swipe to close
     handle?.addEventListener('touchstart', (e) => {
       startY = e.touches[0].clientY;
+      currentY = startY;
       if(sheet) sheet.style.transition = 'none';
     }, { passive: true });
 
@@ -191,5 +220,7 @@ import { X, Phone, MessageCircle, MapPin, Info, ChevronRight, Users, Building, I
         sheet.style.transform = '';
       }
     });
-  });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initMoreMenu, { once: true });
+  else initMoreMenu();
 </script>

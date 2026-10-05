@@ -1,0 +1,19 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig } from '@/config/site';
+interface Props { title: string; description: string; updated?: boolean; }
+const { title, description, updated = false } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="gradient-hero py-20 md:py-24">
+    <div class="container">
+      <nav aria-label="Breadcrumb" class="mb-6 text-sm text-white/75"><a href="/" class="underline">Home</a> / {title}</nav>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{title}</h1>
+      {updated && <p class="text-white/75">Last updated: {siteConfig.policyUpdated}</p>}
+    </div>
+  </section>
+  <section class="section bg-white">
+    <div class="container container-sm"><div class="prose max-w-none"><slot /></div></div>
+  </section>
+</BaseLayout>

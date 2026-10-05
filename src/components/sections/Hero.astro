@@ -1,6 +1,7 @@
 ---
 import Button from '@/components/ui/Button.astro';
-import HeroThree from './HeroThree';
+import { Image } from 'astro:assets';
+import campusImg from '@/assets/images/mpps_front.jpeg';
 import { siteConfig } from '@/config/site';
 ---
 
@@ -24,7 +25,7 @@ import { siteConfig } from '@/config/site';
         <!-- Badge -->
         <div class="inline-flex flex-wrap items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm text-white backdrop-blur border border-white/10 mb-6" data-animate="fade-up">
           <span class="w-2 h-2 rounded-full bg-[var(--color-amber)] animate-pulse shrink-0"></span>
-          <span>MP Board Affiliated · Established 1995 · Indore, M.P.</span>
+          <span>MP Board · Affiliation No. {siteConfig.affiliationNumber} · Indore</span>
         </div>
 
         <!-- Headline -->
@@ -32,18 +33,18 @@ import { siteConfig } from '@/config/site';
           Shaping Bright
           <span class="text-[var(--color-yellow)]"> Futures</span>
           <br />
-          <span class="text-white">Since 1995</span>
+          <span class="text-white">In Indore</span>
         </h1>
 
         <!-- Subheadline & Quick Answer -->
         <p class="mt-6 max-w-xl text-lg leading-relaxed text-white/85" data-animate="fade-up">
-          <strong>Quick Answer:</strong> {siteConfig.name} is a premier MP Board-affiliated school in Indore, Madhya Pradesh, offering quality education for classes Pre-Primary to Class 12. Admissions are now open for the upcoming session. Contact us at {siteConfig.phones[0]} for inquiries.
+          Welcome to {siteConfig.name}, an MP Board-affiliated school at 9, Ashok Nagar, Indore. Explore Pre-Primary to Class XII education, campus facilities, and admission information. Our office can help you check class availability and fees.
         </p>
 
         <!-- CTAs -->
         <div class="mt-8 flex flex-wrap items-center gap-4" data-animate="fade-up">
           <Button variant="primary" size="lg" href="/admissions">
-            Apply Now
+            Admission Information
             <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -80,41 +81,17 @@ import { siteConfig } from '@/config/site';
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" />
               </svg>
             </div>
-            <span class="text-white/70 text-sm">30+ Years of Excellence</span>
+            <span class="text-white/70 text-sm">Pre-Primary to Class XII</span>
           </div>
         </div>
       </div>
 
-      <!-- Right: Three.js Canvas Container -->
-      <div id="hero-canvas-container" class="relative min-h-[260px] lg:min-h-[560px] w-full flex items-center justify-center mt-8 lg:mt-0">
-        <!-- Static SVG Fallback for reduced motion / mobile / loading -->
-        <div class="absolute inset-0 flex items-center justify-center lg:hidden">
-          <svg width="240" height="240" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="80" fill="url(#paint0_linear)" opacity="0.1" />
-            <path d="M60 120 C 60 120, 100 160, 140 120" stroke="#FDC530" stroke-width="8" stroke-linecap="round" />
-            <path d="M100 60 V 100" stroke="#29ABE2" stroke-width="8" stroke-linecap="round" />
-            <circle cx="100" cy="50" r="15" fill="#E3242B" />
-            <defs>
-              <linearGradient id="paint0_linear" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#43449A" />
-                <stop offset="1" stop-color="#2A2B6B" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <div class="hidden lg:block absolute inset-0 w-full h-full">
-          <HeroThree client:load />
-        </div>
-        <noscript>
-          <div class="absolute inset-0 flex items-center justify-center bg-[var(--color-indigo-deep)]/50 border border-white/20 rounded-2xl">
-            <p class="text-white/70 text-sm">Interactive 3D visualization (requires JavaScript)</p>
-          </div>
-        </noscript>
-      </div>
+      <figure class="mt-8 lg:mt-0 overflow-hidden rounded-3xl border border-white/20 shadow-2xl bg-white/10">
+        <Image src={campusImg} alt="M.P. Public School building at Ashok Nagar, Indore" widths={[480, 800, 1200]} sizes="(max-width: 1024px) 100vw, 50vw" loading="eager" fetchpriority="high" class="w-full aspect-[4/3] object-cover" />
+        <figcaption class="p-5 text-white/85 text-sm">{siteConfig.fullName}<br />{siteConfig.address}</figcaption>
+      </figure>
     </div>
   </div>
 
 
 </section>
-
-<!-- Three.js logic moved to HeroThree.tsx -->

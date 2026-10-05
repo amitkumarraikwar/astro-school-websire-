@@ -1,5 +1,5 @@
 ---
-import { ChevronDown, ChevronRight, ArrowRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, ArrowRight } from 'lucide-astro';
 const currentPath = Astro.url.pathname;
 
 interface NavItem {
@@ -17,7 +17,7 @@ const navItems: NavItem[] = [
     children: [
       { label: 'Curriculum & Levels', href: '/academics', desc: 'Pre-Primary to Senior Secondary' },
       { label: 'Faculty & Staff', href: '/faculty', desc: 'Our dedicated educators' },
-      { label: 'Facilities', href: '/facilities', desc: 'World-class infrastructure' },
+      { label: 'Facilities', href: '/facilities', desc: 'Campus and learning resources' },
     ],
   },
   { label: 'Admissions', href: '/admissions' },
@@ -55,7 +55,7 @@ function isActive(href: string): boolean {
     </a>
 
     <!-- Desktop Navigation -->
-    <div class="hidden lg:flex items-center gap-6 xl:gap-8">
+    <div class="hidden lg:flex items-center gap-1 xl:gap-2">
       {navItems.map((item) => (
         <div class="relative group">
           <a
@@ -66,16 +66,17 @@ function isActive(href: string): boolean {
                 ? 'text-[var(--color-indigo)] border-b-2 border-[var(--color-amber)]'
                 : 'text-[var(--color-ink)] hover:text-[var(--color-indigo)]',
             ]}
+            aria-current={isActive(item.href) ? 'page' : undefined}
           >
             {item.label}
             {item.children && (
-              <ChevronDown class="inline-block w-4 h-4 transition-transform duration-200 group-hover:rotate-180" strokeWidth={2.5} />
+              <ChevronDown class="inline-block w-4 h-4 transition-transform duration-200 group-hover:rotate-180" stroke-width={2.5} />
             )}
           </a>
 
           {/* Mega dropdown */}
           {item.children && (
-            <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200">
               <div class="bg-white rounded-2xl shadow-xl border border-[var(--color-gray-200)] p-4 min-w-[280px]">
                 {item.children.map((child) => (
                   <a
@@ -83,7 +84,7 @@ function isActive(href: string): boolean {
                     class="flex items-start gap-3 p-3 rounded-xl hover:bg-[var(--color-cream)] transition-colors duration-150"
                   >
                     <div class="w-8 h-8 rounded-lg bg-[var(--color-indigo)]/10 flex items-center justify-center mt-0.5 shrink-0">
-                      <ChevronRight class="w-4 h-4 text-[var(--color-indigo)]" strokeWidth={2} />
+                      <ChevronRight class="w-4 h-4 text-[var(--color-indigo)]" stroke-width={2} />
                     </div>
                     <div>
                       <span class="block text-sm font-semibold text-[var(--color-ink)]">{child.label}</span>
@@ -105,7 +106,7 @@ function isActive(href: string): boolean {
         href="/admissions"
         class="lg:hidden inline-flex items-center px-3 py-1.5 bg-[var(--color-indigo)]/10 text-[var(--color-indigo)] text-xs font-bold rounded-full active:scale-95 transition-transform"
       >
-        Apply
+        Enquire
       </a>
 
       <!-- Desktop Apply Button -->
@@ -113,15 +114,15 @@ function isActive(href: string): boolean {
         href="/admissions"
         class="hidden lg:inline-flex items-center gap-2 px-6 py-2.5 bg-[var(--color-red)] text-white text-sm font-semibold rounded-full hover:brightness-110 transition-all duration-200 shadow-md shrink-0 whitespace-nowrap"
       >
-        Apply Now
-        <ArrowRight class="w-4 h-4 shrink-0" strokeWidth={2.5} />
+        Enquire
+        <ArrowRight class="w-4 h-4 shrink-0" stroke-width={2.5} />
       </a>
     </div>
   </nav>
 </header>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  function initHeader() {
     const header = document.getElementById('main-header');
     let lastScrollY = window.scrollY;
 
@@ -144,9 +145,7 @@ function isActive(href: string): boolean {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     
-    // Cleanup on unmount
-    document.addEventListener('astro:before-swap', () => {
-      window.removeEventListener('scroll', handleScroll);
-    }, { once: true });
-  });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initHeader, { once: true });
+  else initHeader();
 </script>

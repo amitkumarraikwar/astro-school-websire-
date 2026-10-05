@@ -143,6 +143,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -404,15 +405,19 @@
     margin-bottom: 1rem;
     padding-left: 1.5rem;
   }
+  .prose ul { list-style: disc; }
+  .prose ol { list-style: decimal; }
+  .prose dt { margin-top: 1rem; }
+  .prose dd { margin-bottom: 0.75rem; }
   .prose li {
     margin-bottom: 0.5rem;
   }
-  .prose a {
-    color: var(--color-cyan);
+  .prose a:not(.button) {
+    color: var(--color-indigo);
     text-decoration: underline;
     text-underline-offset: 2px;
   }
-  .prose a:hover {
+  .prose a:not(.button):hover {
     color: var(--color-indigo);
   }
   .prose blockquote {

@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob, file } from 'astro/loaders';
 
 const faculty = defineCollection({
@@ -23,6 +24,8 @@ const news = defineCollection({
     image: z.string().optional(),
     category: z.enum(['announcement', 'achievement', 'event', 'general']),
     featured: z.boolean().default(false),
+    // Content without explicit publication confirmation stays out of public routes.
+    published: z.boolean().default(false),
   }),
 });
 
@@ -38,6 +41,7 @@ const events = defineCollection({
     image: z.string().optional(),
     category: z.enum(['cultural', 'sports', 'academic', 'general']),
     featured: z.boolean().default(false),
+    published: z.boolean().default(false),
   }),
 });
 

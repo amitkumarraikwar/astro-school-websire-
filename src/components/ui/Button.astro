@@ -8,6 +8,7 @@ export interface Props {
   id?: string;
   ariaLabel?: string;
   fullWidth?: boolean;
+  target?: '_blank' | '_self';
 }
 
 const {
@@ -19,9 +20,10 @@ const {
   id,
   ariaLabel,
   fullWidth = false,
+  target,
 } = Astro.props;
 
-const baseClasses = 'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition cursor-pointer';
+const baseClasses = 'button inline-flex items-center justify-center gap-2 rounded-full font-semibold transition cursor-pointer';
 
 const variantClasses: Record<string, string> = {
   primary: 'bg-[var(--color-red)] text-white hover:brightness-110',
@@ -40,11 +42,10 @@ const sizeClasses: Record<string, string> = {
 
 const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${fullWidth ? 'w-full' : ''} ${className}`.trim();
 
-const Tag = href ? 'a' : 'button';
 ---
 
 {href ? (
-  <a href={href} class={classes} id={id} aria-label={ariaLabel}>
+  <a href={href} class={classes} id={id} aria-label={ariaLabel} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined}>
     <slot />
   </a>
 ) : (

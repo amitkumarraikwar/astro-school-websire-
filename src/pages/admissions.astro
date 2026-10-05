@@ -3,356 +3,63 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import Button from '@/components/ui/Button.astro';
 import FAQAccordion from '@/components/ui/FAQAccordion.astro';
+import FeeSchedule from '@/components/sections/FeeSchedule.astro';
+import InquiryForm from '@/components/sections/InquiryForm.astro';
 import { siteConfig } from '@/config/site';
-import { getBreadcrumbList } from '@/lib/schema';
-
-const breadcrumbLd = getBreadcrumbList([
-  { name: 'Home', item: 'https://mppublicschool.online/' },
-  { name: 'Admissions', item: 'https://mppublicschool.online/admissions' },
-]);
-
-const faqLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What is the admission process at M.P. Public School Indore?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The process includes submitting an inquiry form, entrance assessment (for Classes II and above), interaction session, and final enrollment upon document verification and fee payment.' }
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the minimum age for Nursery admission?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The minimum age for Nursery admission is 3 years as of March 31 of the academic year.' }
-    },
-    {
-      '@type': 'Question',
-      name: 'What documents are required for admission?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Required documents include birth certificate, Aadhaar card of child and parents, previous school transfer certificate (TC), recent passport-size photographs, and address proof.' }
-    },
-  ],
-};
+import { getBreadcrumbList, getFAQPage } from '@/lib/schema';
 
 const steps = [
-  { step: 1, title: 'Submit Inquiry', desc: 'Fill out the online inquiry form or visit the school office to express your interest.' },
-  { step: 2, title: 'School Visit', desc: 'Schedule a campus tour to see our facilities and meet our faculty.' },
-  { step: 3, title: 'Entrance Assessment', desc: 'For Classes II and above, a written and interactive assessment to evaluate the student.' },
-  { step: 4, title: 'Interaction Session', desc: 'A brief interaction with the student and parents to understand learning needs.' },
-  { step: 5, title: 'Offer & Enrollment', desc: 'Upon selection, complete document verification and fee payment to secure admission.' },
+  { title: 'Speak with the office', desc: 'Call, send an enquiry, or visit to discuss the class, campus, session, and available places.' },
+  { title: 'Confirm requirements', desc: 'Ask the office for the applicable age criteria, subject options, document list, and whether an interaction or assessment is required.' },
+  { title: 'Review the fees and terms', desc: 'Obtain a written fee breakdown, payment schedule, any eligible concessions, and cancellation and refund terms before paying.' },
+  { title: 'Complete admission at the school', desc: 'Submit the documents requested by the office. Enrolment is complete only when the school confirms admission and issues the relevant records.' },
 ];
-
-const ageCriteria = [
-  { class: 'Nursery', age: '3+ years' },
-  { class: 'LKG', age: '4+ years' },
-  { class: 'UKG', age: '5+ years' },
-  { class: 'Class I', age: '6+ years' },
-  { class: 'Class II–VIII', age: 'Age appropriate' },
-  { class: 'Class IX', age: '14+ years' },
-  { class: 'Class XI', age: '16+ years' },
-];
-
-const documents = [
-  'Birth Certificate (original + photocopy)',
-  'Aadhaar Card of the child',
-  'Aadhaar Card of both parents',
-  'Transfer Certificate (TC) from previous school',
-  'Report card / marksheet of previous class',
-  'Four recent passport-size photographs',
-  'Address proof (utility bill / rental agreement)',
-  'Caste certificate (if applicable)',
-  'Medical fitness certificate',
-];
-
+const documents = ['Student photograph', 'Date-of-birth information and supporting proof', 'Previous school details and transfer certificate, where applicable', 'Previous class academic record, where applicable', 'Parent / guardian contact and address details'];
 const faqs = [
-  { question: 'What is the admission process at M.P. Public School Indore?', answer: 'The process includes submitting an inquiry form, entrance assessment (for Classes II and above), interaction session, and final enrollment upon document verification and fee payment.' },
-  { question: 'What is the minimum age for Nursery admission?', answer: 'The minimum age for Nursery admission is 3 years as of March 31 of the academic year. Age is calculated based on the date of birth as per the birth certificate.' },
-  { question: 'Is there an entrance test?', answer: 'For Nursery to Class I, admission is based on an informal interaction. For Classes II and above, students undergo a written assessment in English, Mathematics, and the relevant subjects of their previous class.' },
-  { question: 'What documents are required for admission?', answer: 'Required documents include birth certificate, Aadhaar card of child and parents, previous school transfer certificate (TC), recent passport-size photographs, and address proof.' },
-  { question: 'Does the school provide transport facilities?', answer: 'Yes, transport facility is available. There are many vehicles and parents can contact them directly to arrange transport and pay charges separately.' },
-  { question: 'What are the school timings?', answer: 'Morning Shift: K.G.I to 5th (8:00 AM – 12:30 PM), 6th to 12th (7:45 AM – 1:15 PM), Pre. Nur & Nursery (9:30 AM – 12:30 PM), 1st to 5th (9:30 AM – 2:30 PM). Noon Shift: Pre. Nur & Nursery (12:30 PM – 3:30 PM), K.G.I to 5th (12:30 PM – 5:00 PM).' },
-  { question: 'Are there any scholarships or discounts available?', answer: 'Yes! We offer an Early Bird Discount, sibling discounts (50% for 2nd child, 100% for 3rd child), and a lumpsum fee discount (upto ₹2000 till 15th July).' },
+  { question: 'Which board does the school follow?', answer: `The school follows MP Board. The school information supplied to this website lists affiliation number ${siteConfig.affiliationNumber}. Contact the office for the current recognition and affiliation documents.` },
+  { question: 'Does an enquiry reserve a seat?', answer: 'No. An enquiry allows you to discuss admission with the school. Availability, eligibility, document verification, and school confirmation determine admission.' },
+  { question: 'What is the minimum admission age?', answer: 'Age requirements depend on the class and the applicable rules for the admission session. Please confirm the age cut-off and required date-of-birth documents with the school office.' },
+  { question: 'Which senior-secondary streams are listed?', answer: 'Science and Commerce are listed for Classes XI and XII in the supplied fee schedule. Confirm the subjects and current availability with the office.' },
+  { question: 'How do I confirm fees or discounts?', answer: 'Review the undiscounted 2026–27 tuition schedule below, then ask for a written breakdown for your campus, class, and shift. Discount eligibility and validity must be confirmed before payment.' },
+  { question: 'How is school transport arranged?', answer: 'The supplied schedule says parents contact vehicle operators directly and pay transport charges separately. Ask the office about available operators, routes, and collection arrangements.' },
+  { question: 'What are the school timings?', answer: 'The M.P. Public School schedule lists Pre-Nursery / Nursery at 9:30 AM–12:30 PM, K.G. I–II at 9:30 AM–1:30 PM, Classes I–V at 9:30 AM–2:30 PM, and Classes VI–XII at 7:45 AM–1:15 PM. Examination timings and junior-branch shifts differ; confirm the current timetable with the office.' },
 ];
+const breadcrumbLd = getBreadcrumbList([{ name: 'Home', item: `${siteConfig.url}/` }, { name: 'Admissions', item: `${siteConfig.url}/admissions` }]);
 ---
 
-<BaseLayout
-  title="Admissions – Apply Now"
-  description="Apply for admission to M.P. Public School Indore. Learn about the admission process, eligibility criteria, required documents, and fee structure for 2026-27."
-  jsonLd={[breadcrumbLd, faqLd]}
->
-  <!-- Page Hero -->
-  <section class="gradient-hero py-20 md:py-28 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px); background-size: 40px 40px;"></div>
-    <div class="container relative">
-      <nav aria-label="Breadcrumb" class="mb-6">
-        <ol class="flex items-center gap-2 text-sm text-white/60">
-          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-          <li><span class="mx-1">/</span></li>
-          <li class="text-white font-medium">Admissions</li>
-        </ol>
-      </nav>
-      <div class="flex items-center gap-3 mb-4">
-        <span class="badge badge-amber">2026–27 Session</span>
-        <span class="badge bg-white/20 text-white">Applications Open</span>
-      </div>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">Admissions</h1>
-      <p class="text-lg text-white/75 max-w-2xl mb-4">Begin your child's journey at M.P. Public School, Indore. Follow our simple admission process to secure a bright future.</p>
-      
-      <!-- AEO Quick Answer -->
-      <p class="text-lg text-white/90 max-w-3xl bg-white/10 p-4 rounded-xl border border-white/20 backdrop-blur">
-        <strong>Quick Answer:</strong> The admission process at {siteConfig.name} starts with an online inquiry, followed by a campus visit and an entrance assessment (for Class II onwards). Contact the admissions desk at {siteConfig.phones[0]} for more details.
-      </p>
+<BaseLayout title="Admissions & Fees" description="Explore M.P. Public School Indore admission enquiries, eligibility guidance, documents, 2026–27 tuition fees, and school office contacts." jsonLd={[breadcrumbLd, getFAQPage(faqs)]}>
+  <section class="gradient-hero py-20 md:py-28">
+    <div class="container">
+      <nav aria-label="Breadcrumb" class="mb-6 text-sm text-white/75"><a href="/" class="underline">Home</a> / Admissions</nav>
+      <span class="badge badge-amber mb-4">School Admission Information</span>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Admissions & Fees</h1>
+      <p class="text-lg text-white/85 max-w-2xl mb-8">Considering M.P. Public School for your child? Speak with our office about class availability, eligibility, fees, and a campus visit.</p>
+      <div class="flex flex-wrap gap-4"><Button href="#inquiry-form">Make an Enquiry</Button><Button href="#fees" variant="outline-dark">View Tuition Schedule</Button><Button href={`tel:${siteConfig.phones[0].replace(/\s/g, '')}`} variant="outline-dark">Call the School</Button></div>
     </div>
   </section>
-
-  <!-- Admission Steps -->
   <section class="section bg-white">
     <div class="container">
-      <SectionHeading title="Admission Process" subtitle="A simple five-step process to join the M.P. Public School family." />
-
-      <div class="max-w-4xl mx-auto">
-        <div class="grid gap-6" data-animate="stagger">
-          {steps.map((step, i) => (
-            <div class="flex items-start gap-5 p-6 rounded-2xl bg-[var(--color-gray-50)] hover:bg-[var(--color-cream)] transition-colors duration-200">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--color-indigo)] to-[var(--color-indigo-deep)] flex items-center justify-center shrink-0 shadow-lg">
-                <span class="text-xl font-bold text-white">{step.step}</span>
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-[var(--color-ink)] mb-1">{step.title}</h3>
-                <p class="text-[var(--color-ink-light)] text-sm">{step.desc}</p>
-              </div>
-              {i < steps.length - 1 && (
-                <div class="hidden md:block absolute left-[2.4rem] mt-16 w-0.5 h-6 bg-[var(--color-indigo)]/20"></div>
-              )}
-            </div>
-          ))}
-        </div>
+      <SectionHeading title="How to Enquire About Admission" subtitle="The school office will explain the requirements for your child's class and session." />
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {steps.map((step, i) => <div class="card p-6"><span class="badge badge-indigo mb-3">Step {i + 1}</span><h2 class="text-xl font-bold mb-3">{step.title}</h2><p class="text-[var(--color-ink-light)]">{step.desc}</p></div>)}
       </div>
     </div>
   </section>
-
-  <!-- Age Criteria -->
   <section class="section bg-[var(--color-cream)]">
-    <div class="container">
-      <SectionHeading title="Eligibility & Age Criteria" subtitle="Age as of March 31 of the academic year of admission." />
-
-      <div class="max-w-2xl mx-auto" data-animate="fade-up">
-        <div class="card overflow-hidden">
-          <table class="w-full text-left">
-            <thead>
-              <tr class="bg-[var(--color-indigo)] text-white">
-                <th class="px-6 py-4 font-semibold text-sm">Class</th>
-                <th class="px-6 py-4 font-semibold text-sm">Minimum Age</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ageCriteria.map((row, i) => (
-                <tr class:list={[i % 2 === 0 ? 'bg-white' : 'bg-[var(--color-gray-50)]']}>
-                  <td class="px-6 py-3.5 text-sm font-medium text-[var(--color-ink)]">{row.class}</td>
-                  <td class="px-6 py-3.5 text-sm text-[var(--color-ink-light)]">{row.age}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="container container-sm prose">
+      <h2>Documents and Eligibility</h2>
+      <p>The school diary includes the following information for enrolment. Obtain the complete class-specific document list from the office; do not send identity documents through the website enquiry form.</p>
+      <ul>{documents.map(document => <li>{document}</li>)}</ul>
+      <p><a href={siteConfig.documents.diary} target="_blank" rel="noopener noreferrer">Read the school diary, rules, and academic calendar (PDF)</a>.</p>
     </div>
   </section>
-
-  <!-- Documents Required -->
-  <section class="section bg-white">
-    <div class="container">
-      <SectionHeading title="Documents Required" subtitle="Please keep the following documents ready for the admission process." />
-
-      <div class="max-w-3xl mx-auto grid sm:grid-cols-2 gap-3" data-animate="stagger">
-        {documents.map((doc) => (
-          <div class="flex items-start gap-3 p-4 rounded-xl bg-[var(--color-gray-50)]">
-            <svg class="w-5 h-5 text-[var(--color-indigo)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            <span class="text-sm text-[var(--color-ink-light)]">{doc}</span>
-          </div>
-        ))}
-      </div>
-    </div>
+  <section class="section bg-white" id="fees">
+    <div class="container"><SectionHeading title={`Tuition Schedule (${siteConfig.academicSession})`} subtitle="Published tuition, separate admission charges, and information to confirm before enrolment." /><FeeSchedule /></div>
   </section>
-
-  <!-- Fee Structure -->
-  <section class="section gradient-indigo">
-    <div class="container" data-animate="fade-up">
-      <SectionHeading title="Fee Structure (2026-27)" light={true} subtitle="Transparent and competitive yearly tuition fees." />
-      <div class="max-w-4xl mx-auto">
-        <div class="card overflow-hidden">
-          <table class="w-full text-left">
-            <thead>
-              <tr class="bg-[var(--color-gray-50)] text-[var(--color-ink)] border-b border-[var(--color-gray-200)]">
-                <th class="px-4 py-4 font-semibold text-sm">Class</th>
-                <th class="px-4 py-4 font-semibold text-sm">Yearly Fee (₹)</th>
-                <th class="px-4 py-4 font-semibold text-sm hidden sm:table-cell">Early Bird Discount (₹)</th>
-                <th class="px-4 py-4 font-semibold text-sm">After Discount (₹)</th>
-                <th class="px-4 py-4 font-semibold text-sm hidden sm:table-cell">Monthly (₹)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-b border-[var(--color-gray-100)]">
-                <td class="px-4 py-3.5 text-sm font-medium text-[var(--color-ink)]">Pre-Nursery</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)]">15,000</td>
-                <td class="px-4 py-3.5 text-sm text-green-600 hidden sm:table-cell">5,000</td>
-                <td class="px-4 py-3.5 text-sm font-semibold text-[var(--color-ink)]">10,000</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)] hidden sm:table-cell">1,000</td>
-              </tr>
-              <tr class="bg-[var(--color-gray-50)] border-b border-[var(--color-gray-100)]">
-                <td class="px-4 py-3.5 text-sm font-medium text-[var(--color-ink)]">Nursery</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)]">19,000</td>
-                <td class="px-4 py-3.5 text-sm text-green-600 hidden sm:table-cell">8,000</td>
-                <td class="px-4 py-3.5 text-sm font-semibold text-[var(--color-ink)]">11,000</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)] hidden sm:table-cell">1,100</td>
-              </tr>
-              <tr class="border-b border-[var(--color-gray-100)]">
-                <td class="px-4 py-3.5 text-sm font-medium text-[var(--color-ink)]">K.G.I & K.G.II</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)]">21,300</td>
-                <td class="px-4 py-3.5 text-sm text-green-600 hidden sm:table-cell">9,300</td>
-                <td class="px-4 py-3.5 text-sm font-semibold text-[var(--color-ink)]">12,000</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)] hidden sm:table-cell">1,200</td>
-              </tr>
-              <tr class="bg-[var(--color-gray-50)] border-b border-[var(--color-gray-100)]">
-                <td class="px-4 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class I & II</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)]">23,100</td>
-                <td class="px-4 py-3.5 text-sm text-green-600 hidden sm:table-cell">10,100</td>
-                <td class="px-4 py-3.5 text-sm font-semibold text-[var(--color-ink)]">13,000</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)] hidden sm:table-cell">1,300</td>
-              </tr>
-              <tr class="border-b border-[var(--color-gray-100)]">
-                <td class="px-4 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class III & IV</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)]">25,600</td>
-                <td class="px-4 py-3.5 text-sm text-green-600 hidden sm:table-cell">11,600</td>
-                <td class="px-4 py-3.5 text-sm font-semibold text-[var(--color-ink)]">14,000</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)] hidden sm:table-cell">1,400</td>
-              </tr>
-              <tr class="bg-[var(--color-gray-50)] border-b border-[var(--color-gray-100)]">
-                <td class="px-4 py-3.5 text-sm font-medium text-[var(--color-ink)]">Class V</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)]">26,000</td>
-                <td class="px-4 py-3.5 text-sm text-green-600 hidden sm:table-cell">11,000</td>
-                <td class="px-4 py-3.5 text-sm font-semibold text-[var(--color-ink)]">15,000</td>
-                <td class="px-4 py-3.5 text-sm text-[var(--color-ink-light)] hidden sm:table-cell">1,500</td>
-              </tr>
-              <tr class="border-b border-[var(--color-gray-100)]">
-                <td class="px-4 py-3.5 text-sm font-medium text-[var(--color-ink)] text-center text-gray-500" colspan="5">Please contact the office for fee structure of Class VI to XII.</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="p-6 bg-white">
-            <div class="text-[var(--color-ink-light)] text-sm mb-4 space-y-1">
-              <p><strong>Important Notes:</strong></p>
-              <ul class="list-disc pl-5 space-y-1">
-                <li>Fees applicable for 10 months (except March and May).</li>
-                <li>Payment due on or before 10th of every month.</li>
-                <li>Lumpsum fee discount: ₹1,000 upto Class 5th and ₹2,000 upto Class 12th (if paid before 15th July).</li>
-                <li>Sibling discount: 2nd child – 50% discount, 3rd child – 100% discount (for new admissions).</li>
-                <li>Sibling discount of one last installment if fee paid before due date.</li>
-                <li>Activity fee worth ₹6,500 is included in the academic fee.</li>
-                <li>New admission fee: ₹1,000.</li>
-                <li>Gifts (Bags, Books, Tiffin, Bottle and Uniform) for new admissions up to Class 5th.</li>
-                <li>Girl Child Admission: ₹1,000 discount per annum.</li>
-                <li>Scholarship Test: Scholarship amount up to ₹5,000 based on Board Exam & Scholarship Test percentage.</li>
-                <li>Transport facility available – parents can contact vehicle operators directly for charges.</li>
-              </ul>
-            </div>
-            <div class="flex flex-wrap justify-center gap-4">
-              <Button variant="primary" href="/contact">
-                Contact Admissions Office
-              </Button>
-              <Button variant="secondary" href="/documents/mpps-academic-calendar-2026-27.pdf" target="_blank">
-                Download School Diary & Rules (PDF)
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section class="section bg-[var(--color-cream)]" id="faq">
+    <div class="container"><SectionHeading title="Admission Questions" /><FAQAccordion faqs={faqs} /></div>
   </section>
-
-  <!-- FAQs -->
-  <section class="section bg-white" id="faq">
-    <div class="container">
-      <SectionHeading title="Frequently Asked Questions" subtitle="Find answers to common questions about admissions at M.P. Public School." />
-      <FAQAccordion faqs={faqs} />
-    </div>
-  </section>
-
-  <!-- Inquiry Form -->
-  <section class="section bg-[var(--color-cream)]" id="inquiry-form">
-    <div class="container">
-      <SectionHeading title="Admission Inquiry" subtitle="Fill out this form and our admissions team will get back to you within 24 hours." />
-
-      <div class="max-w-2xl mx-auto">
-        <form class="card p-8 space-y-6" action="https://docs.google.com/forms/u/0/d/1MFxS74c2qyZ86VmTp1EJLKra7v0ii6Qh-25QtnT_Na0/formResponse" method="POST" novalidate>
-          <!-- Honeypot -->
-          <div class="hidden" aria-hidden="true">
-            <label for="website">Website</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-              <label for="student-name" class="block text-sm font-medium text-[var(--color-ink)] mb-2">Student Name *</label>
-              <input type="text" id="student-name" name="entry.289968458" required class="w-full px-4 py-4 rounded-xl border border-[var(--color-gray-300)] focus:border-[var(--color-indigo)] focus:ring-2 focus:ring-[var(--color-indigo)]/20 outline-none transition-colors text-base" placeholder="Enter student's name" />
-            </div>
-            <div>
-              <label for="parent-name" class="block text-sm font-medium text-[var(--color-ink)] mb-2">Parent/Guardian Name *</label>
-              <input type="text" id="parent-name" name="entry.660262738" required class="w-full px-4 py-4 rounded-xl border border-[var(--color-gray-300)] focus:border-[var(--color-indigo)] focus:ring-2 focus:ring-[var(--color-indigo)]/20 outline-none transition-colors text-base" placeholder="Enter parent's name" />
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-              <label for="phone" class="block text-sm font-medium text-[var(--color-ink)] mb-2">Phone Number *</label>
-              <input type="tel" id="phone" name="entry.711533159" required class="w-full px-4 py-4 rounded-xl border border-[var(--color-gray-300)] focus:border-[var(--color-indigo)] focus:ring-2 focus:ring-[var(--color-indigo)]/20 outline-none transition-colors text-base" placeholder="+91 XXXXX XXXXX" />
-            </div>
-            <div>
-              <label for="email" class="block text-sm font-medium text-[var(--color-ink)] mb-2">Email Address</label>
-              <input type="email" id="email" name="entry.322675497" class="w-full px-4 py-4 rounded-xl border border-[var(--color-gray-300)] focus:border-[var(--color-indigo)] focus:ring-2 focus:ring-[var(--color-indigo)]/20 outline-none transition-colors text-base" placeholder="your@email.com" />
-            </div>
-          </div>
-
-          <div>
-            <label for="class-applying" class="block text-sm font-medium text-[var(--color-ink)] mb-2">Class Applying For *</label>
-            <select id="class-applying" name="entry.667920343" required class="w-full px-4 py-4 rounded-xl border border-[var(--color-gray-300)] focus:border-[var(--color-indigo)] focus:ring-2 focus:ring-[var(--color-indigo)]/20 outline-none transition-colors text-base bg-white">
-              <option value="">Select Class</option>
-              <option value="Nursery">Nursery</option>
-              <option value="LKG">LKG</option>
-              <option value="UKG">UKG</option>
-              <option value="Class I">Class I</option>
-              <option value="Class II">Class II</option>
-              <option value="Class III">Class III</option>
-              <option value="Class IV">Class IV</option>
-              <option value="Class V">Class V</option>
-              <option value="Class VI">Class VI</option>
-              <option value="Class VII">Class VII</option>
-              <option value="Class VIII">Class VIII</option>
-              <option value="Class IX">Class IX</option>
-              <option value="Class XI - Science">Class XI - Science</option>
-              <option value="Class XI - Commerce">Class XI - Commerce</option>
-              <option value="Class XI - Humanities">Class XI - Humanities</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="message" class="block text-sm font-medium text-[var(--color-ink)] mb-2">Additional Message</label>
-            <textarea id="message" name="entry.2138277743" rows="4" class="w-full px-4 py-4 rounded-xl border border-[var(--color-gray-300)] focus:border-[var(--color-indigo)] focus:ring-2 focus:ring-[var(--color-indigo)]/20 outline-none transition-colors text-base resize-none" placeholder="Any specific questions or information..."></textarea>
-          </div>
-
-          <Button variant="primary" size="lg" type="submit" fullWidth={true}>
-            Submit Inquiry
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
-          </Button>
-
-          <p class="text-xs text-center text-[var(--color-gray-500)]">
-            By submitting this form, you agree to our <a href="/privacy-policy" class="text-[var(--color-indigo)] underline">Privacy Policy</a>.
-          </p>
-        </form>
-      </div>
-    </div>
+  <section class="section bg-white" id="inquiry-form">
+    <div class="container"><SectionHeading title="Admission Enquiry" subtitle="Send your question to the school. For a time-sensitive enquiry, please call during office hours." /><div class="max-w-2xl mx-auto"><InquiryForm kind="admission" /></div></div>
   </section>
 </BaseLayout>
