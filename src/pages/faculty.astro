@@ -2,9 +2,23 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AdmissionCTA from '@/components/sections/AdmissionCTA.astro';
 import { getBreadcrumbList } from '@/lib/schema';
+import { getCollection } from 'astro:content';
 
-// Faculty data inline since content collections need specific setup
-const faculty = [
+const suppliedStaff = await getCollection('faculty');
+const photoAliases: Record<string, string> = {
+  'Minakshi Bhatt': 'Meenakshi Bhatt',
+  'Sonal Bhadoriya': 'Sonal Bhadauriya',
+  'Pranay Bhatnagar': 'Pranav Bhatnagar',
+  'Jiyanshi Soni': 'Jiyanshi',
+  'Chinki Verma': 'Chinki Jain',
+};
+
+const getPhoto = (name: string) => {
+  const suppliedName = photoAliases[name] ?? name;
+  return suppliedStaff.find(({ data }) => data.name === suppliedName)?.data.photo;
+};
+
+const existingFaculty = [
   { name: 'Dilip Budhani', designation: 'Director', department: 'Administration', qualification: '', bio: 'Leading the vision and strategy of M.P. Public School.' },
   { name: 'Shraddha Pardeshi', designation: 'Principal', department: 'Administration', qualification: 'MSc. (B.Ed)', bio: 'Ensuring holistic development and academic excellence.' },
   { name: 'Abhishek Kumar Yadav', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
@@ -46,7 +60,15 @@ const faculty = [
   { name: 'Lata Soni', designation: 'Housekeeping Staff', department: 'Support Staff', qualification: '', bio: '' },
   { name: 'Vidhya Khare', designation: 'Housekeeping Staff', department: 'Support Staff', qualification: '', bio: '' },
   { name: 'Diksha Pawar', designation: 'Housekeeping Staff', department: 'Support Staff', qualification: '', bio: '' },
-  { name: 'Pooja', designation: 'Sweeper', department: 'Support Staff', qualification: '', bio: '' }
+  { name: 'Pooja', designation: 'Sweeper', department: 'Support Staff', qualification: '', bio: '' },
+];
+
+const faculty = [
+  ...existingFaculty.map((member) => ({ ...member, photo: getPhoto(member.name) })),
+  ...suppliedStaff
+    .filter(({ data }) => data.photo && ['Alka Chaurasiya', 'Pooja Sharma'].includes(data.name))
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(({ data }) => data),
 ];
 
 const departments = [...new Set(faculty.map(f => f.department))];
@@ -102,9 +124,13 @@ const breadcrumbLd = getBreadcrumbList([
       <div class="snap-container md:grid-cols-3 lg:grid-cols-4 gap-6" id="faculty-grid" data-animate="stagger" role="region" aria-label="School faculty and staff" tabindex="0">
         {faculty.map((member) => (
           <div class="card p-6 text-center faculty-card snap-card" data-department={member.department}>
-            <!-- Avatar -->
-            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--color-indigo)] to-[var(--color-indigo-deep)] flex items-center justify-center shadow-lg">
-              <span class="text-2xl font-bold text-white">{member.name.charAt(0)}{member.name.split(' ').pop()?.charAt(0)}</span>
+            <!-- Portrait supplied by the school; staff without a supplied portrait keep an initials avatar. -->
+            <div class="w-28 h-28 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--color-indigo)] to-[var(--color-indigo-deep)] flex items-center justify-center shadow-lg overflow-hidden ring-4 ring-[var(--color-indigo)]/10">
+              {member.photo ? (
+                <img src={member.photo} alt={`${member.name}, ${member.designation}`} width="224" height="224" loading="lazy" decoding="async" class="w-full h-full object-cover object-top" />
+              ) : (
+                <span class="text-2xl font-bold text-white">{member.name.charAt(0)}{member.name.split(' ').pop()?.charAt(0)}</span>
+              )}
             </div>
             <h3 class="text-base font-bold text-[var(--color-ink)] mb-1">{member.name}</h3>
             <p class="text-sm font-medium text-[var(--color-indigo)] mb-1">{member.designation}</p>

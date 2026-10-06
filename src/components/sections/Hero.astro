@@ -3,11 +3,19 @@ import Button from '@/components/ui/Button.astro';
 import { Image } from 'astro:assets';
 import campusImg from '@/assets/images/mpps_front.jpeg';
 import { siteConfig } from '@/config/site';
+
+const classImages = Array.from({ length: 8 }, (_, index) => `/classes/classImages${index + 1}.jpeg`);
 ---
 
 <section class="relative min-h-screen flex items-center overflow-hidden gradient-hero pt-28 pb-16" id="hero">
+  <!-- Class and learning images rotate behind the hero content. -->
+  <div class="hero-class-background absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+    {classImages.map((image) => <div class="hero-class-slide" style={`background-image: url("${image}");`}></div>)}
+  </div>
+  <div class="hero-class-overlay absolute inset-0 z-[1] pointer-events-none" aria-hidden="true"></div>
+
   <!-- Static fallback gradient + decorative elements for prefers-reduced-motion or low-end -->
-  <div class="hero-static-bg absolute inset-0 z-0 pointer-events-none">
+  <div class="hero-static-bg absolute inset-0 z-[2] pointer-events-none">
     <!-- Decorative circles inspired by logo -->
     <div class="absolute top-[15%] right-[10%] w-32 h-32 md:w-48 md:h-48 rounded-full bg-[var(--color-red)]/15 blur-xl animate-pulse"></div>
     <div class="absolute bottom-[20%] left-[5%] w-24 h-24 md:w-40 md:h-40 rounded-full bg-[var(--color-amber)]/10 blur-xl"></div>
@@ -95,3 +103,48 @@ import { siteConfig } from '@/config/site';
 
 
 </section>
+
+<style>
+  .hero-class-slide {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    transform: scale(1.04);
+    animation: hero-class-fade 56s ease-in-out infinite;
+  }
+
+  .hero-class-slide:nth-child(2) { animation-delay: -7s; }
+  .hero-class-slide:nth-child(3) { animation-delay: -14s; }
+  .hero-class-slide:nth-child(4) { animation-delay: -21s; }
+  .hero-class-slide:nth-child(5) { animation-delay: -28s; }
+  .hero-class-slide:nth-child(6) { animation-delay: -35s; }
+  .hero-class-slide:nth-child(7) { animation-delay: -42s; }
+  .hero-class-slide:nth-child(8) { animation-delay: -49s; }
+
+  .hero-class-overlay {
+    background: linear-gradient(90deg, rgba(20, 21, 67, 0.96) 0%, rgba(30, 31, 85, 0.86) 44%, rgba(42, 43, 107, 0.58) 100%);
+  }
+
+  @keyframes hero-class-fade {
+    0%, 10% { opacity: 0; transform: scale(1.04); }
+    13%, 25% { opacity: 0.9; transform: scale(1); }
+    28%, 100% { opacity: 0; transform: scale(1.04); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-class-slide {
+      animation: none !important;
+    }
+
+    .hero-class-slide:first-child {
+      opacity: 0.9;
+      transform: none;
+    }
+
+    .hero-class-slide:not(:first-child) {
+      display: none;
+    }
+  }
+</style>

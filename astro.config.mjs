@@ -80,6 +80,8 @@ export default defineConfig({
       workbox: {
         // Fetch HTML from the network so corrected school information is not pinned in a precache.
         globPatterns: ['**/*.{js,css,svg,png,jpg,jpeg,webp,woff,woff2,json}'],
+        // Keep the high-resolution school media on demand; image runtime caching handles these assets.
+        globIgnores: ['STAFF_FINAL_PICS_PRO_HD_ENHANCED/**', 'EVENTS/**'],
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.mode === 'navigate',
