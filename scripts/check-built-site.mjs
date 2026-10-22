@@ -20,6 +20,21 @@ for (const file of files.filter(file => file.endsWith('.html'))) {
   issues.push(...page.issues.map(issue => `${route}: ${issue}`));
 }
 for (const route of criticalRoutes) if (!pages.has(route)) issues.push(`Required school page is missing: ${route}`);
+const facultyHtml = await readFile(join(output, 'faculty', 'index.html'), 'utf8');
+for (const excludedName of ['Priya Maheshwari', 'Preeti Panwar', 'Chandni Jain', 'Chandani Jain']) {
+  if (facultyHtml.includes(excludedName)) issues.push(`Excluded staff member remains on the public faculty page: ${excludedName}`);
+}
+const nikitaIndex = facultyHtml.indexOf('Nikita Verma');
+if (nikitaIndex < 0) issues.push('Nikita Verma is missing from the public faculty/staff page.');
+else {
+  const nikitaContext = facultyHtml.slice(Math.max(0, nikitaIndex - 2000), nikitaIndex + 2000);
+  if (!nikitaContext.includes('Office Staff') || !nikitaContext.includes('Administration')) {
+    issues.push('Nikita Verma is not classified as office staff in Administration on the public faculty page.');
+  }
+}
+const galleryHtml = await readFile(join(output, 'gallery', 'index.html'), 'utf8');
+if (/<video\b|1000034560\.mp4/i.test(galleryHtml)) issues.push('Removed school event video remains on the public gallery page.');
+if (files.some(file => file.endsWith('/EVENTS/1000034560.mp4'))) issues.push('Removed school event video asset remains in the build output.');
 let linksChecked = 0;
 async function checkDestination(href, from) {
   if (!href || /^(mailto:|tel:|javascript:|data:)/i.test(href)) return;
@@ -46,6 +61,15 @@ for (const [route, page] of pages) {
       for (const source of attr(node, 'srcset').split(',')) await checkDestination(source.trim().split(/\s+/)[0], route);
     }
   }
+}
+for (const asset of [
+  'optimized/logo.webp',
+  'optimized/classes/classImages1.webp',
+  'optimized/events/IMG_20260912_132414.webp',
+  'STAFF_FINAL_PICS_OPTIMIZED/ABHISHEK KUMAR YADAV (1).webp',
+]) {
+  try { if (!(await stat(join(output, asset))).isFile()) issues.push(`Required generated media is not a file: ${asset}`); }
+  catch { issues.push(`Required generated media is missing: ${asset}`); }
 }
 const robots = await readFile(join(output, 'robots.txt'), 'utf8');
 for (const agent of ['AdsBot-Google', 'AdsBot-Google-Mobile']) {
@@ -83,7 +107,13 @@ try {
   issues.push('llm.json is missing or invalid JSON.');
 }
 const manifest = JSON.parse(await readFile(join(output, 'manifest.webmanifest'), 'utf8'));
+if (manifest.name !== 'M.P. Public School, Indore' || manifest.short_name !== 'MPPS') {
+  issues.push('PWA manifest branding does not match the verified school name and short name.');
+}
 for (const icon of manifest.icons ?? []) await checkDestination(icon.src, '/manifest.webmanifest');
+const serviceWorker = await readFile(join(output, 'sw.js'), 'utf8');
+if (!serviceWorker.includes('offline/index.html')) issues.push('Service worker does not precache or configure the offline navigation fallback.');
+if (!serviceWorker.includes('NetworkFirst') || !serviceWorker.includes('images-cache')) issues.push('Service worker runtime caching configuration is incomplete.');
 const vercel = JSON.parse(await readFile(join(root, 'vercel.json'), 'utf8'));
 for (const redirect of vercel.redirects ?? []) await checkDestination(redirect.destination, `redirect ${redirect.source}`);
 if ((vercel.rewrites ?? []).some(rule => rule.destination === '/' || rule.destination === '/index.html')) issues.push('Hosting rewrites can turn missing pages into successful homepage responses.');

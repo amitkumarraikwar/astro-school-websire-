@@ -7,14 +7,14 @@ export const GET: APIRoute = ({ site }) => {
   const llmsTxt = `
 # ${siteConfig.name}
 
-M.P. Public School is an MP Board-affiliated school located at 9, Ashok Nagar, Indore, Madhya Pradesh.
+M.P. Public School is located at 9, Ashok Nagar, Indore, Madhya Pradesh. School records supplied for this website identify MP Board and list affiliation number ${siteConfig.affiliationNumber}; contact the office for current recognition and affiliation documents.
 The school offers education from Pre-Primary to Class XII. The public information on this site is for the ${siteConfig.academicSession} academic session unless a page says otherwise.
 This summary was reviewed on ${siteConfig.policyUpdated}. Confirm current availability, fees, timings, and subject combinations with the school office.
 
 ## Key Information
 - Location: ${siteConfig.address}
 - Contact: ${siteConfig.phones.join(', ')} | ${siteConfig.email}
-- Affiliation: MP Board (Affiliation No: ${siteConfig.affiliationNumber})
+- School records: MP Board; affiliation number ${siteConfig.affiliationNumber} is listed in the supplied information. Confirm current recognition with the office.
 - Working Hours: ${siteConfig.workingHours}
 
 ## Important Pages

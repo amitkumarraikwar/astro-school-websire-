@@ -3,7 +3,7 @@ import SectionHeading from '@/components/ui/SectionHeading.astro';
 import Button from '@/components/ui/Button.astro';
 import { eventMedia } from '@/data/eventMedia';
 
-const previewMedia = eventMedia.filter((media) => media.type === 'image').slice(0, 6);
+const previewMedia = eventMedia.slice(0, 6);
 ---
 
 <section class="section bg-white" id="event-media-preview">

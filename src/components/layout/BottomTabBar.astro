@@ -7,6 +7,10 @@ function isActive(href: string): boolean {
   return currentPath.startsWith(href);
 }
 
+function isAcademicsRoute(): boolean {
+  return isActive('/academics') || ['/faculty', '/facilities'].some((path) => currentPath.startsWith(path));
+}
+
 const tabs = [
   { label: 'Home', href: '/', icon: Home },
   { label: 'Academics', href: '/academics', icon: GraduationCap },
@@ -49,17 +53,17 @@ const tabs = [
             href={tab.href}
             class:list={[
               "flex flex-col items-center justify-center w-full h-full transition-transform active:scale-95",
-              isActive(tab.href) ? "text-[var(--color-indigo)]" : "text-[var(--color-ink-light)]"
+              (tab.href === '/academics' ? isAcademicsRoute() : isActive(tab.href)) ? "text-[var(--color-indigo)]" : "text-[var(--color-ink-light)]"
             ]}
-            aria-current={isActive(tab.href) ? 'page' : undefined}
+            aria-current={(tab.href === '/academics' ? isAcademicsRoute() : isActive(tab.href)) ? 'page' : undefined}
           >
             <div class="relative">
               <tab.icon class="w-6 h-6 mb-1" stroke-width={1.75} />
-              {isActive(tab.href) && (
+              {(tab.href === '/academics' ? isAcademicsRoute() : isActive(tab.href)) && (
                 <span class="absolute -top-1 -right-1 w-2 h-2 bg-[var(--color-amber)] rounded-full border border-white"></span>
               )}
             </div>
-            <span class:list={["text-[10px] font-medium leading-none", isActive(tab.href) && "font-semibold"]}>
+            <span class:list={["text-[10px] font-medium leading-none", (tab.href === '/academics' ? isAcademicsRoute() : isActive(tab.href)) && "font-semibold"]}>
               {tab.label}
             </span>
           </a>

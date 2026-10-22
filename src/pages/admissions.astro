@@ -57,7 +57,7 @@ const breadcrumbLd = getBreadcrumbList([{ name: 'Home', item: `${siteConfig.url}
     <div class="container"><SectionHeading title={`Tuition Schedule (${siteConfig.academicSession})`} subtitle="Published tuition, separate admission charges, and information to confirm before enrolment." /><FeeSchedule /></div>
   </section>
   <section class="section bg-[var(--color-cream)]" id="faq">
-    <div class="container"><SectionHeading title="Admission Questions" /><FAQAccordion faqs={faqs} /></div>
+     <div class="container"><SectionHeading title="Admission Questions" /><FAQAccordion faqs={faqs} schema={false} /></div>
   </section>
   <section class="section bg-white" id="inquiry-form">
     <div class="container"><SectionHeading title="Admission Enquiry" subtitle="Send your question to the school. For a time-sensitive enquiry, please call during office hours." /><div class="max-w-2xl mx-auto"><InquiryForm kind="admission" /></div></div>

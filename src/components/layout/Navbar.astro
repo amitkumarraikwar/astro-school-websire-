@@ -16,7 +16,7 @@ const navItems: NavItem[] = [
     href: '/academics',
     children: [
       { label: 'Curriculum & Levels', href: '/academics', desc: 'Pre-Primary to Senior Secondary' },
-      { label: 'Faculty & Staff', href: '/faculty', desc: 'Our dedicated educators' },
+      { label: 'Faculty & Staff', href: '/faculty', desc: 'Teaching, administration, and support staff' },
       { label: 'Facilities', href: '/facilities', desc: 'Campus and learning resources' },
     ],
   },
@@ -29,6 +29,10 @@ const navItems: NavItem[] = [
 function isActive(href: string): boolean {
   if (href === '/') return currentPath === '/';
   return currentPath.startsWith(href);
+}
+
+function isItemActive(item: NavItem): boolean {
+  return isActive(item.href) || Boolean(item.children?.some((child) => isActive(child.href)));
 }
 ---
 
@@ -62,11 +66,11 @@ function isActive(href: string): boolean {
             href={item.href}
             class:list={[
               'flex items-center gap-1 px-3 py-2 text-[15px] font-medium transition-colors duration-200 whitespace-nowrap',
-              isActive(item.href)
+              isItemActive(item)
                 ? 'text-[var(--color-indigo)] border-b-2 border-[var(--color-amber)]'
                 : 'text-[var(--color-ink)] hover:text-[var(--color-indigo)]',
             ]}
-            aria-current={isActive(item.href) ? 'page' : undefined}
+            aria-current={isItemActive(item) ? 'page' : undefined}
           >
             {item.label}
             {item.children && (

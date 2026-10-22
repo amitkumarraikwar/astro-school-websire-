@@ -1,33 +1,14 @@
 ---
-title: "MP Board Results 2025 – School Achieves 98% Pass Rate"
-description: "M.P. Public School students shine in MP Board Examinations with outstanding results. Class XII achieves 98% pass rate with 15 students scoring above 95%."
+title: "Annual Examination Results 2025–26"
+description: "The school diary contains class-by-class result lists for 2025–26. Please consult the published diary for the source record."
 date: 2025-05-15
-category: "achievement"
-featured: true
+category: "general"
+featured: false
+published: false
 ---
 
-M.P. Public School, Indore is proud to announce exceptional results in the MP Board Examinations 2025. Our students have once again demonstrated academic excellence with a remarkable 98% pass rate in Class XII.
+This draft is not published. The school diary includes class-by-class result lists for 2025–26.
 
-## Key Highlights
+Before publishing any results update, confirm the academic year, class, board, cohort, calculation method, and source document with the school office. Individual result entries should not be presented as a whole-school pass rate.
 
-- **Overall pass rate**: 98% in Class XII, 99% in Class X
-- **15 students** scored above 95% aggregate
-- **School topper** Ananya Sharma scored 99.2% in Science stream
-- **Commerce topper** Rohan Mehta scored 98.6%
-- **Arts topper** Priya Malhotra scored 97.8%
-
-## Principal's Message
-
-Mrs. Shraddha Pardeshi, Principal, congratulated the students and faculty for their hard work and dedication. "These results reflect the commitment of our students, the guidance of our teachers, and the support of our parents. We are proud of every student who appeared for the board examinations."
-
-## Subject Toppers
-
-| Subject | Topper | Marks |
-|---------|--------|-------|
-| Physics | Aditya Patel | 100 |
-| Chemistry | Ananya Sharma | 99 |
-| Mathematics | Vikram Singh | 100 |
-| English | Priya Malhotra | 98 |
-| Computer Science | Rahul Jain | 99 |
-
-The school continues its tradition of academic excellence in Indore, Madhya Pradesh, and remains committed to providing quality education that prepares students for a bright future.
+The current source document is available on the [School Information & Documents](/disclosure) page.

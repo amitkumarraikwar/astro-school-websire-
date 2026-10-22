@@ -16,12 +16,12 @@ const facilities = [
   <div class="container">
     <SectionHeading
       title="Campus Facilities"
-      subtitle="Find out about classrooms, learning resources, and student activities."
+      subtitle="Facilities and activities listed in the school information supplied for this website."
     />
 
-    <div class="snap-container md:grid-cols-2 lg:grid-cols-3 gap-6" data-animate="stagger" role="region" aria-label="Campus facility highlights" tabindex="0">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-animate="stagger" aria-label="Campus facility highlights">
       {facilities.map((facility) => (
-        <div class="rounded-2xl bg-white border border-[var(--color-indigo)]/10 shadow-sm p-6 hover:-translate-y-1 hover:shadow-lg transition duration-300 snap-card">
+        <div class="rounded-2xl bg-white border border-[var(--color-indigo)]/10 shadow-sm p-6 hover:-translate-y-1 hover:shadow-lg transition duration-300">
           <div class="w-12 h-12 rounded-xl bg-[var(--color-indigo)]/10 flex items-center justify-center mb-4">
             <svg class="w-6 h-6 text-[var(--color-indigo)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
               <path stroke-linecap="round" stroke-linejoin="round" d={facility.icon} />

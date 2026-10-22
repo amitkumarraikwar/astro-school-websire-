@@ -13,7 +13,7 @@ export const getBaseOrganization = () => {
       url: `${siteConfig.url}/Mppublic_logo.jpeg`,
     },
     image: `${siteConfig.url}/mpps_front.jpeg`,
-    description: 'MP Board-affiliated school at 9, Ashok Nagar, Indore, with classes from Pre-Primary to Class XII.',
+    description: 'School at 9, Ashok Nagar, Indore, offering classes from Pre-Primary to Class XII. School records supplied for this website identify MP Board and list affiliation number 532414; contact the office for current recognition documents.',
     telephone: siteConfig.phones[0],
     email: siteConfig.email,
     address: {
@@ -34,15 +34,6 @@ export const getBaseOrganization = () => {
       contactType: 'School office and admissions',
       email: siteConfig.email,
     })),
-    hasCredential: {
-      '@type': 'EducationalOccupationalCredential',
-      credentialCategory: 'Affiliation',
-      identifier: siteConfig.affiliationNumber,
-      recognizedBy: {
-        '@type': 'Organization',
-        name: 'MP Board'
-      }
-    }
   };
 };
 

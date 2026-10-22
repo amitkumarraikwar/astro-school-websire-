@@ -45,15 +45,4 @@ const events = defineCollection({
   }),
 });
 
-const gallery = defineCollection({
-  loader: file('src/content/gallery/gallery.json'),
-  schema: z.object({
-    title: z.string(),
-    image: z.string(),
-    category: z.enum(['events', 'sports', 'annual-day', 'campus', 'classroom']),
-    alt: z.string(),
-    order: z.number().default(0),
-  }),
-});
-
-export const collections = { faculty, news, events, gallery };
+export const collections = { faculty, news, events };

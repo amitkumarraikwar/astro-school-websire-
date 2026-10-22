@@ -6,21 +6,12 @@ import { siteConfig } from '@/config/site';
 import { getCollection } from 'astro:content';
 
 const suppliedStaff = await getCollection('faculty');
-const photoAliases: Record<string, string> = {
-  'Minakshi Bhatt': 'Meenakshi Bhatt',
-  'Sonal Bhadoriya': 'Sonal Bhadauriya',
-  'Pranay Bhatnagar': 'Pranav Bhatnagar',
-  'Jiyanshi Soni': 'Jiyanshi',
-  'Chinki Verma': 'Chinki Jain',
-};
-
 const optimizeStaffPhoto = (photo?: string) => photo
   ?.replace('/STAFF_FINAL_PICS_PRO_HD_ENHANCED/', '/STAFF_FINAL_PICS_OPTIMIZED/')
   .replace(/\.jpg$/i, '.webp');
 
 const getPhoto = (name: string) => {
-  const suppliedName = photoAliases[name] ?? name;
-  const photo = suppliedStaff.find(({ data }) => data.name === suppliedName)?.data.photo;
+  const photo = suppliedStaff.find(({ data }) => data.name === name)?.data.photo;
   return optimizeStaffPhoto(photo);
 };
 
@@ -30,32 +21,29 @@ const existingFaculty = [
   { name: 'Abhishek Kumar Yadav', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Pinki Choudhary', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Dharmendra Kamal', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
-  { name: 'Minakshi Bhatt', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
+  { name: 'Meenakshi Bhatt', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Kavita Thakur', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Mamta Mandpe', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Meenakshi Singh', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Meena Sharma', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Disi Parimal', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
-  { name: 'Priya Maheshwari', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
-  { name: 'Sonal Bhadoriya', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
-  { name: 'Preeti Panwar', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
+  { name: 'Sonal Bhadauriya', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Isha Thakur', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Sheetal Jain', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Meeta Jain', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Kunal Khede', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
-  { name: 'Chinki Verma', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
+  { name: 'Chinki Jain', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Monika Gehlot', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Shivani Nagle', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Varsha Singhal', designation: 'Social Media', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Ruchita Shrivastav', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
-  { name: 'Pranay Bhatnagar', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
+  { name: 'Pranav Bhatnagar', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Rama Rathi', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
-  { name: 'Nikita Verma', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
+  { name: 'Nikita Verma', designation: 'Office Staff', department: 'Administration', qualification: '', bio: '' },
   { name: 'Rinki Khilari', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Sunita Pal', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Jyoti Tiwari', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
-  { name: 'Chandani Jain', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
-  { name: 'Jiyanshi Soni', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
+  { name: 'Jiyanshi', designation: 'Teacher', department: 'Teaching Staff', qualification: '', bio: '' },
   { name: 'Ram Gupta', designation: 'Accountant', department: 'Administration', qualification: '', bio: '' },
   { name: 'Anurag Sharma', designation: 'Admin', department: 'Administration', qualification: '', bio: '' },
   { name: 'Nikita Rathore', designation: 'Cashier/Receptionist', department: 'Administration', qualification: '', bio: '' },
@@ -86,8 +74,8 @@ const breadcrumbLd = getBreadcrumbList([
 ---
 
 <BaseLayout
-  title="Faculty & Staff – Our Educators"
-  description="Meet the dedicated and qualified faculty of M.P. Public School Indore. Experienced educators committed to academic excellence and student development."
+  title="Faculty & Staff Information"
+  description="View the teaching, administration, and support staff information supplied for M.P. Public School, Indore. Contact the office for current class and subject assignments."
   jsonLd={breadcrumbLd}
 >
   <!-- Page Hero -->
@@ -102,11 +90,11 @@ const breadcrumbLd = getBreadcrumbList([
         </ol>
       </nav>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">Our Faculty & Staff</h1>
-      <p class="text-lg text-white/75 max-w-2xl mb-4">Meet the dedicated educators who inspire, guide, and nurture every student at M.P. Public School, Indore.</p>
+       <p class="text-lg text-white/75 max-w-2xl mb-4">This page lists the teaching, administration, and support staff information supplied for M.P. Public School, Indore.</p>
       
       <!-- AEO Quick Answer -->
       <p class="text-lg text-white/90 max-w-3xl bg-white/10 p-4 rounded-xl border border-white/20 backdrop-blur">
-        Our school team includes teaching, administration, and support staff. The list below is based on the staff information supplied by the school. Contact the office for current class and subject assignments.
+         The list below is based on staff information supplied for the website. Contact the office to confirm current class, subject, and role assignments.
       </p>
     </div>
   </section>

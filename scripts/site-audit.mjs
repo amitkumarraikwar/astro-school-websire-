@@ -86,7 +86,8 @@ export function auditDocument(html, pathname) {
   const school = schemas.find(schema => [schema['@type']].flat().includes('School'));
   if (!school) issues.push('School identity structured data is missing.');
   else {
-    if (school.url !== siteOrigin || school.hasCredential?.identifier !== '532414' || school.hasCredential?.recognizedBy?.name !== 'MP Board') issues.push('School identity or affiliation differs from the supplied school record.');
+    const reportedAffiliation = /supplied for this website identify MP Board and list affiliation number 532414/i.test(school.description ?? '');
+    if (school.url !== siteOrigin || !reportedAffiliation) issues.push('School identity or affiliation differs from the supplied school record.');
     if (!school.telephone || !school.email || !school.address?.streetAddress) issues.push('School contact information is incomplete.');
   }
   const text = readableText(find('body') ?? document);

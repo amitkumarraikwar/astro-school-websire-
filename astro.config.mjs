@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
-import react from '@astrojs/react';
 import AstroPWA from '@vite-pwa/astro';
 
 export default defineConfig({
@@ -44,14 +43,13 @@ export default defineConfig({
         return item;
       },
     }),
-    react(),
     AstroPWA({
       registerType: 'prompt',
       // Registration and error handling live in PwaUpdateToast.astro.
       injectRegister: false,
       manifest: {
         name: "M.P. Public School, Indore",
-        short_name: "MP School",
+        short_name: "MPPS",
         start_url: "/?source=pwa",
         scope: "/",
         display: "standalone",
@@ -80,7 +78,10 @@ export default defineConfig({
       },
       workbox: {
         // Fetch HTML from the network so corrected school information is not pinned in a precache.
-        globPatterns: ['**/*.{js,css,svg,png,jpg,jpeg,webp,woff,woff2,json}'],
+        globPatterns: ['**/*.{js,css,svg,png,jpg,jpeg,webp,woff,woff2,json}', 'offline/index.html'],
+        // Uncached document requests can show the purpose-built offline page when the network is unavailable.
+        navigateFallback: '/offline/index.html',
+        navigateFallbackAllowlist: [/^\/.*$/],
         // Keep the high-resolution school media on demand; image runtime caching handles these assets.
         globIgnores: ['STAFF_FINAL_PICS_PRO_HD_ENHANCED/**', 'STAFF_FINAL_PICS_OPTIMIZED/**', 'EVENTS/**', 'classes/**', 'optimized/**'],
         runtimeCaching: [
