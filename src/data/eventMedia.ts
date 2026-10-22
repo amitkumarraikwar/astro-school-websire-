@@ -1,10 +1,11 @@
 export interface EventMedia {
   src: string;
+  displaySrc?: string;
   alt: string;
   type: 'image' | 'video';
 }
 
-export const eventMedia: EventMedia[] = [
+const rawEventMedia: Omit<EventMedia, 'displaySrc'>[] = [
   { src: '/EVENTS/IMG_20260912_132414.jpg', alt: 'School event photo from September 2026', type: 'image' },
   { src: '/EVENTS/IMG_20260912_114946.jpg', alt: 'School event photo from September 2026', type: 'image' },
   { src: '/EVENTS/IMG-20260912-WA0001.jpeg', alt: 'School event photo from September 2026', type: 'image' },
@@ -35,3 +36,10 @@ export const eventMedia: EventMedia[] = [
   { src: '/EVENTS/23f929c8-5368-4cd0-ad49-323eca0e7872.png', alt: 'School event image provided by M.P. Public School', type: 'image' },
   { src: '/EVENTS/1000034560.mp4', alt: 'School event video provided by M.P. Public School', type: 'video' },
 ];
+
+export const eventMedia: EventMedia[] = rawEventMedia.map((media) => ({
+  ...media,
+  displaySrc: media.type === 'image'
+    ? media.src.replace('/EVENTS/', '/optimized/events/').replace(/\.(jpe?g|png|webp)$/i, '.webp')
+    : undefined,
+}));

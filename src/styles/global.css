@@ -226,6 +226,8 @@
 /* ── Section ── */
 .section {
   padding-block: var(--spacing-section);
+  content-visibility: auto;
+  contain-intrinsic-size: 0 720px;
 }
 
 /* ── Focus Ring ── */

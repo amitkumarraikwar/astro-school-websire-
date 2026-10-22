@@ -1,9 +1,16 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import NewsEventsPreview from '@/components/sections/NewsEventsPreview.astro';
+import { siteConfig } from '@/config/site';
+import { getBreadcrumbList } from '@/lib/schema';
+
+const breadcrumbLd = getBreadcrumbList([
+  { name: 'Home', item: `${siteConfig.url}/` },
+  { name: 'News & Events', item: `${siteConfig.url}/news` },
+]);
 ---
 
-<BaseLayout title="School Updates & Calendar" description="Read M.P. Public School information and dates from the 2026–27 school-published academic calendar.">
+<BaseLayout title="School Updates & Calendar" description="Read M.P. Public School information and dates from the 2026–27 school-published academic calendar." jsonLd={breadcrumbLd}>
   <section class="gradient-hero py-20 md:py-28"><div class="container"><nav aria-label="Breadcrumb" class="mb-6 text-sm text-white/75"><a href="/" class="underline">Home</a> / School Updates</nav><h1 class="text-4xl md:text-5xl font-bold text-white mb-4">School Updates & Calendar</h1><p class="text-lg text-white/85 max-w-2xl">Published school information and diary dates. Please follow current notices from the school for any changes.</p></div></section>
   <NewsEventsPreview preview={false} />
 </BaseLayout>

@@ -53,12 +53,34 @@ for (const agent of ['AdsBot-Google', 'AdsBot-Google-Mobile']) {
   if (!group || !/^Allow:\s*\/$/m.test(group)) issues.push(`robots.txt does not explicitly allow ${agent}.`);
 }
 if (/Disallow:.*(?:utm_|gclid|gbraid|wbraid)/i.test(robots)) issues.push('robots.txt blocks ad landing-page parameters.');
+for (const agent of ['Googlebot', 'GPTBot', 'ClaudeBot']) {
+  const group = robots.match(new RegExp(`User-agent:\\s*${agent}\\s*\\n([\\s\\S]*?)(?=User-agent:|$)`, 'i'))?.[1];
+  if (!group || !/^Disallow:\s*\/admin\/$/m.test(group) || !/^Disallow:\s*\/api\/$/m.test(group)) {
+    issues.push(`robots.txt does not protect private paths for ${agent}.`);
+  }
+}
 const sitemap = await readFile(join(output, 'sitemap-0.xml'), 'utf8');
+const sitemapIndex = await readFile(join(output, 'sitemap-index.xml'), 'utf8');
+if (!sitemapIndex.includes('/sitemap-0.xml')) issues.push('sitemap-index.xml does not reference sitemap-0.xml.');
+const sitemapAlias = await readFile(join(output, 'sitemap.xml'), 'utf8');
+if (!sitemapAlias.includes('<sitemapindex') || !sitemapAlias.includes('/sitemap-0.xml')) issues.push('sitemap.xml is not a valid sitemap index alias.');
 const listed = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]).pathname.replace(/\/+$/, '') || '/'));
 for (const route of listed) if (!pages.has(route) || utilityRoutes.has(route)) issues.push(`Sitemap includes a missing or utility page: ${route}`);
 for (const route of criticalRoutes) if (!listed.has(route)) issues.push(`Sitemap omits school page: ${route}`);
 for (const sample of ['/news/cbse-results-2025', '/news/annual-sports-day-2025', '/news/smart-classrooms-inauguration']) {
   if (pages.has(sample)) issues.push(`Unverified sample article is publicly built: ${sample}`);
+}
+const llms = await readFile(join(output, 'llms.txt'), 'utf8');
+if (!llms.includes(`${siteOrigin}/llm.json`) || !llms.includes(`${siteOrigin}/sitemap-index.xml`)) {
+  issues.push('llms.txt is missing machine-readable resource links.');
+}
+try {
+  const llmJson = JSON.parse(await readFile(join(output, 'llm.json'), 'utf8'));
+  if (llmJson.url !== siteOrigin || !Array.isArray(llmJson.pages) || !llmJson.pages.some(page => page.url === `${siteOrigin}/admissions`)) {
+    issues.push('llm.json is missing the canonical site URL or admissions page.');
+  }
+} catch {
+  issues.push('llm.json is missing or invalid JSON.');
 }
 const manifest = JSON.parse(await readFile(join(output, 'manifest.webmanifest'), 'utf8'));
 for (const icon of manifest.icons ?? []) await checkDestination(icon.src, '/manifest.webmanifest');

@@ -55,15 +55,19 @@ const { title, description, ogImage, ogType, noindex, pageType, jsonLd } = Astro
     <InstallPrompt />
     <PwaUpdateToast />
 
-    <!-- GSAP + Lenis init -->
+    <!-- Load motion libraries only on pages that actually use motion. -->
     <script>
-      import { gsap } from 'gsap';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-      // Check for reduced motion preference
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const hasMotionTargets = document.querySelector('[data-animate], [data-counter], [data-parallax]');
 
-      if (!prefersReducedMotion) {
+      async function initMotion() {
+        if (prefersReducedMotion || !hasMotionTargets) return;
+
+        const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+          import('gsap'),
+          import('gsap/ScrollTrigger'),
+        ]);
+
         gsap.registerPlugin(ScrollTrigger);
 
         // Check for touch device
@@ -167,8 +171,10 @@ const { title, description, ogImage, ogType, noindex, pageType, jsonLd } = Astro
         document.addEventListener('astro:before-swap', () => {
           ctx.revert();
           ScrollTrigger.getAll().forEach((t) => t.kill());
-        });
+        }, { once: true });
       }
+
+      void initMotion();
     </script>
     
     {import.meta.env.DEV && (

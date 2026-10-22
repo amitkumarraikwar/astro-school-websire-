@@ -5,14 +5,20 @@ import campusFront from '@/assets/images/mpps_front.jpeg';
 import campusView from '@/assets/images/mpps_front1.jpeg';
 import director from '@/assets/images/mpps_director.jpeg';
 import { eventMedia } from '@/data/eventMedia';
+import { siteConfig } from '@/config/site';
+import { getBreadcrumbList } from '@/lib/schema';
 const images = [
   { title: 'School Building', alt: 'M.P. Public School building entrance, Indore', image: campusFront, original: '/mpps_front.jpeg' },
   { title: 'Campus View', alt: 'M.P. Public School campus building', image: campusView, original: '/mpps_front1.jpeg' },
   { title: 'School Leadership', alt: 'Mr. Dilip Budhani, Director of M.P. Public School', image: director, original: '/mpps_director.jpeg' },
 ];
+const breadcrumbLd = getBreadcrumbList([
+  { name: 'Home', item: `${siteConfig.url}/` },
+  { name: 'Gallery', item: `${siteConfig.url}/gallery` },
+]);
 ---
 
-<BaseLayout title="School Gallery" description="View school-provided images of M.P. Public School, Indore, including the campus, school leadership, and event media.">
+<BaseLayout title="School Gallery" description="View school-provided images of M.P. Public School, Indore, including the campus, school leadership, and event media." jsonLd={breadcrumbLd}>
   <section class="gradient-hero py-20 md:py-28"><div class="container"><nav aria-label="Breadcrumb" class="mb-6 text-sm text-white/75"><a href="/" class="underline">Home</a> / Gallery</nav><h1 class="text-4xl md:text-5xl font-bold text-white mb-4">School Gallery</h1><p class="text-lg text-white/85 max-w-2xl">School-provided campus and leadership images. Select an image to open its full-size version.</p></div></section>
   <section class="section bg-white"><div class="container grid md:grid-cols-3 gap-8">{images.map(item => <figure class="card"><a href={item.original} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size image: ${item.title}`}><Image src={item.image} alt={item.alt} widths={[400, 800]} sizes="(max-width: 768px) 100vw, 33vw" loading="lazy" class="w-full aspect-[4/3] object-cover" /></a><figcaption class="p-5 font-semibold">{item.title}</figcaption></figure>)}</div></section>
   <section class="section bg-[var(--color-cream)]" id="event-media">
@@ -29,16 +35,16 @@ const images = [
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" data-animate="stagger" aria-label="School event media">
         {eventMedia.map((media, index) => media.type === 'video' ? (
           <figure class="card sm:col-span-2 lg:col-span-3">
-            <video controls preload="metadata" class="w-full max-h-[560px] bg-black object-contain" aria-label="School event video">
+            <video controls preload="none" class="w-full max-h-[560px] bg-black object-contain" aria-label={media.alt}>
               <source src={media.src} type="video/mp4" />
               Your browser does not support the school event video.
             </video>
-            <figcaption class="p-5 font-semibold">School event video</figcaption>
+             <figcaption class="p-5 font-semibold">{media.alt}</figcaption>
           </figure>
         ) : (
           <figure class="card">
             <a href={media.src} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size school event photo ${index + 1}`}>
-              <img src={media.src} alt={media.alt} width="1200" height="900" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover" />
+              <img src={media.displaySrc ?? media.src} alt={media.alt} width="1200" height="900" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover" />
             </a>
             <figcaption class="p-5 font-semibold">School event photo {index + 1}</figcaption>
           </figure>

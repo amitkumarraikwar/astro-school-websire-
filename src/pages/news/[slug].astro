@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { siteConfig } from '@/config/site';
 
 export async function getStaticPaths() {
   const newsEntries = await getCollection('news', ({ data }) => data.published);
@@ -17,9 +18,9 @@ const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mppublicschool.online/' },
-    { '@type': 'ListItem', position: 2, name: 'News & Events', item: 'https://mppublicschool.online/news' },
-    { '@type': 'ListItem', position: 3, name: entry.data.title, item: `https://mppublicschool.online/news/${entry.id}` },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteConfig.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'News & Events', item: `${siteConfig.url}/news` },
+    { '@type': 'ListItem', position: 3, name: entry.data.title, item: `${siteConfig.url}/news/${entry.id}` },
   ],
 };
 
@@ -28,17 +29,19 @@ const articleLd = {
   '@type': 'NewsArticle',
   headline: entry.data.title,
   description: entry.data.description,
+  url: `${siteConfig.url}/news/${entry.id}`,
+  mainEntityOfPage: `${siteConfig.url}/news/${entry.id}`,
   datePublished: entry.data.date.toISOString(),
   author: {
     '@type': 'Organization',
-    name: 'M.P. Public School, Indore',
+     name: siteConfig.fullName,
   },
   publisher: {
     '@type': 'Organization',
-    name: 'M.P. Public School, Indore',
+     name: siteConfig.fullName,
     logo: {
       '@type': 'ImageObject',
-      url: 'https://mppublicschool.online/Mppublic_logo.jpeg',
+       url: `${siteConfig.url}/Mppublic_logo.jpeg`,
     },
   },
 };

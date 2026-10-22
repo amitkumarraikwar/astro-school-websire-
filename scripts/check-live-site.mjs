@@ -5,6 +5,14 @@ const agents = [
   { name: 'AdsBot-Google', value: 'AdsBot-Google (+http://www.google.com/adsbot.html)' },
   { name: 'AdsBot-Google-Mobile', value: 'Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36 (compatible; AdsBot-Google-Mobile; +http://www.google.com/mobile/adsbot.html)' },
 ];
+const utilityRoutes = [
+  { path: '/robots.txt', type: 'text/plain', marker: 'Sitemap:' },
+  { path: '/sitemap.xml', type: 'xml', marker: '<sitemapindex' },
+  { path: '/sitemap-index.xml', type: 'xml', marker: 'sitemap-0.xml' },
+  { path: '/sitemap-0.xml', type: 'xml', marker: '<urlset' },
+  { path: '/llms.txt', type: 'text/plain', marker: '/llm.json' },
+  { path: '/llm.json', type: 'json', marker: '"url"' },
+];
 const issues = [];
 const grouped = new Map();
 function report(label, issue) {
@@ -28,6 +36,20 @@ for (const route of criticalRoutes) {
       results.push({ page: route, crawler: agent.name, finalUrl: response.url, title: audit.title, issues: audit.issues.length });
     } catch (error) { report(label, error.message); }
   }
+}
+for (const route of utilityRoutes) {
+  const label = `Utility ${route.path}`;
+  try {
+    const response = await fetch(new URL(route.path, target), { signal: AbortSignal.timeout(20000) });
+    checked++;
+    const body = await response.text();
+    const contentType = response.headers.get('content-type') ?? '';
+    if (response.status !== 200) report(label, `HTTP ${response.status}`);
+    if (route.type === 'xml' && !contentType.includes('xml')) report(label, `Unexpected content type: ${contentType}`);
+    if (route.type === 'json' && !contentType.includes('json')) report(label, `Unexpected content type: ${contentType}`);
+    if (route.type === 'text/plain' && !contentType.includes('text/plain')) report(label, `Unexpected content type: ${contentType}`);
+    if (!body.includes(route.marker)) report(label, `Response does not contain ${route.marker}`);
+  } catch (error) { report(label, error.message); }
 }
 try {
   const missing = await fetch(new URL('/school-website-verification-missing-page', target), { signal: AbortSignal.timeout(20000) });

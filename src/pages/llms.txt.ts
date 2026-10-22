@@ -2,13 +2,14 @@ import type { APIRoute } from 'astro';
 import { siteConfig } from '@/config/site';
 
 export const GET: APIRoute = ({ site }) => {
-  const baseUrl = site?.href || 'https://mppublicschool.online/';
+  const baseUrl = (site?.href || siteConfig.url).replace(/\/$/, '');
 
   const llmsTxt = `
 # ${siteConfig.name}
 
 M.P. Public School is an MP Board-affiliated school located at 9, Ashok Nagar, Indore, Madhya Pradesh.
-We offer classes from Pre-Primary to Senior Secondary, focusing on holistic development, academic excellence, and modern infrastructure.
+The school offers education from Pre-Primary to Class XII. The public information on this site is for the ${siteConfig.academicSession} academic session unless a page says otherwise.
+This summary was reviewed on ${siteConfig.policyUpdated}. Confirm current availability, fees, timings, and subject combinations with the school office.
 
 ## Key Information
 - Location: ${siteConfig.address}
@@ -17,19 +18,25 @@ We offer classes from Pre-Primary to Senior Secondary, focusing on holistic deve
 - Working Hours: ${siteConfig.workingHours}
 
 ## Important Pages
-- Home: ${baseUrl}
-- About Us: ${baseUrl}about - Learn about our history, mission, and vision.
-- Admissions: ${baseUrl}admissions - Admission process, criteria, and forms.
-- Academics: ${baseUrl}academics - Information about our curriculum, boards, and classes offered.
-- Facilities: ${baseUrl}facilities - Campus infrastructure including labs, library, and sports.
-- Faculty: ${baseUrl}faculty - Meet our experienced teaching staff.
-- News & Events: ${baseUrl}news - Latest announcements and school events.
-- Gallery: ${baseUrl}gallery - Photos of our campus and activities.
-- Contact: ${baseUrl}contact - Get in touch with us and find our location.
-- Fee Structure: ${baseUrl}fee-structure - Published tuition and separate admission charges.
-- School Information: ${baseUrl}disclosure - School identity and available documents.
-- Privacy Policy: ${baseUrl}privacy-policy - Website forms and data handling.
-- Cancellation and Refunds: ${baseUrl}refund-policy - How to request the applicable written terms.
+- Home: ${baseUrl}/
+- About Us: ${baseUrl}/about - Learn about the school, campus, and programme.
+- Admissions: ${baseUrl}/admissions - Admission information, enquiry form, and document-backed guidance.
+- Academics: ${baseUrl}/academics - Curriculum, classes, and academic information.
+- Facilities: ${baseUrl}/facilities - Campus infrastructure, activities, and transport guidance.
+- Faculty: ${baseUrl}/faculty - Staff information supplied for the website.
+- News & Events: ${baseUrl}/news - Published school updates and diary dates.
+- Gallery: ${baseUrl}/gallery - Campus, leadership, and school-event media.
+- Contact: ${baseUrl}/contact - Office contacts, enquiry form, and location.
+- Fee Structure: ${baseUrl}/fee-structure - Published tuition and separate admission charges.
+- School Information: ${baseUrl}/disclosure - School identity and available documents.
+- Privacy Policy: ${baseUrl}/privacy-policy - Website forms and data handling.
+- Terms: ${baseUrl}/terms - Website use and external-service information.
+- Cancellation and Refunds: ${baseUrl}/refund-policy - How to request the applicable written terms.
+
+## Machine-readable resources
+- LLM JSON summary: ${baseUrl}/llm.json
+- Sitemap index: ${baseUrl}/sitemap-index.xml
+- Crawler policy: ${baseUrl}/robots.txt
 `.trim();
 
   return new Response(llmsTxt, {

@@ -10,7 +10,8 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
-  prefetch: true,
+  // Avoid speculative page requests on mobile; normal links remain fast and predictable.
+  prefetch: false,
   output: 'static',
   integrations: [
     sitemap({
@@ -81,7 +82,7 @@ export default defineConfig({
         // Fetch HTML from the network so corrected school information is not pinned in a precache.
         globPatterns: ['**/*.{js,css,svg,png,jpg,jpeg,webp,woff,woff2,json}'],
         // Keep the high-resolution school media on demand; image runtime caching handles these assets.
-        globIgnores: ['STAFF_FINAL_PICS_PRO_HD_ENHANCED/**', 'EVENTS/**'],
+        globIgnores: ['STAFF_FINAL_PICS_PRO_HD_ENHANCED/**', 'STAFF_FINAL_PICS_OPTIMIZED/**', 'EVENTS/**', 'classes/**', 'optimized/**'],
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.mode === 'navigate',

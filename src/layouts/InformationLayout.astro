@@ -1,11 +1,16 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { siteConfig } from '@/config/site';
+import { getBreadcrumbList } from '@/lib/schema';
 interface Props { title: string; description: string; updated?: boolean; }
 const { title, description, updated = false } = Astro.props;
+const breadcrumbLd = getBreadcrumbList([
+  { name: 'Home', item: `${siteConfig.url}/` },
+  { name: title, item: new URL(Astro.url.pathname, siteConfig.url).href },
+]);
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} jsonLd={breadcrumbLd}>
   <section class="gradient-hero py-20 md:py-24">
     <div class="container">
       <nav aria-label="Breadcrumb" class="mb-6 text-sm text-white/75"><a href="/" class="underline">Home</a> / {title}</nav>

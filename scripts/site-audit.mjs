@@ -1,7 +1,23 @@
 import { parse } from 'parse5';
 
 export const siteOrigin = 'https://mppublicschool.online';
-export const criticalRoutes = ['/', '/admissions', '/contact', '/fee-structure', '/disclosure', '/privacy-policy', '/terms', '/refund-policy'];
+export const criticalRoutes = [
+  '/',
+  '/about',
+  '/academics',
+  '/admissions',
+  '/contact',
+  '/disclosure',
+  '/facilities',
+  '/faculty',
+  '/fee-structure',
+  '/gallery',
+  '/news',
+  '/news/school-diary-2026-27',
+  '/privacy-policy',
+  '/refund-policy',
+  '/terms',
+];
 export const utilityRoutes = new Set(['/404', '/offline']);
 
 export function attr(node, name) {

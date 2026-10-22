@@ -2,20 +2,20 @@
 import { X } from 'lucide-astro';
 ---
 
-<div id="pwa-install-prompt" class="fixed bottom-[84px] left-4 right-4 z-[200] bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] p-4 transform translate-y-[150%] transition-transform duration-500 ease-out flex items-center justify-between opacity-0 invisible" aria-hidden="true">
+<div id="pwa-install-prompt" role="dialog" aria-modal="false" aria-labelledby="pwa-install-title" aria-describedby="pwa-install-description" class="fixed bottom-[84px] left-4 right-4 z-[200] bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] p-4 transform translate-y-[150%] transition-transform duration-500 ease-out flex items-center justify-between opacity-0 invisible" aria-hidden="true">
   <div class="flex items-center gap-4">
-    <img src="/Mppublic_logo.jpeg" alt="MP School App Icon" width="48" height="48" class="w-12 h-12 rounded-xl shadow-sm border border-[var(--color-gray-100)]" />
+    <img src="/optimized/logo.webp" alt="MP School App Icon" width="48" height="48" class="w-12 h-12 rounded-xl shadow-sm border border-[var(--color-gray-100)]" />
     <div>
-      <h3 class="text-sm font-bold text-[var(--color-ink)] leading-tight">Install MP School App</h3>
-      <p class="text-xs text-[var(--color-ink-light)] mt-0.5">Add the school website to your home screen</p>
+        <h3 id="pwa-install-title" class="text-sm font-bold text-[var(--color-ink)] leading-tight">Install MP School App</h3>
+        <p id="pwa-install-description" class="text-xs text-[var(--color-ink-light)] mt-0.5">Add the school website to your home screen</p>
     </div>
   </div>
   
   <div class="flex items-center gap-2">
-    <button id="pwa-install-close" class="p-2 text-[var(--color-gray-400)] hover:text-[var(--color-ink)] active:scale-95" aria-label="Dismiss">
+     <button id="pwa-install-close" type="button" class="p-2 text-[var(--color-gray-400)] hover:text-[var(--color-ink)] active:scale-95" aria-label="Dismiss install prompt">
       <X class="w-5 h-5" />
     </button>
-    <button id="pwa-install-btn" class="px-4 py-2 bg-[var(--color-indigo)] text-white text-sm font-bold rounded-xl active:scale-95 transition-transform shadow-md">
+     <button id="pwa-install-btn" type="button" class="px-4 py-2 bg-[var(--color-indigo)] text-white text-sm font-bold rounded-xl active:scale-95 transition-transform shadow-md">
       Install
     </button>
   </div>

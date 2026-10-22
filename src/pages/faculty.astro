@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AdmissionCTA from '@/components/sections/AdmissionCTA.astro';
 import { getBreadcrumbList } from '@/lib/schema';
+import { siteConfig } from '@/config/site';
 import { getCollection } from 'astro:content';
 
 const suppliedStaff = await getCollection('faculty');
@@ -13,9 +14,14 @@ const photoAliases: Record<string, string> = {
   'Chinki Verma': 'Chinki Jain',
 };
 
+const optimizeStaffPhoto = (photo?: string) => photo
+  ?.replace('/STAFF_FINAL_PICS_PRO_HD_ENHANCED/', '/STAFF_FINAL_PICS_OPTIMIZED/')
+  .replace(/\.jpg$/i, '.webp');
+
 const getPhoto = (name: string) => {
   const suppliedName = photoAliases[name] ?? name;
-  return suppliedStaff.find(({ data }) => data.name === suppliedName)?.data.photo;
+  const photo = suppliedStaff.find(({ data }) => data.name === suppliedName)?.data.photo;
+  return optimizeStaffPhoto(photo);
 };
 
 const existingFaculty = [
@@ -68,14 +74,14 @@ const faculty = [
   ...suppliedStaff
     .filter(({ data }) => data.photo && ['Alka Chaurasiya', 'Pooja Sharma'].includes(data.name))
     .sort((a, b) => a.data.order - b.data.order)
-    .map(({ data }) => data),
+    .map(({ data }) => ({ ...data, photo: optimizeStaffPhoto(data.photo) })),
 ];
 
 const departments = [...new Set(faculty.map(f => f.department))];
 
 const breadcrumbLd = getBreadcrumbList([
-  { name: 'Home', item: 'https://mppublicschool.online/' },
-  { name: 'Faculty & Staff', item: 'https://mppublicschool.online/faculty' },
+  { name: 'Home', item: `${siteConfig.url}/` },
+  { name: 'Faculty & Staff', item: `${siteConfig.url}/faculty` },
 ]);
 ---
 
@@ -109,16 +115,17 @@ const breadcrumbLd = getBreadcrumbList([
   <section class="section bg-white">
     <div class="container">
       <!-- Filter buttons -->
-      <div class="flex flex-wrap justify-center gap-2 mb-12" id="faculty-filter" data-animate="fade-up">
-        <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-medium bg-[var(--color-indigo)] text-white transition-all duration-200" data-filter="all">
-          All Departments
-        </button>
-        {departments.map((dept) => (
-          <button class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-[var(--color-gray-100)] text-[var(--color-ink-light)] hover:bg-[var(--color-indigo)]/10 hover:text-[var(--color-indigo)] transition-all duration-200" data-filter={dept}>
-            {dept}
-          </button>
-        ))}
-      </div>
+       <div class="flex flex-wrap justify-center gap-2 mb-3" id="faculty-filter" data-animate="fade-up" role="group" aria-label="Filter faculty and staff by department">
+         <button type="button" aria-pressed="true" class="filter-btn active px-4 py-2 rounded-xl text-sm font-medium bg-[var(--color-indigo)] text-white transition-all duration-200" data-filter="all">
+           All Departments
+         </button>
+         {departments.map((dept) => (
+           <button type="button" aria-pressed="false" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-[var(--color-gray-100)] text-[var(--color-ink-light)] hover:bg-[var(--color-indigo)]/10 hover:text-[var(--color-indigo)] transition-all duration-200" data-filter={dept}>
+             {dept}
+           </button>
+         ))}
+       </div>
+       <p id="faculty-filter-status" class="text-center text-sm text-[var(--color-ink-light)] mb-10" aria-live="polite">Showing all {faculty.length} faculty and staff members.</p>
 
       <!-- Faculty Grid -->
       <div class="snap-container md:grid-cols-3 lg:grid-cols-4 gap-6" id="faculty-grid" data-animate="stagger" role="region" aria-label="School faculty and staff" tabindex="0">
@@ -152,8 +159,9 @@ const breadcrumbLd = getBreadcrumbList([
 
 <script>
   // Faculty filter functionality
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const facultyCards = document.querySelectorAll('.faculty-card');
+  const filterBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-btn'));
+  const facultyCards = Array.from(document.querySelectorAll<HTMLElement>('.faculty-card'));
+  const status = document.getElementById('faculty-filter-status');
 
   filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -161,20 +169,26 @@ const breadcrumbLd = getBreadcrumbList([
       filterBtns.forEach((b) => {
         b.classList.remove('active', 'bg-[var(--color-indigo)]', 'text-white');
         b.classList.add('bg-[var(--color-gray-100)]', 'text-[var(--color-ink-light)]');
+        b.setAttribute('aria-pressed', String(b === btn));
       });
       btn.classList.add('active', 'bg-[var(--color-indigo)]', 'text-white');
       btn.classList.remove('bg-[var(--color-gray-100)]', 'text-[var(--color-ink-light)]');
 
       const filter = btn.getAttribute('data-filter');
 
+      let visibleCount = 0;
       facultyCards.forEach((card) => {
         const dept = card.getAttribute('data-department');
-        if (filter === 'all' || dept === filter) {
-          (card as HTMLElement).style.display = '';
-        } else {
-          (card as HTMLElement).style.display = 'none';
-        }
+        const isVisible = filter === 'all' || dept === filter;
+        card.hidden = !isVisible;
+        if (isVisible) visibleCount += 1;
       });
+
+      if (status) {
+        status.textContent = filter === 'all'
+          ? `Showing all ${visibleCount} faculty and staff members.`
+          : `Showing ${visibleCount} ${filter} members.`;
+      }
     });
   });
 </script>

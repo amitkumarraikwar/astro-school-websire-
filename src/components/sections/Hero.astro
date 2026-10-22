@@ -1,15 +1,17 @@
 ---
 import Button from '@/components/ui/Button.astro';
-import { Image } from 'astro:assets';
 import { siteConfig } from '@/config/site';
 
-const classImages = Array.from({ length: 8 }, (_, index) => `/classes/classImages${index + 1}.jpeg`);
+const classImages = Array.from({ length: 8 }, (_, index) => `/optimized/classes/classImages${index + 1}.webp`);
+const initialClassImage = classImages[0];
+const deferredClassImages = classImages.slice(1);
 ---
 
 <section class="relative min-h-screen flex items-center overflow-hidden gradient-hero pt-28 pb-16" id="hero">
-  <!-- Class and learning images rotate behind the hero content. -->
+  <!-- Load one hero image for the first paint; the remaining slides are requested after idle. -->
   <div class="hero-class-background absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-    {classImages.map((image) => <div class="hero-class-slide" style={`background-image: url("${image}");`}></div>)}
+    <div class="hero-class-slide" style={`background-image: url("${initialClassImage}");`}></div>
+    {deferredClassImages.map((image) => <div class="hero-class-slide" data-hero-image={image}></div>)}
   </div>
   <div class="hero-class-overlay absolute inset-0 z-[1] pointer-events-none" aria-hidden="true"></div>
 
@@ -37,15 +39,13 @@ const classImages = Array.from({ length: 8 }, (_, index) => `/classes/classImage
 
         <!-- Headline -->
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] text-white mb-6" id="hero-headline">
-          Shaping Bright
-          <span class="text-[var(--color-yellow)]"> Futures</span>
-          <br />
-          <span class="text-white">In Indore</span>
+          M.P. Public School,
+          <span class="text-[var(--color-yellow)]"> Indore</span>
         </h1>
 
         <!-- Subheadline & Quick Answer -->
         <p class="mt-6 max-w-xl text-lg leading-relaxed text-white/85" data-animate="fade-up">
-          Welcome to {siteConfig.name}, an MP Board-affiliated school at 9, Ashok Nagar, Indore. Explore Pre-Primary to Class XII education, campus facilities, and admission information. Our office can help you check class availability and fees.
+          Shaping bright futures through MP Board education from Pre-Primary to Class XII at 9, Ashok Nagar, Indore. Explore our campus, academics, and admission information, then contact the office to confirm current availability and fees.
         </p>
 
         <!-- CTAs -->
@@ -109,13 +109,14 @@ const classImages = Array.from({ length: 8 }, (_, index) => `/classes/classImage
     animation: hero-class-fade 56s ease-in-out infinite;
   }
 
-  .hero-class-slide:nth-child(2) { animation-delay: -7s; }
-  .hero-class-slide:nth-child(3) { animation-delay: -14s; }
-  .hero-class-slide:nth-child(4) { animation-delay: -21s; }
-  .hero-class-slide:nth-child(5) { animation-delay: -28s; }
-  .hero-class-slide:nth-child(6) { animation-delay: -35s; }
-  .hero-class-slide:nth-child(7) { animation-delay: -42s; }
-  .hero-class-slide:nth-child(8) { animation-delay: -49s; }
+  .hero-class-slide:nth-child(1) { animation-delay: -7s; }
+  .hero-class-slide:nth-child(2) { animation-delay: -14s; }
+  .hero-class-slide:nth-child(3) { animation-delay: -21s; }
+  .hero-class-slide:nth-child(4) { animation-delay: -28s; }
+  .hero-class-slide:nth-child(5) { animation-delay: -35s; }
+  .hero-class-slide:nth-child(6) { animation-delay: -42s; }
+  .hero-class-slide:nth-child(7) { animation-delay: -49s; }
+  .hero-class-slide:nth-child(8) { animation-delay: -56s; }
 
   .hero-class-overlay {
     background: linear-gradient(90deg, rgba(20, 21, 67, 0.96) 0%, rgba(30, 31, 85, 0.86) 44%, rgba(42, 43, 107, 0.58) 100%);
@@ -142,3 +143,24 @@ const classImages = Array.from({ length: 8 }, (_, index) => `/classes/classImage
     }
   }
 </style>
+
+<script>
+  const loadDeferredHeroImages = () => {
+    document.querySelectorAll<HTMLElement>('[data-hero-image]').forEach((slide) => {
+      const image = slide.dataset.heroImage;
+      if (image) slide.style.backgroundImage = `url("${image}")`;
+    });
+  };
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const requestIdleCallback = (window as Window & {
+      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+    }).requestIdleCallback;
+
+    if (requestIdleCallback) {
+      requestIdleCallback(loadDeferredHeroImages, { timeout: 2500 });
+    } else {
+      window.setTimeout(loadDeferredHeroImages, 1500);
+    }
+  }
+</script>

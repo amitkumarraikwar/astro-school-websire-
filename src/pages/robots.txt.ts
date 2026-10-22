@@ -1,46 +1,35 @@
 import type { APIRoute } from 'astro';
 
-const robotsTxt = `
-User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /api/
+const restrictedPaths = ['Disallow: /admin/', 'Disallow: /api/'];
+const crawlerAgents = [
+  'AdsBot-Google',
+  'AdsBot-Google-Mobile',
+  'Googlebot',
+  'Bingbot',
+  'GPTBot',
+  'OAI-SearchBot',
+  'ChatGPT-User',
+  'PerplexityBot',
+  'ClaudeBot',
+  'Claude-SearchBot',
+  'Google-Extended',
+  'Applebot-Extended',
+  'CCBot',
+];
 
-User-agent: AdsBot-Google
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
-User-agent: AdsBot-Google-Mobile
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
-User-agent: Googlebot
-Allow: /
-User-agent: Bingbot
-Allow: /
-User-agent: GPTBot
-Allow: /
-User-agent: OAI-SearchBot
-Allow: /
-User-agent: ChatGPT-User
-Allow: /
-User-agent: PerplexityBot
-Allow: /
-User-agent: ClaudeBot
-Allow: /
-User-agent: Claude-SearchBot
-Allow: /
-User-agent: Google-Extended
-Allow: /
-User-agent: Applebot-Extended
-Allow: /
-User-agent: CCBot
-Allow: /
-
-Sitemap: ${new URL('sitemap-index.xml', import.meta.env.SITE).href}
-`.trim();
+const robotsTxt = [
+  'User-agent: *',
+  'Allow: /',
+  ...restrictedPaths,
+  ...crawlerAgents.flatMap((agent) => [
+    '',
+    `User-agent: ${agent}`,
+    'Allow: /',
+    ...restrictedPaths,
+  ]),
+  '',
+  `Sitemap: ${new URL('sitemap-index.xml', import.meta.env.SITE).href}`,
+].join('\n');
 
 export const GET: APIRoute = () => {
   return new Response(robotsTxt, {

@@ -4,13 +4,13 @@ export const getBaseOrganization = () => {
   return {
     '@context': 'https://schema.org',
     '@type': ['EducationalOrganization', 'School'],
-    '@id': 'https://mppublicschool.online/#school',
+    '@id': `${siteConfig.url}/#school`,
     name: siteConfig.name,
     alternateName: ['MP Public School', 'M.P. Public School Indore'],
-    url: 'https://mppublicschool.online',
+    url: siteConfig.url,
     logo: {
       '@type': 'ImageObject',
-      url: 'https://mppublicschool.online/Mppublic_logo.jpeg',
+      url: `${siteConfig.url}/Mppublic_logo.jpeg`,
     },
     image: `${siteConfig.url}/mpps_front.jpeg`,
     description: 'MP Board-affiliated school at 9, Ashok Nagar, Indore, with classes from Pre-Primary to Class XII.',
@@ -65,10 +65,10 @@ export const getWebPage = (title: string, description: string, url: string, type
     name: title,
     description: description,
     isPartOf: {
-      '@id': 'https://mppublicschool.online/#website'
+      '@id': `${siteConfig.url}/#website`
     },
     about: {
-      '@id': 'https://mppublicschool.online/#school'
+      '@id': `${siteConfig.url}/#school`
     }
   };
 };

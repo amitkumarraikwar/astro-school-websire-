@@ -3,3 +3,8 @@ dist/
 .astro/
 .DS_Store
 .vercel/
+
+# Large media files
+*.zip
+public/STAFF_FINAL_PICS_OPTIMIZED/
+public/optimized/

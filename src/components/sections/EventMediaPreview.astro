@@ -23,7 +23,7 @@ const previewMedia = eventMedia.filter((media) => media.type === 'image').slice(
           aria-label={`Open school event photo ${index + 1}`}
         >
           <img
-            src={media.src}
+            src={media.displaySrc ?? media.src}
             alt={media.alt}
             width="800"
             height="600"
