@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "build": "npm run media:optimize && astro build",
     "check": "astro sync && astro-check",
-    "verify": "npm run check && npm run build && node scripts/check-built-site.mjs",
+    "verify": "npm run check && npm run build && node scripts/check-built-site.mjs && node scripts/check-gone.mjs",
     "audit:build": "node scripts/check-built-site.mjs",
     "audit:live": "node scripts/check-live-site.mjs",
     "media:optimize": "node scripts/optimize-media.mjs",

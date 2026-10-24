@@ -136,6 +136,14 @@ const requiredRedirects = [
   ['/feed', '/'],
   ['/home', '/'],
   ['/index.php', '/'],
+  ['/about/vision', '/about'],
+  ['/about/leadership', '/about'],
+  ['/academics/faculty', '/faculty'],
+  ['/success-stories', '/about'],
+  ['/child-safety', '/facilities'],
+  ['/about/:path+', '/about'],
+  ['/academics/:path+', '/academics'],
+  ['/facilities/:path+', '/facilities'],
 ];
 for (const [source, destination] of requiredRedirects) {
   const redirect = (vercel.redirects ?? []).find(rule => rule.source === source && rule.destination === destination);
@@ -145,6 +153,29 @@ for (const [source, destination] of requiredRedirects) {
 const hostRedirect = (vercel.redirects ?? []).find(rule => rule.source === '/:path*' && rule.destination === 'https://mppublicschool.online/:path*');
 if (!hostRedirect || hostRedirect.permanent !== true || hostRedirect.has?.[0]?.type !== 'host' || hostRedirect.has?.[0]?.value !== 'www.mppublicschool.online') {
   issues.push('Permanent www-to-apex host redirect is missing or malformed.');
+}
+const redirectSources = (vercel.redirects ?? []).map(r => r.source);
+const orderChecks = [
+  ['/academics/faculty', '/academics/:path+'],
+  ['/about/vision', '/about/:path+'],
+  ['/about/principal', '/about/:path+'],
+  ['/about/overview', '/about/:path+'],
+  ['/about/leadership', '/about/:path+'],
+  ['/facilities/library', '/facilities/:path+'],
+  ['/facilities/sports', '/facilities/:path+'],
+  ['/facilities/safety-security', '/facilities/:path+'],
+  ['/academics/pre-primary', '/academics/:path+'],
+  ['/academics/primary', '/academics/:path+'],
+  ['/academics/middle', '/academics/:path+'],
+  ['/academics/secondary', '/academics/:path+'],
+  ['/academics/senior-secondary', '/academics/:path+'],
+];
+for (const [specific, catchAll] of orderChecks) {
+  const specificIndex = redirectSources.indexOf(specific);
+  const catchAllIndex = redirectSources.indexOf(catchAll);
+  if (specificIndex >= 0 && catchAllIndex >= 0 && specificIndex >= catchAllIndex) {
+    issues.push(`Redirect order error: ${specific} (index ${specificIndex}) must appear before ${catchAll} (index ${catchAllIndex}).`);
+  }
 }
 for (const redirect of vercel.redirects ?? []) {
   if (redirect.has?.some(condition => condition.type === 'host')) continue;

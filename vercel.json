@@ -56,6 +56,14 @@
     { "source": "/academics/middle", "destination": "/academics", "permanent": true },
     { "source": "/academics/secondary", "destination": "/academics", "permanent": true },
     { "source": "/academics/senior-secondary", "destination": "/academics", "permanent": true },
+    { "source": "/about/vision", "destination": "/about", "permanent": true },
+    { "source": "/about/leadership", "destination": "/about", "permanent": true },
+    { "source": "/academics/faculty", "destination": "/faculty", "permanent": true },
+    { "source": "/success-stories", "destination": "/about", "permanent": true },
+    { "source": "/child-safety", "destination": "/facilities", "permanent": true },
+    { "source": "/about/:path+", "destination": "/about", "permanent": true },
+    { "source": "/academics/:path+", "destination": "/academics", "permanent": true },
+    { "source": "/facilities/:path+", "destination": "/facilities", "permanent": true },
     { "source": "/sitemap", "destination": "/sitemap-index.xml", "permanent": true }
   ]
 }
