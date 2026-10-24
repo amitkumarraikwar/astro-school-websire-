@@ -8,3 +8,6 @@ dist/
 *.zip
 public/STAFF_FINAL_PICS_OPTIMIZED/
 public/optimized/
+
+# Private source documents; never publish personal staff or school records.
+school related informations/

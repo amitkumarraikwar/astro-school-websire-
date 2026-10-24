@@ -76,4 +76,4 @@ This makes read-only requests using desktop and mobile AdsBot user agents and ch
 
 ## Google Ads review
 
-Read [GOOGLE_ADS_REVIEW.md](GOOGLE_ADS_REVIEW.md) for the findings, source documents, remaining school information, and appeal steps. Local changes do not update the live domain, and website improvements do not guarantee account reinstatement.
+Local changes do not update the live domain, and website improvements do not guarantee account reinstatement. Keep appeal evidence and owner-only documents outside this public repository.
