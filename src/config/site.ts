@@ -10,7 +10,12 @@ export const siteConfig = {
   workingHours: "Office: 8:00 AM – 5:00 PM",
   board: "MP Board",
   academicSession: "2026–27",
-  policyUpdated: "October 5, 2026",
+  policyUpdated: "October 24, 2026",
+  operator: {
+    name: "Mother Parvati Educational Society",
+    city: "Indore",
+    registrationNumber: "",
+  },
   documents: {
     diary: "/documents/mpps-academic-calendar-2026-27.pdf",
   },

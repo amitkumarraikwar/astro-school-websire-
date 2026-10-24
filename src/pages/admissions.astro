@@ -16,12 +16,12 @@ const steps = [
 ];
 const documents = ['Student photograph', 'Date-of-birth information and supporting proof', 'Previous school details and transfer certificate, where applicable', 'Previous class academic record, where applicable', 'Parent / guardian contact and address details'];
 const faqs = [
-  { question: 'Which board does the school follow?', answer: `The school follows MP Board. The school information supplied to this website lists affiliation number ${siteConfig.affiliationNumber}. Contact the office for the current recognition and affiliation documents.` },
+  { question: 'Which board does the school follow?', answer: `The school is affiliated to MP Board (affiliation no. ${siteConfig.affiliationNumber}).` },
   { question: 'Does an enquiry reserve a seat?', answer: 'No. An enquiry allows you to discuss admission with the school. Availability, eligibility, document verification, and school confirmation determine admission.' },
   { question: 'What is the minimum admission age?', answer: 'Age requirements depend on the class and the applicable rules for the admission session. Please confirm the age cut-off and required date-of-birth documents with the school office.' },
-  { question: 'Which senior-secondary streams are listed?', answer: 'Science and Commerce are listed for Classes XI and XII in the supplied fee schedule. Confirm the subjects and current availability with the office.' },
+  { question: 'Which senior-secondary streams are listed?', answer: 'The current fee schedule mentions Science and Commerce for Classes XI and XII. Confirm the subjects and current availability with the office.' },
   { question: 'How do I confirm fees or discounts?', answer: 'Review the undiscounted 2026–27 tuition schedule below, then ask for a written breakdown for your campus, class, and shift. Discount eligibility and validity must be confirmed before payment.' },
-  { question: 'How is school transport arranged?', answer: 'The supplied schedule says parents contact vehicle operators directly and pay transport charges separately. Ask the office about available operators, routes, and collection arrangements.' },
+  { question: 'How is school transport arranged?', answer: 'Parents arrange transport directly with vehicle operators and pay them separately. Ask the office for a list of operators.' },
   { question: 'What are the school timings?', answer: 'The M.P. Public School schedule lists Pre-Nursery / Nursery at 9:30 AM–12:30 PM, K.G. I–II at 9:30 AM–1:30 PM, Classes I–V at 9:30 AM–2:30 PM, and Classes VI–XII at 7:45 AM–1:15 PM. Examination timings and junior-branch shifts differ; confirm the current timetable with the office.' },
 ];
 const breadcrumbLd = getBreadcrumbList([{ name: 'Home', item: `${siteConfig.url}/` }, { name: 'Admissions', item: `${siteConfig.url}/admissions` }]);

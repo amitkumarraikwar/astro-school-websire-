@@ -13,7 +13,7 @@ const llmSummary = {
   language: 'en-IN',
   lastReviewed: siteConfig.policyUpdated,
   academicSession: siteConfig.academicSession,
-  description: 'School in Ashok Nagar, Indore, offering education from Pre-Primary to Class XII. Supplied school records identify MP Board and list affiliation number 532414; current recognition should be confirmed with the office.',
+  description: 'School at 9, Ashok Nagar, Indore, offering classes from Pre-Primary to Class XII. Affiliated to MP Board (affiliation no. 532414). Run by Mother Parvati Educational Society.',
   location: {
     address: siteConfig.address,
     streetAddress: siteConfig.streetAddress,
@@ -24,7 +24,7 @@ const llmSummary = {
   affiliation: {
     board: siteConfig.board,
     affiliationNumber: siteConfig.affiliationNumber,
-    status: 'Listed in school information supplied for this website; confirm current recognition and affiliation documents with the school office.',
+    status: 'Affiliated to MP Board, affiliation no. 532414.',
   },
   contact: {
     phone: siteConfig.phones,

@@ -13,9 +13,14 @@ export const getBaseOrganization = () => {
       url: `${siteConfig.url}/Mppublic_logo.jpeg`,
     },
     image: `${siteConfig.url}/mpps_front.jpeg`,
-    description: 'School at 9, Ashok Nagar, Indore, offering classes from Pre-Primary to Class XII. School records supplied for this website identify MP Board and list affiliation number 532414; contact the office for current recognition documents.',
+    description: 'School at 9, Ashok Nagar, Indore, offering classes from Pre-Primary to Class XII. Affiliated to MP Board (affiliation no. 532414). Run by Mother Parvati Educational Society.',
     telephone: siteConfig.phones[0],
     email: siteConfig.email,
+    parentOrganization: {
+      '@type': 'Organization',
+      name: siteConfig.operator.name,
+      addressLocality: siteConfig.operator.city,
+    },
     address: {
       '@type': 'PostalAddress',
       streetAddress: siteConfig.streetAddress,

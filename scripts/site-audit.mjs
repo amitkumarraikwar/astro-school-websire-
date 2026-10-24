@@ -86,7 +86,7 @@ export function auditDocument(html, pathname) {
   const school = schemas.find(schema => [schema['@type']].flat().includes('School'));
   if (!school) issues.push('School identity structured data is missing.');
   else {
-    const reportedAffiliation = /supplied for this website identify MP Board and list affiliation number 532414/i.test(school.description ?? '');
+    const reportedAffiliation = /affiliated to MP Board \(affiliation no\. 532414\)/i.test(school.description ?? '');
     if (school.url !== siteOrigin || !reportedAffiliation) issues.push('School identity or affiliation differs from the supplied school record.');
     if (!school.telephone || !school.email || !school.address?.streetAddress) issues.push('School contact information is incomplete.');
   }

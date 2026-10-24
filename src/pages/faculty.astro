@@ -5,13 +5,13 @@ import { getBreadcrumbList } from '@/lib/schema';
 import { siteConfig } from '@/config/site';
 import { getCollection } from 'astro:content';
 
-const suppliedStaff = await getCollection('faculty');
+const staff = await getCollection('faculty');
 const optimizeStaffPhoto = (photo?: string) => photo
   ?.replace('/STAFF_FINAL_PICS_PRO_HD_ENHANCED/', '/STAFF_FINAL_PICS_OPTIMIZED/')
   .replace(/\.jpg$/i, '.webp');
 
 const getPhoto = (name: string) => {
-  const photo = suppliedStaff.find(({ data }) => data.name === name)?.data.photo;
+  const photo = staff.find(({ data }) => data.name === name)?.data.photo;
   return optimizeStaffPhoto(photo);
 };
 
@@ -59,7 +59,7 @@ const existingFaculty = [
 
 const faculty = [
   ...existingFaculty.map((member) => ({ ...member, photo: getPhoto(member.name) })),
-  ...suppliedStaff
+  ...staff
     .filter(({ data }) => data.photo && ['Alka Chaurasiya', 'Pooja Sharma'].includes(data.name))
     .sort((a, b) => a.data.order - b.data.order)
     .map(({ data }) => ({ ...data, photo: optimizeStaffPhoto(data.photo) })),
@@ -75,7 +75,7 @@ const breadcrumbLd = getBreadcrumbList([
 
 <BaseLayout
   title="Faculty & Staff Information"
-  description="View the teaching, administration, and support staff information supplied for M.P. Public School, Indore. Contact the office for current class and subject assignments."
+  description="Meet the teaching, administration and support staff of M.P. Public School, Indore."
   jsonLd={breadcrumbLd}
 >
   <!-- Page Hero -->
@@ -90,11 +90,11 @@ const breadcrumbLd = getBreadcrumbList([
         </ol>
       </nav>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">Our Faculty & Staff</h1>
-       <p class="text-lg text-white/75 max-w-2xl mb-4">This page lists the teaching, administration, and support staff information supplied for M.P. Public School, Indore.</p>
+       <p class="text-lg text-white/75 max-w-2xl mb-4">Our teaching, administration and support staff.</p>
       
       <!-- AEO Quick Answer -->
       <p class="text-lg text-white/90 max-w-3xl bg-white/10 p-4 rounded-xl border border-white/20 backdrop-blur">
-         The list below is based on staff information supplied for the website. Contact the office to confirm current class, subject, and role assignments.
+          Contact the office for current class, subject and role assignments.
       </p>
     </div>
   </section>
@@ -119,7 +119,7 @@ const breadcrumbLd = getBreadcrumbList([
       <div class="snap-container md:grid-cols-3 lg:grid-cols-4 gap-6" id="faculty-grid" data-animate="stagger" role="region" aria-label="School faculty and staff" tabindex="0">
         {faculty.map((member) => (
           <div class="card p-6 text-center faculty-card snap-card" data-department={member.department}>
-            <!-- Portrait supplied by the school; staff without a supplied portrait keep an initials avatar. -->
+            <!-- Staff without a portrait keep an initials avatar. -->
             <div class="w-28 h-28 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--color-indigo)] to-[var(--color-indigo-deep)] flex items-center justify-center shadow-lg overflow-hidden ring-4 ring-[var(--color-indigo)]/10">
               {member.photo ? (
                 <img src={member.photo} alt={`${member.name}, ${member.designation}`} width="224" height="224" loading="lazy" decoding="async" class="w-full h-full object-cover object-top" />

@@ -7,14 +7,14 @@ export const GET: APIRoute = ({ site }) => {
   const llmsTxt = `
 # ${siteConfig.name}
 
-M.P. Public School is located at 9, Ashok Nagar, Indore, Madhya Pradesh. School records supplied for this website identify MP Board and list affiliation number ${siteConfig.affiliationNumber}; contact the office for current recognition and affiliation documents.
+M.P. Public School is located at 9, Ashok Nagar, Indore, Madhya Pradesh. The school is affiliated to MP Board (affiliation no. ${siteConfig.affiliationNumber}) and is run by Mother Parvati Educational Society, Indore.
 The school offers education from Pre-Primary to Class XII. The public information on this site is for the ${siteConfig.academicSession} academic session unless a page says otherwise.
 This summary was reviewed on ${siteConfig.policyUpdated}. Confirm current availability, fees, timings, and subject combinations with the school office.
 
 ## Key Information
 - Location: ${siteConfig.address}
 - Contact: ${siteConfig.phones.join(', ')} | ${siteConfig.email}
-- School records: MP Board; affiliation number ${siteConfig.affiliationNumber} is listed in the supplied information. Confirm current recognition with the office.
+- Board: MP Board; affiliation number ${siteConfig.affiliationNumber}. The school is run by Mother Parvati Educational Society, Indore.
 - Working Hours: ${siteConfig.workingHours}
 
 ## Important Pages
@@ -23,7 +23,7 @@ This summary was reviewed on ${siteConfig.policyUpdated}. Confirm current availa
 - Admissions: ${baseUrl}/admissions - Admission information, enquiry form, and document-backed guidance.
 - Academics: ${baseUrl}/academics - Curriculum, classes, and academic information.
 - Facilities: ${baseUrl}/facilities - Campus infrastructure, activities, and transport guidance.
-- Faculty: ${baseUrl}/faculty - Staff information supplied for the website.
+- Faculty: ${baseUrl}/faculty - Teaching, administration and support staff.
 - News & Events: ${baseUrl}/news - Published school updates and diary dates.
 - Gallery: ${baseUrl}/gallery - Campus, leadership, and school-event media.
 - Contact: ${baseUrl}/contact - Office contacts, enquiry form, and location.

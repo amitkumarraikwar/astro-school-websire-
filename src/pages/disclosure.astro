@@ -9,8 +9,9 @@ import { siteConfig } from '@/config/site';
     <dt><strong>School name</strong></dt><dd>{siteConfig.fullName} (M.P. Public School)</dd>
     <dt><strong>Main campus</strong></dt><dd>{siteConfig.address}</dd>
     <dt><strong>Board</strong></dt><dd>{siteConfig.board}</dd>
-    <dt><strong>Affiliation number</strong></dt><dd>{siteConfig.affiliationNumber}, as listed in the school information supplied for this website</dd>
+    <dt><strong>Affiliation number</strong></dt><dd>{siteConfig.affiliationNumber}</dd>
     <dt><strong>Classes</strong></dt><dd>Pre-Primary to Class XII; Science and Commerce are listed for senior secondary</dd>
+    <dt><strong>Managed by</strong></dt><dd>Mother Parvati Educational Society, Indore</dd>
     <dt><strong>School office</strong></dt><dd>{siteConfig.phones.map(phone => <div><a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a></div>)}<a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></dd>
     <dt><strong>Office hours</strong></dt><dd>{siteConfig.workingHours}; please call before visiting</dd>
     <dt><strong>Junior branch</strong></dt><dd>{siteConfig.juniorBranch.name}, {siteConfig.juniorBranch.address}</dd>
@@ -24,8 +25,10 @@ import { siteConfig } from '@/config/site';
     <li><a href="/terms">Website Terms & Conditions</a></li>
     <li><a href="/refund-policy">Cancellation and refund information</a></li>
   </ul>
-  <h2>Recognition and affiliation records</h2>
-  <p>The school information supplied for this website identifies MP Board. This website does not claim CBSE affiliation. A scanned recognition or affiliation certificate has not been provided for online publication; contact the school office for the current documents and recognition status for your child's class and session.</p>
+  <h2>Board and recognition</h2>
+  <p>M.P. Public School is a recognised school affiliated to the Madhya Pradesh Board of Secondary Education (MP Board), affiliation no. 532414, for classes Pre-Primary to Class XII. Recognition validity and UDISE details can be confirmed with the school office.</p>
+  <p><strong>Managed by:</strong> Mother Parvati Educational Society, Indore.</p>
+  <p>A copy of the recognition certificate is available from the school office on request.</p>
   <h2>Questions about published information</h2>
   <p>Contact the office to confirm current fee concessions, admission availability, timetables, and subject combinations. The diary includes a separately printed telephone number; use the website office contacts above for enquiries and ask the office if you need to confirm a document detail.</p>
 </InformationLayout>

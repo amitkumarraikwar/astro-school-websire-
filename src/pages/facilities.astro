@@ -6,11 +6,11 @@ import Button from '@/components/ui/Button.astro';
 import { siteConfig } from '@/config/site';
 import { getBreadcrumbList } from '@/lib/schema';
 const facilities = [
-  { title: 'Classrooms and Campus', description: `The supplied infrastructure record lists ${siteConfig.stats.classrooms} classrooms and a ${siteConfig.campusArea} campus. Smart classroom facilities are listed in the school programme.` },
-  { title: 'Laboratories and Computer Facilities', description: 'The school infrastructure record lists four laboratories. Computer facilities are also listed among the school amenities. Arrange a visit to discuss the resources used by your child’s class.' },
+  { title: 'Classrooms and Campus', description: `Our campus has ${siteConfig.stats.classrooms} classrooms on a ${siteConfig.campusArea} site. Smart classroom facilities are part of our school programme.` },
+  { title: 'Laboratories and Computer Facilities', description: 'Our campus has four laboratories and computer facilities. Arrange a visit to discuss the resources used by your child’s class.' },
   { title: 'Library', description: 'The school has a library for reading and learning resources. Ask the school about library use and the resources available for different classes.' },
-  { title: 'Games, Sports, and Creative Activities', description: 'The school programme lists indoor and outdoor games, sports, yoga, music, dance, art and craft, and cultural and literary activities.' },
-  { title: 'Campus Surveillance', description: 'CCTV surveillance is listed in the school programme. Parents can ask the office about visitor access, student collection arrangements, and campus procedures.' },
+  { title: 'Games, Sports, and Creative Activities', description: 'Our school programme includes indoor and outdoor games, sports, yoga, music, dance, art and craft, and cultural and literary activities.' },
+  { title: 'Campus Surveillance', description: 'Our school programme includes CCTV surveillance. Parents can ask the office about visitor access, student collection arrangements, and campus procedures.' },
   { title: 'Transport Arrangements', description: 'The fee schedule states that parents can contact vehicle operators directly and pay transport charges separately. Confirm routes, charges, pickup arrangements, and vehicle provisions with the operator.' },
 ];
 const breadcrumbLd = getBreadcrumbList([
