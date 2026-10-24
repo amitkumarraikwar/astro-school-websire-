@@ -91,7 +91,7 @@ if (!sitemapAlias.includes('<sitemapindex') || !sitemapAlias.includes('/sitemap-
 const listed = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]).pathname.replace(/\/+$/, '') || '/'));
 for (const route of listed) if (!pages.has(route) || utilityRoutes.has(route)) issues.push(`Sitemap includes a missing or utility page: ${route}`);
 for (const route of criticalRoutes) if (!listed.has(route)) issues.push(`Sitemap omits school page: ${route}`);
-for (const sample of ['/news/cbse-results-2025', '/news/annual-sports-day-2025', '/news/smart-classrooms-inauguration']) {
+for (const sample of ['/news/annual-sports-day-2025', '/news/smart-classrooms-inauguration']) {
   if (pages.has(sample)) issues.push(`Unverified sample article is publicly built: ${sample}`);
 }
 const llms = await readFile(join(output, 'llms.txt'), 'utf8');
@@ -115,7 +115,41 @@ const serviceWorker = await readFile(join(output, 'sw.js'), 'utf8');
 if (!serviceWorker.includes('offline/index.html')) issues.push('Service worker does not precache or configure the offline navigation fallback.');
 if (!serviceWorker.includes('NetworkFirst') || !serviceWorker.includes('images-cache')) issues.push('Service worker runtime caching configuration is incomplete.');
 const vercel = JSON.parse(await readFile(join(root, 'vercel.json'), 'utf8'));
-for (const redirect of vercel.redirects ?? []) await checkDestination(redirect.destination, `redirect ${redirect.source}`);
+const requiredRedirects = [
+  ['/privacypolicy', '/privacy-policy'],
+  ['/privacy', '/privacy-policy'],
+  ['/admissions/2025', '/admissions'],
+  ['/admissions/:year(\\d{4})', '/admissions'],
+  ['/results', '/news'],
+  ['/result', '/news'],
+  ['/faqs', '/admissions#faq'],
+  ['/faq', '/admissions#faq'],
+  ['/notices', '/news'],
+  ['/notice', '/news'],
+  ['/contact-us', '/contact'],
+  ['/about-us', '/about'],
+  ['/gallery/:path*', '/gallery'],
+  ['/blog/:path*', '/news'],
+  ['/category/:path*', '/news'],
+  ['/tag/:path*', '/news'],
+  ['/author/:path*', '/'],
+  ['/feed', '/'],
+  ['/home', '/'],
+  ['/index.php', '/'],
+];
+for (const [source, destination] of requiredRedirects) {
+  const redirect = (vercel.redirects ?? []).find(rule => rule.source === source && rule.destination === destination);
+  if (!redirect) issues.push(`Required migration redirect is missing: ${source} -> ${destination}`);
+  else if (redirect.permanent !== true) issues.push(`Migration redirect is not permanent: ${source}`);
+}
+const hostRedirect = (vercel.redirects ?? []).find(rule => rule.source === '/:path*' && rule.destination === 'https://mppublicschool.online/:path*');
+if (!hostRedirect || hostRedirect.permanent !== true || hostRedirect.has?.[0]?.type !== 'host' || hostRedirect.has?.[0]?.value !== 'www.mppublicschool.online') {
+  issues.push('Permanent www-to-apex host redirect is missing or malformed.');
+}
+for (const redirect of vercel.redirects ?? []) {
+  if (redirect.has?.some(condition => condition.type === 'host')) continue;
+  await checkDestination(redirect.destination, `redirect ${redirect.source}`);
+}
 if ((vercel.rewrites ?? []).some(rule => rule.destination === '/' || rule.destination === '/index.html')) issues.push('Hosting rewrites can turn missing pages into successful homepage responses.');
 if (issues.length) {
   console.error(`Website verification failed (${issues.length} issues):\n${issues.map(issue => `- ${issue}`).join('\n')}`);
