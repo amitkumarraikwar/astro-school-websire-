@@ -8,6 +8,9 @@ dist/
 *.zip
 public/STAFF_FINAL_PICS_OPTIMIZED/
 public/optimized/
+/STAFF_FINAL_PICS_PRO_HD_ENHANCED
 
 # Private source documents; never publish personal staff or school records.
 school related informations/
+.vercel
+.env*
