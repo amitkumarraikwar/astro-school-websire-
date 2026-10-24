@@ -1,0 +1,14 @@
+# Large media archives – not needed for the build
+*.zip
+
+# Source images that are already optimized during build
+public/STAFF_FINAL_PICS_OPTIMIZED/
+public/optimized/
+
+# Private source documents
+school related informations/
+
+# Dev / editor files
+.git
+.DS_Store
+logo.jpg
